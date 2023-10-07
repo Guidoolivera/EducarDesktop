@@ -28,19 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_AsignarRol = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btn_AsignarRol
-            // 
-            this.btn_AsignarRol.Location = new System.Drawing.Point(49, 321);
-            this.btn_AsignarRol.Name = "btn_AsignarRol";
-            this.btn_AsignarRol.Size = new System.Drawing.Size(75, 23);
-            this.btn_AsignarRol.TabIndex = 1;
-            this.btn_AsignarRol.Text = "Asignar rol";
-            this.btn_AsignarRol.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -55,20 +45,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(834, 321);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btn_AsignarRol);
             this.Name = "GestionRolesForm";
             this.Text = "GestionRolesForm";
             this.Load += new System.EventHandler(this.GestionRolesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btn_AsignarRol;
         private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
