@@ -14,9 +14,12 @@ namespace EducarWeb
 {
     public partial class LoginForm : Form
     {
+        private readonly Clases.Conexion objetoConexion;
+
         public LoginForm()
         {
             InitializeComponent();
+            objetoConexion = new Clases.Conexion();
         }
 
         private void btn_Ingresar_Click(object sender, EventArgs e)
@@ -24,51 +27,48 @@ namespace EducarWeb
             string username = tb_Username.Text;
             string password = tb_Password.Text;
 
-            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                Clases.Conexion objetoConexion = new Clases.Conexion();
-                using (MySqlConnection conexion = objetoConexion.establecerConexion())
+                MessageBox.Show("Por favor, ingrese un nombre de usuario y una contraseña válidos.");
+                return;
+            }
+
+            using (MySqlConnection conexion = objetoConexion.establecerConexion())
+            {
+                if (conexion.State != ConnectionState.Open)
                 {
-                    string query = "SELECT COUNT(*) FROM usuario_usuario WHERE username = @username AND password = @password AND is_staff = 1";
-                    MySqlCommand cmd = new MySqlCommand(query, conexion);
+                    conexion.Open();
+                }
+
+                string query = "SELECT COUNT(*), is_staff, id, first_name, last_name, email FROM usuario_usuario WHERE username = @username AND password = @password";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
 
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    if (count > 0)
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        MessageBox.Show("Inicio de sesión exitoso como administrador.");
-                        if (!PersonaExiste(conexion, username))
+                        if (reader.Read())
                         {
-                            if (CrearPersona(conexion, username)) // Verifica si la creación de persona fue exitosa
-                            {
-                                MessageBox.Show("Datos de persona guardados correctamente.");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Error al guardar datos de persona.");
-                            }
-                        }
-                        MainForm mainForm = new MainForm(username, true, conexion);
-                        mainForm.ShowDialog();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        string querySinIsStaff = "SELECT COUNT(*) FROM usuario_usuario WHERE username = @username AND password = @password";
-                        MySqlCommand cmdSinIsStaff = new MySqlCommand(querySinIsStaff, conexion);
-                        cmdSinIsStaff.Parameters.AddWithValue("@username", username);
-                        cmdSinIsStaff.Parameters.AddWithValue("@password", password);
+                            int count = reader.GetInt32(0);
+                            bool isAdmin = reader.GetBoolean(1);
 
-                        int countSinIsStaff = Convert.ToInt32(cmdSinIsStaff.ExecuteScalar());
+                            MessageBox.Show(isAdmin ? "Inicio de sesión exitoso como administrador." : "Inicio de sesión exitoso como usuario no administrador.");
 
-                        if (countSinIsStaff > 0)
-                        {
-                            MessageBox.Show("Inicio de sesión exitoso como usuario no administrador.");
-                            if (!PersonaExiste(conexion, username))
+                            long idUsuario = reader.GetInt64(2);
+                            string nombreUsuario = reader.GetString(3);
+                            string apellidoUsuario = reader.GetString(4);
+                            string emailUsuario = reader.GetString(5);
+
+                            // Cerrar el DataReader antes de llamar a CrearPersona
+                            reader.Close();
+
+                            // Determinar el rol del usuario
+                            string rolUsuario = isAdmin ? "Administrador" : "Default";
+
+                            if (!PersonaExiste(conexion, idUsuario))
                             {
-                                if (CrearPersona(conexion, username)) // Verifica si la creación de persona fue exitosa
+                                if (CrearPersona(conexion, idUsuario, nombreUsuario, apellidoUsuario, username, emailUsuario, rolUsuario))
                                 {
                                     MessageBox.Show("Datos de persona guardados correctamente.");
                                 }
@@ -78,7 +78,7 @@ namespace EducarWeb
                                 }
                             }
 
-                            MainForm mainForm = new MainForm(username, false, conexion);
+                            MainForm mainForm = new MainForm(username, isAdmin, conexion);
                             mainForm.ShowDialog();
                             this.Hide();
                         }
@@ -89,77 +89,44 @@ namespace EducarWeb
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Por favor, ingrese un nombre de usuario y una contraseña válidos.");
-            }
         }
 
-        private bool PersonaExiste(MySqlConnection conexion, string username)
+        private bool PersonaExiste(MySqlConnection conexion, long idUsuario)
         {
-            string queryPersonaExistente = "SELECT COUNT(*) FROM persona WHERE username = @username";
+            string queryPersonaExistente = "SELECT COUNT(*) FROM persona WHERE id = @id";
             MySqlCommand cmdPersonaExistente = new MySqlCommand(queryPersonaExistente, conexion);
-            cmdPersonaExistente.Parameters.AddWithValue("@username", username);
+            cmdPersonaExistente.Parameters.AddWithValue("@id", idUsuario);
 
             int countPersonaExistente = Convert.ToInt32(cmdPersonaExistente.ExecuteScalar());
 
             return countPersonaExistente > 0;
         }
 
-        // Método para crear una nueva persona en la tabla "persona"
-        private bool CrearPersona(MySqlConnection conexion, string username)
+        private bool CrearPersona(MySqlConnection conexion, long idUsuario, string nombreUsuario, string apellidoUsuario, string username, string emailUsuario, string rolUsuario)
         {
-            // Obtener los datos de la persona desde la tabla usuario_usuario
-            string queryObtenerDatosUsuario = "SELECT id, first_name, last_name, email FROM usuario_usuario WHERE username = @username";
+            string queryInsertarPersona = "INSERT INTO persona (id, nombre, apellido, username, email, rol) VALUES (@id, @nombre, @apellido, @username, @email, @rol)";
 
-            using (MySqlCommand cmdObtenerDatosUsuario = new MySqlCommand(queryObtenerDatosUsuario, conexion))
+            try
             {
-                cmdObtenerDatosUsuario.Parameters.AddWithValue("@username", username);
-
-                using (MySqlDataReader reader = cmdObtenerDatosUsuario.ExecuteReader())
+                using (MySqlCommand cmdInsertarPersona = new MySqlCommand(queryInsertarPersona, conexion))
                 {
-                    if (reader.Read())
-                    {
-                        long idUsuario = reader.GetInt64("id");
-                        string nombreUsuario = reader.GetString("first_name");
-                        string apellidoUsuario = reader.GetString("last_name");
-                        string emailUsuario = reader.GetString("email");
- 
+                    cmdInsertarPersona.Parameters.AddWithValue("@id", idUsuario);
+                    cmdInsertarPersona.Parameters.AddWithValue("@nombre", nombreUsuario);
+                    cmdInsertarPersona.Parameters.AddWithValue("@apellido", apellidoUsuario);
+                    cmdInsertarPersona.Parameters.AddWithValue("@username", username);
+                    cmdInsertarPersona.Parameters.AddWithValue("@email", emailUsuario);
+                    cmdInsertarPersona.Parameters.AddWithValue("@rol", rolUsuario);
 
-                        // Verificar si el valor de 'username' no es nulo o vacío
-                        if (!string.IsNullOrEmpty(username))
-                        {
-                            // Crear un nuevo objeto Persona
-                            Persona persona = new Persona(idUsuario,nombreUsuario, apellidoUsuario, username, emailUsuario);
+                    int filasAfectadas = cmdInsertarPersona.ExecuteNonQuery();
 
-                            // Insertar la nueva persona en la tabla "persona"
-                            string queryInsertarPersona = "INSERT INTO persona (id, nombre, apellido, username, email) VALUES (@id, @nombre, @apellido, @username, @email)";
-
-                            using (MySqlCommand cmdInsertarPersona = new MySqlCommand(queryInsertarPersona, conexion))
-                            {
-                                cmdInsertarPersona.Parameters.AddWithValue("@id", persona.Id);
-                                cmdInsertarPersona.Parameters.AddWithValue("@nombre", persona.Nombre);
-                                cmdInsertarPersona.Parameters.AddWithValue("@apellido", persona.Apellido);
-                                cmdInsertarPersona.Parameters.AddWithValue("@username", persona.Username);
-                                cmdInsertarPersona.Parameters.AddWithValue("@email", persona.Email);
-
-                                // Cerrar el DataReader antes de ejecutar una nueva consulta
-                                reader.Close();
-
-                                int filasAfectadas = cmdInsertarPersona.ExecuteNonQuery();
-
-                                return filasAfectadas > 0;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("El valor de 'username' es nulo o vacío. No se pudo crear la persona.");
-                        }
-                    }
+                    return filasAfectadas > 0;
                 }
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear la persona: " + ex.Message);
+                return false;
+            }
         }
     }
 }
