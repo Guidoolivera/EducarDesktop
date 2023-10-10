@@ -13,16 +13,16 @@ namespace EducarWeb.Clases
         public string Apellido { get; set; }
         public string Username { get; }
         public string Email { get; set; }
+        public string Rol { get; set; }
 
-
-
-        public Persona(long idUsuario, string nombreUsuario, string apellidoUsuario, string username, string emailUsuario)
+        public Persona(long idUsuario, string nombreUsuario, string apellidoUsuario, string username, string emailUsuario,string rol)
         {
             Id = idUsuario;
             Nombre = nombreUsuario;
             Apellido = apellidoUsuario;
             Username = username;
             Email = emailUsuario;
+            Rol = rol;
         }
 
         public Persona(string nombre, string apellido, string email)
