@@ -49,7 +49,6 @@
             this.Controls.Add(this.dataGridViewMaterias);
             this.Name = "ListarMateriasForm";
             this.Text = "ListarMateriasForm";
-            this.Load += new System.EventHandler(this.ListarMateriasForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMaterias)).EndInit();
             this.ResumeLayout(false);
 

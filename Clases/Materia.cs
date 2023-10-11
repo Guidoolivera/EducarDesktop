@@ -9,8 +9,6 @@ namespace EducarWeb.Clases
 
     internal class Materia
     {
-
-
         public string Nombre { get => Nombre; set => Nombre = value; }
 
         public Materia(string nombre) 

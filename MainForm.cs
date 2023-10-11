@@ -15,17 +15,19 @@ namespace EducarWeb
     {
         bool esAdmin;
         MySqlConnection conexion;
-        public MainForm(string username, bool esAdmin, MySqlConnection conexion)
+        long idUsuario;
+        public MainForm(string username, bool esAdmin, MySqlConnection conexion, long idUsuario)
         {
             InitializeComponent();
-            lbl_bienvenido.Text = "Bienvenido, " + username;
+            lbl_bienvenido.Text = "Bienvenido, " + username + ".";
             this.esAdmin = esAdmin;
             this.conexion = conexion; 
+            this.idUsuario = idUsuario; 
         }
 
         private void btn_Materias_Click(object sender, EventArgs e)
         {
-            MateriaForm materiaForm = new MateriaForm(conexion); // Pasa la conexión
+            MateriaForm materiaForm = new MateriaForm(conexion, idUsuario); // Pasa la conexión
             materiaForm.ShowDialog();
         }
 

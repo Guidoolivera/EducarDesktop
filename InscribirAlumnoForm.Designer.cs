@@ -51,7 +51,6 @@
             this.btn_InscribirAlumno.TabIndex = 3;
             this.btn_InscribirAlumno.Text = "Inscribir Alumno";
             this.btn_InscribirAlumno.UseVisualStyleBackColor = false;
-            this.btn_InscribirAlumno.Click += new System.EventHandler(this.btn_InscribirAlumno_Click);
             // 
             // tb_idAlumno
             // 
@@ -85,7 +84,6 @@
             this.Name = "InscribirAlumnoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ListarMateriasForm";
-            this.Load += new System.EventHandler(this.ListarMateriasForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

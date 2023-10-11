@@ -36,18 +36,19 @@
             // 
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(49, 51);
+            this.dataGridView1.Location = new System.Drawing.Point(45, 34);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(637, 199);
+            this.dataGridView1.Size = new System.Drawing.Size(462, 199);
             this.dataGridView1.TabIndex = 2;
             // 
             // GestionRolesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 321);
+            this.ClientSize = new System.Drawing.Size(547, 278);
             this.Controls.Add(this.dataGridView1);
             this.Name = "GestionRolesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GestionRolesForm";
             this.Load += new System.EventHandler(this.GestionRolesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

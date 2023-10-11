@@ -22,6 +22,7 @@ namespace EducarWeb
             this.conexion = conexion;
         }
 
+        /*
         private void ListarMateriasForm_Load(object sender, EventArgs e)
         {
             // Consulta para obtener las materias y la cantidad de alumnos inscritos
@@ -62,6 +63,7 @@ namespace EducarWeb
                 }
             }
         }
+        */
 
         private void dataGridViewMaterias_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
