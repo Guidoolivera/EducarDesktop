@@ -74,7 +74,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(405, 207);
+            this.ClientSize = new System.Drawing.Size(407, 231);
             this.Controls.Add(this.btn_ListarMaterias);
             this.Controls.Add(this.btn_InscribirAlumno);
             this.Controls.Add(this.btn_CrearMateria);

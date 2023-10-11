@@ -53,7 +53,7 @@ namespace EducarWeb
                         ConfigurarColumna("apellido", "Apellido", true);
 
                         // Agregar una columna de ComboBox para seleccionar el rol
-                        AgregarComboBoxColumn("rol", "Seleccionar Rol", "cmbRol", new[] { "Default", "Administrador", "Docente", "Alumno", "Profesor", "Directivo" });
+                        AgregarComboBoxColumn("rol", "Seleccionar Rol", "cmbRol", new[] { "Default", "Administrador", "Padre", "Alumno", "Profesor", "Directivo" });
                     }
 
                     // Suscribir al evento CellEndEdit

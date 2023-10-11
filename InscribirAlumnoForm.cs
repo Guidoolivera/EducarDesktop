@@ -13,7 +13,8 @@ namespace EducarWeb
 {
     public partial class InscribirAlumnoForm : Form
     {
-        MySqlConnection conexion;
+        private MySqlConnection conexion;
+        private int idAlumno; // Debes asignar el ID del alumno que está solicitando inscripción
 
         public InscribirAlumnoForm(MySqlConnection conexion)
         {
@@ -21,68 +22,70 @@ namespace EducarWeb
             this.conexion = conexion;
         }
 
-        private void ListarMateriasForm_Load(object sender, EventArgs e)
+        private void SolicitarInscripcionForm_Load(object sender, EventArgs e)
         {
-            CargarMaterias();
+            CargarMateriasDisponibles();
         }
 
-        private void CargarMaterias()
+        private void CargarMateriasDisponibles()
         {
-            // Realizar la consulta SQL para obtener la lista de materias
-            string queryListado = "SELECT id AS IdMateria, nombre AS NombreMateria FROM materia";
+            string query = "SELECT m.id, m.nombre, (m.cupo_maximo - IFNULL(i.cantidad_inscriptos, 0)) AS cupo_disponible " +
+                           "FROM materia AS m " +
+                           "LEFT JOIN (SELECT id_materia, COUNT(*) AS cantidad_inscriptos FROM persona_has_materia GROUP BY id_materia) AS i " +
+                           "ON m.id = i.id_materia " +
+                           "WHERE cupo_disponible > 0";
 
-            using (MySqlCommand cmd = new MySqlCommand(queryListado, conexion))
+            using (MySqlCommand cmd = new MySqlCommand(query, conexion))
             {
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
 
-                    // Enlazar el ComboBox con los datos de las materias
                     comboBoxMaterias.DataSource = dataTable;
-                    comboBoxMaterias.DisplayMember = "NombreMateria";
-                    comboBoxMaterias.ValueMember = "IdMateria";
+                    comboBoxMaterias.DisplayMember = "nombre";
+                    comboBoxMaterias.ValueMember = "id";
                 }
             }
         }
 
-        private void btn_InscribirAlumno_Click(object sender, EventArgs e)
+        private void btn_SolicitarInscripcion_Click(object sender, EventArgs e)
         {
-            // Obtener el valor del TextBox tb_idAlumno
-            if (int.TryParse(tb_idAlumno.Text, out int idAlumno))
+            if (comboBoxMaterias.SelectedIndex != -1)
             {
-                if (comboBoxMaterias.SelectedIndex != -1)
+                int idMateria = Convert.ToInt32(comboBoxMaterias.SelectedValue);
+                DateTime fechaSolicitud = DateTime.Now;
+
+                string query = "INSERT INTO solicitudes_inscripcion (id_alumno, id_materia, fecha_solicitud) VALUES (@idAlumno, @idMateria, @fechaSolicitud)";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
-                    int idMateria = Convert.ToInt32(comboBoxMaterias.SelectedValue);
+                    cmd.Parameters.AddWithValue("@idAlumno", idAlumno);
+                    cmd.Parameters.AddWithValue("@idMateria", idMateria);
+                    cmd.Parameters.AddWithValue("@fechaSolicitud", fechaSolicitud);
 
-                    // Realizar la inserción en la tabla de inscripciones
-                    string queryInsercion = "INSERT INTO inscripciones (idalumno, idmateria) VALUES (@idAlumno, @idMateria)";
-
-                    using (MySqlCommand cmd = new MySqlCommand(queryInsercion, conexion))
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@idAlumno", idAlumno);
-                        cmd.Parameters.AddWithValue("@idMateria", idMateria);
-
                         int filasAfectadas = cmd.ExecuteNonQuery();
 
                         if (filasAfectadas > 0)
                         {
-                            MessageBox.Show("Inscripción exitosa.");
+                            MessageBox.Show("Solicitud de inscripción enviada.");
                         }
                         else
                         {
-                            MessageBox.Show("Error al inscribirse en la materia.");
+                            MessageBox.Show("Error al enviar la solicitud de inscripción.");
                         }
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Selecciona una materia antes de inscribirte.");
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al enviar la solicitud de inscripción: " + ex.Message);
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Ingresa un ID de alumno válido.");
+                MessageBox.Show("Selecciona una materia antes de enviar la solicitud.");
             }
         }
     }
