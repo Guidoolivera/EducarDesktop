@@ -44,6 +44,6 @@ C:\Users\Guido\source\repos\EducarWeb\obj\Debug\EducarWeb.MainForm.resources
 C:\Users\Guido\source\repos\EducarWeb\obj\Debug\EducarWeb.CrearMateriaForm.resources
 C:\Users\Guido\source\repos\EducarWeb\obj\Debug\EducarWeb.MateriaForm.resources
 C:\Users\Guido\source\repos\EducarWeb\obj\Debug\EducarWeb.ListarMateriasForm.resources
-C:\Users\Guido\source\repos\EducarWeb\obj\Debug\EducarWeb.InscribirAlumnoForm.resources
 C:\Users\Guido\source\repos\EducarWeb\obj\Debug\EducarWeb.GestionRolesForm.resources
 C:\Users\Guido\source\repos\EducarWeb\obj\Debug\EducarWeb.SolicitarInscripcionForm.resources
+C:\Users\Guido\source\repos\EducarWeb\obj\Debug\EducarWeb.SolicitudesInscripcionForm.resources
