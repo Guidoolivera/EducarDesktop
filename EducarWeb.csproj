@@ -147,6 +147,12 @@
     <Compile Include="MateriaForm.Designer.cs">
       <DependentUpon>MateriaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PagoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PagoForm.Designer.cs">
+      <DependentUpon>PagoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CrearMateriaForm.resx">
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MateriaForm.resx">
       <DependentUpon>MateriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagoForm.resx">
+      <DependentUpon>PagoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
