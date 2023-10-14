@@ -43,5 +43,10 @@ namespace EducarWeb
             lmf.ShowDialog();
         }
 
+        private void btn_GestionarInscripciones_Click(object sender, EventArgs e)
+        {
+            SolicitudesInscripcionForm slif = new SolicitudesInscripcionForm(conexion);
+            slif.ShowDialog();
+        }
     }
 }
