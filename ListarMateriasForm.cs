@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace EducarWeb
 {
     public partial class ListarMateriasForm : Form
@@ -20,59 +19,90 @@ namespace EducarWeb
         {
             InitializeComponent();
             this.conexion = conexion;
+            CargarMaterias();
         }
 
-        private void ListarMateriasForm_Load(object sender, EventArgs e)
+        private void CargarMaterias()
         {
-            // Consulta para obtener las materias y la cantidad de alumnos inscritos
-            string query = "SELECT m.id AS MateriaId, m.nombre AS MateriaNombre, a.nombre AS AlumnoNombre " +
-                           "FROM materia m " +
-                           "LEFT JOIN inscripciones i ON m.id = i.idmateria " +
-                           "LEFT JOIN alumno a ON i.idalumno = a.id " +
-                           "ORDER BY m.id";
-
-            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, conexion))
+            try
             {
-                DataTable tablaMaterias = new DataTable();
-                adapter.Fill(tablaMaterias);
+                string queryMaterias =
+                    "SELECT m.id, m.nombre AS materia, p.nombre AS profesor " +
+                    "FROM materia m " +
+                    "INNER JOIN persona p ON m.profesor_id = p.id " +
+                    "WHERE p.rol = 'Profesor'";
 
-                // Asignar la tabla de datos al DataGridView
-                dataGridViewMaterias.DataSource = tablaMaterias;
-
-                // Habilitar la autogeneración de columnas (excepto la del ComboBox)
-                dataGridViewMaterias.AutoGenerateColumns = true;
-
-                // Crear una columna de ComboBox manualmente
-                DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-                comboBoxColumn.HeaderText = "Alumnos Inscritos";
-                comboBoxColumn.Name = "cmbAlumnos";
-                comboBoxColumn.DataPropertyName = "AlumnoNombre"; // Nombre de la columna en el DataTable
-
-                // Agregar la columna del ComboBox al DataGridView
-                dataGridViewMaterias.Columns.Add(comboBoxColumn);
-
-                // Llenar el ComboBox con los nombres de los alumnos
-                foreach (DataGridViewRow row in dataGridViewMaterias.Rows)
+                using (MySqlCommand cmd = new MySqlCommand(queryMaterias, conexion))
                 {
-                    DataGridViewComboBoxCell comboBoxCell = (DataGridViewComboBoxCell)row.Cells["cmbAlumnos"];
-                    comboBoxCell.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
-                    comboBoxCell.ValueMember = "AlumnoNombre"; // Nombre de la columna en el DataTable
-                    comboBoxCell.DataSource = tablaMaterias;
-                    comboBoxCell.Value = row.Cells["AlumnoNombre"].Value;
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        // Agregar una columna para mostrar la lista de alumnos inscritos
+                        DataGridViewTextBoxColumn alumnosColumn = new DataGridViewTextBoxColumn();
+                        alumnosColumn.HeaderText = "Alumnos Inscritos";
+                        alumnosColumn.Name = "alumnos";
+                        dgvMaterias.Columns.Add(alumnosColumn);
+
+                        // Enlazar el DataGridView con los datos de las materias
+                        dgvMaterias.DataSource = dataTable;
+
+                        // Renombrar las columnas del DataGridView
+                        dgvMaterias.Columns["materia"].HeaderText = "Materia";
+                        dgvMaterias.Columns["profesor"].HeaderText = "Profesor";
+                        dgvMaterias.Columns["alumnos"].Visible = false; // Ocultar la columna con nombres de alumnos
+
+                        // Manejar el evento SelectionChanged para mostrar la lista de alumnos en un ListBox
+                        dgvMaterias.SelectionChanged += dgvMaterias_SelectionChanged;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las materias: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvMaterias_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvMaterias.SelectedRows.Count > 0)
+            {
+                int idMateria = Convert.ToInt32(dgvMaterias.SelectedRows[0].Cells["id"].Value);
+                string materiaSeleccionada = dgvMaterias.SelectedRows[0].Cells["materia"].Value.ToString();
+
+                try
+                {
+                    // Consulta para cargar la lista de alumnos inscritos
+                    string queryAlumnosInscritos =
+                        "SELECT p.nombre " +
+                        "FROM persona p " +
+                        "INNER JOIN persona_has_materia phm ON p.id = phm.persona_id " +
+                        "WHERE phm.materia_id = @idMateria";
+
+                    using (MySqlCommand cmd = new MySqlCommand(queryAlumnosInscritos, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@idMateria", idMateria);
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+
+                            // Mostrar la lista de alumnos inscritos en el ListBox
+                            listBoxAlumnos.DataSource = dataTable;
+                            listBoxAlumnos.DisplayMember = "nombre";
+
+                            // Actualizar el título del ListBox
+                            lblAlumnosInscritos.Text = $"Alumnos Inscritos en {materiaSeleccionada}:";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar la lista de alumnos inscritos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
-        private void dataGridViewMaterias_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            // Verificar si se está formateando una celda en la columna de ComboBox
-            if (dataGridViewMaterias.Columns[e.ColumnIndex].Name == "cmbAlumnos" && e.RowIndex >= 0)
-            {
-                DataGridViewComboBoxCell comboBoxCell = (DataGridViewComboBoxCell)dataGridViewMaterias.Rows[e.RowIndex].Cells["cmbAlumnos"];
-                comboBoxCell.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
-            }
-        }
-
-
     }
 }

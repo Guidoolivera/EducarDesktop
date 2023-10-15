@@ -31,6 +31,7 @@
             this.btn_CrearMateria = new System.Windows.Forms.Button();
             this.btn_InscribirAlumno = new System.Windows.Forms.Button();
             this.btn_ListarMaterias = new System.Windows.Forms.Button();
+            this.btn_GestionarInscripciones = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_CrearMateria
@@ -53,7 +54,7 @@
             this.btn_InscribirAlumno.Name = "btn_InscribirAlumno";
             this.btn_InscribirAlumno.Size = new System.Drawing.Size(125, 31);
             this.btn_InscribirAlumno.TabIndex = 1;
-            this.btn_InscribirAlumno.Text = "Inscribir Alumno";
+            this.btn_InscribirAlumno.Text = "Solicitar Inscripción";
             this.btn_InscribirAlumno.UseVisualStyleBackColor = false;
             this.btn_InscribirAlumno.Click += new System.EventHandler(this.btn_InscribirAlumno_Click);
             // 
@@ -69,12 +70,25 @@
             this.btn_ListarMaterias.UseVisualStyleBackColor = false;
             this.btn_ListarMaterias.Click += new System.EventHandler(this.btn_ListarMaterias_Click);
             // 
+            // btn_GestionarInscripciones
+            // 
+            this.btn_GestionarInscripciones.BackColor = System.Drawing.Color.Teal;
+            this.btn_GestionarInscripciones.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_GestionarInscripciones.Location = new System.Drawing.Point(225, 39);
+            this.btn_GestionarInscripciones.Name = "btn_GestionarInscripciones";
+            this.btn_GestionarInscripciones.Size = new System.Drawing.Size(146, 31);
+            this.btn_GestionarInscripciones.TabIndex = 3;
+            this.btn_GestionarInscripciones.Text = "Gestionar Inscripciones";
+            this.btn_GestionarInscripciones.UseVisualStyleBackColor = false;
+            this.btn_GestionarInscripciones.Click += new System.EventHandler(this.btn_GestionarInscripciones_Click);
+            // 
             // MateriaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(405, 207);
+            this.ClientSize = new System.Drawing.Size(401, 202);
+            this.Controls.Add(this.btn_GestionarInscripciones);
             this.Controls.Add(this.btn_ListarMaterias);
             this.Controls.Add(this.btn_InscribirAlumno);
             this.Controls.Add(this.btn_CrearMateria);
@@ -90,5 +104,6 @@
         private System.Windows.Forms.Button btn_CrearMateria;
         private System.Windows.Forms.Button btn_InscribirAlumno;
         private System.Windows.Forms.Button btn_ListarMaterias;
+        private System.Windows.Forms.Button btn_GestionarInscripciones;
     }
 }

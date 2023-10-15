@@ -51,36 +51,43 @@ namespace EducarWeb
                         if (reader.Read())
                         {
                             int count = reader.GetInt32(0);
-                            bool isAdmin = reader.GetBoolean(1);
-
-                            MessageBox.Show(isAdmin ? "Inicio de sesión exitoso como administrador." : "Inicio de sesión exitoso como usuario no administrador.");
-
-                            long idUsuario = reader.GetInt64(2);
-                            string nombreUsuario = reader.GetString(3);
-                            string apellidoUsuario = reader.GetString(4);
-                            string emailUsuario = reader.GetString(5);
-
-                            // Cerrar el DataReader antes de llamar a CrearPersona
-                            reader.Close();
-
-                            // Determinar el rol del usuario
-                            string rolUsuario = isAdmin ? "Administrador" : "Default";
-
-                            if (!PersonaExiste(conexion, idUsuario))
+                            if (count > 0)
                             {
-                                if (CrearPersona(conexion, idUsuario, nombreUsuario, apellidoUsuario, username, emailUsuario, rolUsuario))
-                                {
-                                    MessageBox.Show("Datos de persona guardados correctamente.");
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Error al guardar datos de persona.");
-                                }
-                            }
+                                bool isAdmin = reader.IsDBNull(1) ? false : reader.GetBoolean(1);
 
-                            MainForm mainForm = new MainForm(username, isAdmin, conexion);
-                            mainForm.ShowDialog();
-                            this.Hide();
+                                MessageBox.Show(isAdmin ? "Inicio de sesión exitoso como administrador." : "Inicio de sesión exitoso como usuario no administrador.");
+
+                                long idUsuario = reader.GetInt64(2);
+                                string nombreUsuario = reader.IsDBNull(3) ? string.Empty : reader.GetString(3);
+                                string apellidoUsuario = reader.IsDBNull(4) ? string.Empty : reader.GetString(4);
+                                string emailUsuario = reader.IsDBNull(5) ? string.Empty : reader.GetString(5);
+
+                                // Cerrar el DataReader antes de llamar a CrearPersona
+                                reader.Close();
+
+                                // Determinar el rol del usuario
+                                string rolUsuario = isAdmin ? "Administrador" : "Default";
+
+                                if (!PersonaExiste(conexion, idUsuario))
+                                {
+                                    if (CrearPersona(conexion, idUsuario, nombreUsuario, apellidoUsuario, username, emailUsuario, rolUsuario))
+                                    {
+                                        MessageBox.Show("Datos de persona guardados correctamente.");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error al guardar datos de persona.");
+                                    }
+                                }
+
+                                MainForm mainForm = new MainForm(username, isAdmin, conexion, idUsuario);
+                                mainForm.ShowDialog();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nombre de usuario o contraseña incorrectos.");
+                            }
                         }
                         else
                         {
@@ -97,9 +104,17 @@ namespace EducarWeb
             MySqlCommand cmdPersonaExistente = new MySqlCommand(queryPersonaExistente, conexion);
             cmdPersonaExistente.Parameters.AddWithValue("@id", idUsuario);
 
-            int countPersonaExistente = Convert.ToInt32(cmdPersonaExistente.ExecuteScalar());
+            try
+            {
+                int countPersonaExistente = Convert.ToInt32(cmdPersonaExistente.ExecuteScalar());
 
-            return countPersonaExistente > 0;
+                return countPersonaExistente > 0;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error al verificar la existencia de la persona: " + ex.Message);
+                return false;
+            }
         }
 
         private bool CrearPersona(MySqlConnection conexion, long idUsuario, string nombreUsuario, string apellidoUsuario, string username, string emailUsuario, string rolUsuario)
@@ -122,7 +137,7 @@ namespace EducarWeb
                     return filasAfectadas > 0;
                 }
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show("Error al crear la persona: " + ex.Message);
                 return false;

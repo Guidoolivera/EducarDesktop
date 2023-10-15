@@ -123,11 +123,11 @@
     <Compile Include="ListarMateriasForm.Designer.cs">
       <DependentUpon>ListarMateriasForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InscribirAlumnoForm.cs">
+    <Compile Include="SolicitudesInscripcionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InscribirAlumnoForm.Designer.cs">
-      <DependentUpon>InscribirAlumnoForm.cs</DependentUpon>
+    <Compile Include="SolicitudesInscripcionForm.Designer.cs">
+      <DependentUpon>SolicitudesInscripcionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -155,6 +155,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolicitarInscripcionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SolicitarInscripcionForm.Designer.cs">
+      <DependentUpon>SolicitarInscripcionForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CrearMateriaForm.resx">
       <DependentUpon>CrearMateriaForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,8 +170,8 @@
     <EmbeddedResource Include="ListarMateriasForm.resx">
       <DependentUpon>ListarMateriasForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InscribirAlumnoForm.resx">
-      <DependentUpon>InscribirAlumnoForm.cs</DependentUpon>
+    <EmbeddedResource Include="SolicitudesInscripcionForm.resx">
+      <DependentUpon>SolicitudesInscripcionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -188,6 +194,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SolicitarInscripcionForm.resx">
+      <DependentUpon>SolicitarInscripcionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

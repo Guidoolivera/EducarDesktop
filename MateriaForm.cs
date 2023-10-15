@@ -15,10 +15,13 @@ namespace EducarWeb
     public partial class MateriaForm : Form
     {
         MySqlConnection conexion;
-        public MateriaForm(MySqlConnection conexion)
+        long idUsuario;
+        public MateriaForm(MySqlConnection conexion, long idUsuario)
         {
             InitializeComponent();
             this.conexion = conexion;
+            this.idUsuario = idUsuario;
+            
         }
 
         private void btn_CrearMateria_Click(object sender, EventArgs e)
@@ -30,14 +33,20 @@ namespace EducarWeb
 
         private void btn_InscribirAlumno_Click(object sender, EventArgs e)
         {
-            InscribirAlumnoForm lmf = new InscribirAlumnoForm(conexion);
-            lmf.ShowDialog();
+            SolicitarInscripcionForm sif = new SolicitarInscripcionForm(conexion, idUsuario);
+            sif.ShowDialog();
         }
 
         private void btn_ListarMaterias_Click(object sender, EventArgs e)
         {
             ListarMateriasForm lmf = new ListarMateriasForm(conexion);
             lmf.ShowDialog();
+        }
+
+        private void btn_GestionarInscripciones_Click(object sender, EventArgs e)
+        {
+            SolicitudesInscripcionForm slif = new SolicitudesInscripcionForm(conexion);
+            slif.ShowDialog();
         }
     }
 }
