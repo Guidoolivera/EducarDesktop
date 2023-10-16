@@ -45,9 +45,11 @@ namespace EducarWeb
 
         private void btn_Examenes_Click(object sender, EventArgs e)
         {
-            if (esprofe())
+            if (esprofe(idUsuario, conexion))
             {
                 //abrir la ventana para igresar notas. ventana de profes
+                NotasProfeForm notasProfe = new NotasProfeForm(idUsuario, conexion);
+                notasProfe.ShowDialog();
             }
             else
             {
@@ -57,10 +59,30 @@ namespace EducarWeb
             }
         }
 
-        public bool esprofe()
+        public bool esprofe(long idUsuario, MySqlConnection conexion)
         {
-            //controlamos de que el usuario sea un profesor
-            return false;
+            bool esProfe=false;
+            string consulta = "SELECT rol FROM persona WHERE id = @idUsuario";
+            
+            using (conexion)
+            {
+                
+                MySqlCommand cmd = new MySqlCommand(consulta, conexion);
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string rol = reader["rol"].ToString();
+                        if (rol == "Profesor" || rol == "Administrador")
+                        {
+                            esProfe = true;
+                        }
+                    }
+                }
+                
+            }
+            return esProfe;
         }
     }
 }

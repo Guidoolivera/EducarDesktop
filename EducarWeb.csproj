@@ -130,6 +130,12 @@
     <Compile Include="NotasAlumnoForm.Designer.cs">
       <DependentUpon>NotasAlumnoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NotasProfeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotasProfeForm.Designer.cs">
+      <DependentUpon>NotasProfeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SolicitudesInscripcionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotasAlumnoForm.resx">
       <DependentUpon>NotasAlumnoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotasProfeForm.resx">
+      <DependentUpon>NotasProfeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SolicitudesInscripcionForm.resx">
       <DependentUpon>SolicitudesInscripcionForm.cs</DependentUpon>

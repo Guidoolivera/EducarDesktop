@@ -97,3 +97,4 @@ C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.pdb
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.SolicitudesInscripcionForm.resources
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.SolicitarInscripcionForm.resources
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.NotasAlumnoForm.resources
+C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.NotasProfeForm.resources
