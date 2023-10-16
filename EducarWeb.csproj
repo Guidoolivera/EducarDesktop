@@ -102,6 +102,7 @@
     <Compile Include="Clases\Autoridad.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\Materia.cs" />
+    <Compile Include="Clases\Nota.cs" />
     <Compile Include="Clases\Padre.cs" />
     <Compile Include="Clases\Persona.cs" />
     <Compile Include="Clases\Profesor.cs" />
@@ -122,6 +123,12 @@
     </Compile>
     <Compile Include="ListarMateriasForm.Designer.cs">
       <DependentUpon>ListarMateriasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotasAlumnoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotasAlumnoForm.Designer.cs">
+      <DependentUpon>NotasAlumnoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SolicitudesInscripcionForm.cs">
       <SubType>Form</SubType>
@@ -169,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListarMateriasForm.resx">
       <DependentUpon>ListarMateriasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotasAlumnoForm.resx">
+      <DependentUpon>NotasAlumnoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SolicitudesInscripcionForm.resx">
       <DependentUpon>SolicitudesInscripcionForm.cs</DependentUpon>

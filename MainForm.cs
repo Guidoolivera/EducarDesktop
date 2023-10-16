@@ -42,5 +42,25 @@ namespace EducarWeb
             PagoForm pagoForm = new PagoForm(conexion); // Pasa la conexión
             pagoForm.ShowDialog();
         }
+
+        private void btn_Examenes_Click(object sender, EventArgs e)
+        {
+            if (esprofe())
+            {
+                //abrir la ventana para igresar notas. ventana de profes
+            }
+            else
+            {
+                //ventana de vista de las notas del alumno
+                NotasAlumnoForm notasAlumno = new NotasAlumnoForm(idUsuario, conexion);
+                notasAlumno.ShowDialog();
+            }
+        }
+
+        public bool esprofe()
+        {
+            //controlamos de que el usuario sea un profesor
+            return false;
+        }
     }
 }
