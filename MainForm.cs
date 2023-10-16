@@ -36,5 +36,11 @@ namespace EducarWeb
             GestionRolesForm grf = new GestionRolesForm(conexion);
             grf.ShowDialog();
         }
+
+        private void btn_Pagos_Click(object sender, EventArgs e)
+        {
+            PagoForm pagoForm = new PagoForm(conexion); // Pasa la conexión
+            pagoForm.ShowDialog();
+        }
     }
 }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.menuDesplegable = new System.Windows.Forms.Panel();
+            this.btn_GestionarRoles = new System.Windows.Forms.Button();
             this.btn_Pagos = new System.Windows.Forms.Button();
             this.btn_Examenes = new System.Windows.Forms.Button();
             this.btn_Asistencia = new System.Windows.Forms.Button();
             this.btn_Materias = new System.Windows.Forms.Button();
             this.lbl_bienvenido = new System.Windows.Forms.Label();
-            this.btn_GestionarRoles = new System.Windows.Forms.Button();
             this.menuDesplegable.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,17 @@
             this.menuDesplegable.Size = new System.Drawing.Size(154, 447);
             this.menuDesplegable.TabIndex = 0;
             // 
+            // btn_GestionarRoles
+            // 
+            this.btn_GestionarRoles.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_GestionarRoles.Location = new System.Drawing.Point(29, 246);
+            this.btn_GestionarRoles.Name = "btn_GestionarRoles";
+            this.btn_GestionarRoles.Size = new System.Drawing.Size(98, 36);
+            this.btn_GestionarRoles.TabIndex = 4;
+            this.btn_GestionarRoles.Text = "Roles";
+            this.btn_GestionarRoles.UseVisualStyleBackColor = true;
+            this.btn_GestionarRoles.Click += new System.EventHandler(this.btn_GestionarRoles_Click);
+            // 
             // btn_Pagos
             // 
             this.btn_Pagos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -61,6 +72,7 @@
             this.btn_Pagos.TabIndex = 3;
             this.btn_Pagos.Text = "Pagos";
             this.btn_Pagos.UseVisualStyleBackColor = true;
+            this.btn_Pagos.Click += new System.EventHandler(this.btn_Pagos_Click);
             // 
             // btn_Examenes
             // 
@@ -102,17 +114,6 @@
             this.lbl_bienvenido.Size = new System.Drawing.Size(83, 27);
             this.lbl_bienvenido.TabIndex = 1;
             this.lbl_bienvenido.Text = "Bienvenido";
-            // 
-            // btn_GestionarRoles
-            // 
-            this.btn_GestionarRoles.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_GestionarRoles.Location = new System.Drawing.Point(29, 246);
-            this.btn_GestionarRoles.Name = "btn_GestionarRoles";
-            this.btn_GestionarRoles.Size = new System.Drawing.Size(98, 36);
-            this.btn_GestionarRoles.TabIndex = 4;
-            this.btn_GestionarRoles.Text = "Roles";
-            this.btn_GestionarRoles.UseVisualStyleBackColor = true;
-            this.btn_GestionarRoles.Click += new System.EventHandler(this.btn_GestionarRoles_Click);
             // 
             // MainForm
             // 
