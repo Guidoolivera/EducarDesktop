@@ -20,7 +20,7 @@ namespace EducarWeb
         public MainForm(string username, bool esAdmin, MySqlConnection conexion, long idUsuario)
         {
             InitializeComponent();
-            lbl_bienvenido.Text = "Bienvenido, " + username + ".";
+            lbl_bienvenido.Text = "¡Bienvenido, " + username + "!";
             this.esAdmin = esAdmin;
             this.conexion = conexion; 
             this.idUsuario = idUsuario;
@@ -45,10 +45,6 @@ namespace EducarWeb
             pagoForm.ShowDialog();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
 
@@ -60,7 +56,6 @@ namespace EducarWeb
 
             // Ajustar la visibilidad de los botones basándote en la visibilidad del menú
             btn_Materias.Visible = menuVisible;
-            btn_Asistencia.Visible = menuVisible;
             btn_Examenes.Visible = menuVisible;
             btn_Pagos.Visible = menuVisible;
             btn_GestionarRoles.Visible = menuVisible;
@@ -69,13 +64,54 @@ namespace EducarWeb
 
         private void btn_Sobre_Click(object sender, EventArgs e)
         {
+
             FormSobre formsobre = new FormSobre();
             formsobre.ShowDialog();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void btn_Examenes_Click(object sender, EventArgs e)
         {
+            if (esprofe(idUsuario, conexion))
+            {
+                //abrir la ventana para igresar notas. ventana de profes
+                NotasProfeForm notasProfe = new NotasProfeForm(idUsuario, conexion);
+                notasProfe.ShowDialog();
+            }
+            else
+            {
+                //ventana de vista de las notas del alumno
+                NotasAlumnoForm notasAlumno = new NotasAlumnoForm(idUsuario, conexion);
+                notasAlumno.ShowDialog();
+            }
+        }
 
+        public bool esprofe(long idUsuario, MySqlConnection conexion)
+        {
+            bool esProfe = false;
+            string consulta = "SELECT rol FROM persona WHERE id = @idUsuario";
+
+            using (conexion)
+            {
+                if (conexion.State != ConnectionState.Open)
+                {
+                    conexion.Open();
+                }
+                MySqlCommand cmd = new MySqlCommand(consulta, conexion);
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string rol = reader["rol"].ToString();
+                        if (rol == "Profesor")
+                        {
+                            esProfe = true;
+                        }
+                    }
+                }
+
+            }
+            return esProfe;
         }
     }
 }

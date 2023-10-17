@@ -11,10 +11,10 @@ namespace EducarWeb.Clases
     internal class Conexion
     {
         MySqlConnection conex = new MySqlConnection();
-        static string servidor = "localhost";
-        static string bd = "proyecto";
-        static string user = "root";
-        static string password = "root";
+        static string servidor = "b4rvajc57svembdlstfn-mysql.services.clever-cloud.com";
+        static string bd = "b4rvajc57svembdlstfn";
+        static string user = "u2jtqd59omfyrxxf";
+        static string password = "IFQEz4NITM6m2Zc8gHNi";
         static string puerto = "3306";
 
         string cadenaConexion = "Server=" + servidor + ";" + "Port=" + puerto + ";" + "User Id=" + user + ";" + "Password=" + password + ";" + "Database=" + bd + ";";

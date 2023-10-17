@@ -40,8 +40,7 @@ namespace EducarWeb
                     conexion.Open();
                 }
 
-                string query = "SELECT COUNT(*), is_staff, id, first_name, last_name, email FROM usuario_usuario WHERE username = @username AND password = @password";
-                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                string query = "SELECT COUNT(*), is_staff, id, first_name, last_name, email FROM usuario_usuario WHERE (username = @username OR email = @username) AND password = @password GROUP BY is_staff, id, first_name, last_name, email"; using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);

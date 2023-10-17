@@ -199,21 +199,21 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(961, 190);
+            this.label3.Location = new System.Drawing.Point(931, 193);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 27);
+            this.label3.Size = new System.Drawing.Size(98, 27);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Id Padre:";
+            this.label3.Text = "Legajo Padre:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(948, 244);
+            this.label4.Location = new System.Drawing.Point(929, 247);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 27);
+            this.label4.Size = new System.Drawing.Size(111, 27);
             this.label4.TabIndex = 14;
-            this.label4.Text = "Id Alumno:";
+            this.label4.Text = "Legajo Alumno:";
             // 
             // PagoForm
             // 

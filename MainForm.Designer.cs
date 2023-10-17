@@ -34,7 +34,6 @@
             this.btn_GestionarRoles = new System.Windows.Forms.Button();
             this.btn_Pagos = new System.Windows.Forms.Button();
             this.btn_Examenes = new System.Windows.Forms.Button();
-            this.btn_Asistencia = new System.Windows.Forms.Button();
             this.btn_Materias = new System.Windows.Forms.Button();
             this.lbl_bienvenido = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,11 +49,11 @@
             this.menuDesplegable.Controls.Add(this.btn_GestionarRoles);
             this.menuDesplegable.Controls.Add(this.btn_Pagos);
             this.menuDesplegable.Controls.Add(this.btn_Examenes);
-            this.menuDesplegable.Controls.Add(this.btn_Asistencia);
             this.menuDesplegable.Controls.Add(this.btn_Materias);
-            this.menuDesplegable.Location = new System.Drawing.Point(1, 0);
+            this.menuDesplegable.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuDesplegable.Location = new System.Drawing.Point(0, 0);
             this.menuDesplegable.Name = "menuDesplegable";
-            this.menuDesplegable.Size = new System.Drawing.Size(154, 447);
+            this.menuDesplegable.Size = new System.Drawing.Size(154, 448);
             this.menuDesplegable.TabIndex = 0;
             this.menuDesplegable.Visible = false;
             // 
@@ -65,7 +64,7 @@
             this.btn_Sobre.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.btn_Sobre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Sobre.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Sobre.Location = new System.Drawing.Point(29, 302);
+            this.btn_Sobre.Location = new System.Drawing.Point(24, 317);
             this.btn_Sobre.Name = "btn_Sobre";
             this.btn_Sobre.Size = new System.Drawing.Size(98, 36);
             this.btn_Sobre.TabIndex = 5;
@@ -81,7 +80,7 @@
             this.btn_GestionarRoles.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.btn_GestionarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_GestionarRoles.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_GestionarRoles.Location = new System.Drawing.Point(29, 246);
+            this.btn_GestionarRoles.Location = new System.Drawing.Point(24, 248);
             this.btn_GestionarRoles.Name = "btn_GestionarRoles";
             this.btn_GestionarRoles.Size = new System.Drawing.Size(98, 36);
             this.btn_GestionarRoles.TabIndex = 4;
@@ -97,7 +96,7 @@
             this.btn_Pagos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.btn_Pagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Pagos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Pagos.Location = new System.Drawing.Point(29, 191);
+            this.btn_Pagos.Location = new System.Drawing.Point(24, 179);
             this.btn_Pagos.Name = "btn_Pagos";
             this.btn_Pagos.Size = new System.Drawing.Size(98, 36);
             this.btn_Pagos.TabIndex = 3;
@@ -113,28 +112,14 @@
             this.btn_Examenes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.btn_Examenes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Examenes.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Examenes.Location = new System.Drawing.Point(29, 139);
+            this.btn_Examenes.Location = new System.Drawing.Point(24, 110);
             this.btn_Examenes.Name = "btn_Examenes";
             this.btn_Examenes.Size = new System.Drawing.Size(98, 36);
             this.btn_Examenes.TabIndex = 2;
             this.btn_Examenes.Text = "Examenes";
             this.btn_Examenes.UseVisualStyleBackColor = false;
             this.btn_Examenes.Visible = false;
-            // 
-            // btn_Asistencia
-            // 
-            this.btn_Asistencia.BackColor = System.Drawing.Color.SkyBlue;
-            this.btn_Asistencia.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_Asistencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_Asistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Asistencia.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Asistencia.Location = new System.Drawing.Point(29, 87);
-            this.btn_Asistencia.Name = "btn_Asistencia";
-            this.btn_Asistencia.Size = new System.Drawing.Size(98, 36);
-            this.btn_Asistencia.TabIndex = 1;
-            this.btn_Asistencia.Text = "Asistencia";
-            this.btn_Asistencia.UseVisualStyleBackColor = false;
-            this.btn_Asistencia.Visible = false;
+            this.btn_Examenes.Click += new System.EventHandler(this.btn_Examenes_Click);
             // 
             // btn_Materias
             // 
@@ -143,7 +128,7 @@
             this.btn_Materias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.btn_Materias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Materias.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Materias.Location = new System.Drawing.Point(29, 35);
+            this.btn_Materias.Location = new System.Drawing.Point(24, 41);
             this.btn_Materias.Name = "btn_Materias";
             this.btn_Materias.Size = new System.Drawing.Size(98, 36);
             this.btn_Materias.TabIndex = 0;
@@ -156,7 +141,7 @@
             // 
             this.lbl_bienvenido.AutoSize = true;
             this.lbl_bienvenido.Font = new System.Drawing.Font("Dubai", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_bienvenido.Location = new System.Drawing.Point(299, 22);
+            this.lbl_bienvenido.Location = new System.Drawing.Point(234, 22);
             this.lbl_bienvenido.Name = "lbl_bienvenido";
             this.lbl_bienvenido.Size = new System.Drawing.Size(178, 54);
             this.lbl_bienvenido.TabIndex = 1;
@@ -171,7 +156,6 @@
             this.label2.Size = new System.Drawing.Size(328, 27);
             this.label2.TabIndex = 3;
             this.label2.Text = "Haga click en el logo para desplegar las opciones:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox1
             // 
@@ -198,7 +182,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Educar para transformar - Gestion";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuDesplegable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -213,7 +196,6 @@
         private System.Windows.Forms.Label lbl_bienvenido;
         private System.Windows.Forms.Button btn_Pagos;
         private System.Windows.Forms.Button btn_Examenes;
-        private System.Windows.Forms.Button btn_Asistencia;
         private System.Windows.Forms.Button btn_GestionarRoles;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
