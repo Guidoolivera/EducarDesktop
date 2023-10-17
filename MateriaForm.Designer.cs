@@ -110,6 +110,7 @@
             this.Name = "MateriaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de materias";
+            this.Load += new System.EventHandler(this.MateriaForm_Load);
             this.ResumeLayout(false);
 
         }

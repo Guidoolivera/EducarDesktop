@@ -42,5 +42,33 @@ namespace EducarWeb
             PagoForm pagoForm = new PagoForm(conexion); // Pasa la conexión
             pagoForm.ShowDialog();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            menuDesplegable.Visible = !menuDesplegable.Visible;
+            btn_Materias.Visible = !btn_Materias.Visible;
+            btn_Asistencia.Visible = !btn_Asistencia.Visible;
+            btn_Examenes.Visible = !btn_Examenes.Visible;
+            btn_Pagos.Visible=!btn_Pagos.Visible;
+            btn_GestionarRoles.Visible = !btn_GestionarRoles.Visible;
+            btn_Sobre.Visible = !btn_Sobre.Visible;
+
+        }
+
+        private void btn_Sobre_Click(object sender, EventArgs e)
+        {
+            FormSobre formsobre = new FormSobre();
+            formsobre.ShowDialog();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
