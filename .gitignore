@@ -1,0 +1,56 @@
+# Ignorar archivos y carpetas generados por Visual Studio
+.vs/
+/bin/
+/obj/
+*.user
+*.suo
+*.sln.docstates
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.idb
+*.res
+*.aps
+*.userprefs
+*$(ReSharper)**
+*_ReSharper.*
+*.suo
+*.user
+*.suo
+_ReSharper*/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
+ipch/
+[Tt]est[Rr]esult*
+[Sm]ip[Bb]in
+[Ll]og/
+[Ll]ogs/
+
+# Ignorar archivos de resumen de código
+Thumbs.db
+[Tt]humbs.db
+[Bb]in*/
+[Oo]bj*/
+
+# Ignorar archivos de respaldo y copias
+*.[Bb]ak
+*~.nib
+
+# Ignorar archivos generados por Rider (IDE de JetBrains)
+.idea/
+.idea_modules/
+
+# Ignorar archivos y carpetas generados por NuGet
+packages/
+*.nupkg
+[nN]uget
+
+# Ignorar carpetas específicas generadas por Windows Forms
+obj/Debug/
+obj/Release/
