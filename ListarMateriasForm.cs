@@ -27,10 +27,15 @@ namespace EducarWeb
             try
             {
                 string queryMaterias =
-                    "SELECT m.id, m.nombre AS materia, p.nombre AS profesor " +
+                    "SELECT m.id, m.nombre AS materia, p.nombre AS profesor, " +
+                    "GROUP_CONCAT(pAlumno.nombre SEPARATOR ', ') AS alumnos, " +
+                    "COUNT(phm.materia_id) AS cantidad_inscritos " +
                     "FROM materia m " +
                     "INNER JOIN persona p ON m.profesor_id = p.id " +
-                    "WHERE p.rol = 'Profesor'";
+                    "LEFT JOIN persona_has_materia phm ON m.id = phm.materia_id " +
+                    "LEFT JOIN persona pAlumno ON phm.persona_id = pAlumno.id " +
+                    "WHERE p.rol = 'Profesor' " +
+                    "GROUP BY m.id, m.nombre, p.nombre";
 
                 using (MySqlCommand cmd = new MySqlCommand(queryMaterias, conexion))
                 {
@@ -39,21 +44,22 @@ namespace EducarWeb
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
 
-                        // Agregar una columna para mostrar la lista de alumnos inscritos
-                        DataGridViewTextBoxColumn alumnosColumn = new DataGridViewTextBoxColumn();
-                        alumnosColumn.HeaderText = "Alumnos Inscritos";
-                        alumnosColumn.Name = "alumnos";
-                        dgvMaterias.Columns.Add(alumnosColumn);
+                        // Añadir una columna para mostrar la lista de alumnos inscritos
+                        //dgvMaterias.Columns.Add("alumnos", "Alumnos Inscritos");
 
                         // Enlazar el DataGridView con los datos de las materias
                         dgvMaterias.DataSource = dataTable;
 
                         // Renombrar las columnas del DataGridView
+                        dgvMaterias.Columns["id"].Visible = true;
+                        dgvMaterias.Columns["id"].HeaderText = "Legajo";
                         dgvMaterias.Columns["materia"].HeaderText = "Materia";
                         dgvMaterias.Columns["profesor"].HeaderText = "Profesor";
-                        dgvMaterias.Columns["alumnos"].Visible = false; // Ocultar la columna con nombres de alumnos
+                        //dgvMaterias.Columns["alumnos"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;3
+                        dgvMaterias.Columns["alumnos"].Visible = false;
+                        dgvMaterias.Columns["cantidad_inscritos"].HeaderText = "Inscritos";
 
-                        // Manejar el evento SelectionChanged para mostrar la lista de alumnos en un ListBox
+                        // Manejar el evento SelectionChanged para mostrar la lista de alumnos en el ListBox
                         dgvMaterias.SelectionChanged += dgvMaterias_SelectionChanged;
                     }
                 }
