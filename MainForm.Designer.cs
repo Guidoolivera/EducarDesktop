@@ -83,6 +83,7 @@
             this.btn_Examenes.TabIndex = 2;
             this.btn_Examenes.Text = "Examenes";
             this.btn_Examenes.UseVisualStyleBackColor = true;
+            this.btn_Examenes.Click += new System.EventHandler(this.btn_Examenes_Click);
             // 
             // btn_Asistencia
             // 
