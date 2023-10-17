@@ -36,6 +36,8 @@
             // 
             // dgvMaterias
             // 
+            this.dgvMaterias.AllowUserToAddRows = false;
+            this.dgvMaterias.AllowUserToOrderColumns = true;
             this.dgvMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMaterias.Location = new System.Drawing.Point(23, 40);
             this.dgvMaterias.Name = "dgvMaterias";
