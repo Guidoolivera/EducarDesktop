@@ -115,6 +115,12 @@
     <Compile Include="CrearMateriaForm.Designer.cs">
       <DependentUpon>CrearMateriaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSobre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSobre.Designer.cs">
+      <DependentUpon>FormSobre.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionRolesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </Compile>
     <EmbeddedResource Include="CrearMateriaForm.resx">
       <DependentUpon>CrearMateriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSobre.resx">
+      <DependentUpon>FormSobre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionRolesForm.resx">
       <DependentUpon>GestionRolesForm.cs</DependentUpon>

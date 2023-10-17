@@ -48,5 +48,10 @@ namespace EducarWeb
             SolicitudesInscripcionForm slif = new SolicitudesInscripcionForm(conexion);
             slif.ShowDialog();
         }
+
+        private void MateriaForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
