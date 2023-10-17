@@ -74,7 +74,7 @@ namespace EducarWeb
                     if (reader.Read())
                     {
                         string rol = reader["rol"].ToString();
-                        if (rol == "Profesor" || rol == "Administrador")
+                        if (rol == "Profesor")
                         {
                             esProfe = true;
                         }
