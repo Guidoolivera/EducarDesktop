@@ -54,3 +54,8 @@ packages/
 # Ignorar carpetas específicas generadas por Windows Forms
 obj/Debug/
 obj/Release/
+.vs/EducarWeb/FileContentIndex/8f94f69a-a03f-423b-8f14-0fdcd53180b7.vsidx
+.vs/EducarWeb/FileContentIndex/30a1583d-92d8-4cad-8772-8ed36f77bc0d.vsidx
+.vs/EducarWeb/FileContentIndex/67f34374-8b3e-4f86-ac6c-b2c12ed64c92.vsidx
+.vs/EducarWeb/FileContentIndex/bd3b83fe-be0f-40a2-872e-56bbed85d552.vsidx
+.vs/EducarWeb/FileContentIndex/c64b694e-9dde-46f7-b14e-845162d86ea2.vsidx

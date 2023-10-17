@@ -73,7 +73,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSolicitudes.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvSolicitudes.Location = new System.Drawing.Point(12, 12);
+            this.dgvSolicitudes.Location = new System.Drawing.Point(12, 21);
             this.dgvSolicitudes.Name = "dgvSolicitudes";
             this.dgvSolicitudes.Size = new System.Drawing.Size(393, 166);
             this.dgvSolicitudes.TabIndex = 4;

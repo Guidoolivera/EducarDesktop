@@ -21,10 +21,12 @@ namespace EducarWeb
         {
             InitializeComponent();
             this.conexion = conexion;
+            /*
             string query = "SELECT     p.id AS PagoID,    p.fecha AS FechaPago,   p.monto AS MontoPago,    " +
                     "padre.nombre AS NombrePadre,    padre.apellido AS ApellidoPadre,    hijo.nombre AS NombreAlumno,    " +
                     "hijo.apellido AS ApellidoAlumno FROM pago AS p INNER JOIN pago_has_persona AS php ON p.id = php.pago_id " +
                     "LEFT JOIN persona AS padre ON php.padre_id = padre.id LEFT JOIN persona AS hijo ON php.hijo_id = hijo.id; ";
+            */
         }
 
         private void PagoForm_Load(object sender, EventArgs e)
@@ -40,7 +42,7 @@ namespace EducarWeb
         {
             string numeroFactura = textBox1.Text;
             double monto;
-            string tipo = "";
+            //string tipo = "";
             
             if (double.TryParse(textBox2.Text, out monto))
             {

@@ -97,10 +97,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(389, 246);
+            this.ClientSize = new System.Drawing.Size(401, 246);
             this.Controls.Add(this.btn_Ingresar);
             this.Controls.Add(this.tb_Password);
             this.Controls.Add(this.lbl_Password);
