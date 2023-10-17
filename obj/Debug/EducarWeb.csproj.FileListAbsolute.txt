@@ -65,7 +65,6 @@ C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\ZstdSharp.dll
-C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\BouncyCastle.Crypto.xml
 C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\Google.Protobuf.pdb
 C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\Google.Protobuf.xml
 C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\K4os.Compression.LZ4.xml
@@ -84,7 +83,6 @@ C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.csproj.AssemblyRefe
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.CrearMateriaForm.resources
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.GestionRolesForm.resources
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.ListarMateriasForm.resources
-C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.InscribirAlumnoForm.resources
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.LoginForm.resources
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.MainForm.resources
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.MateriaForm.resources
@@ -95,3 +93,9 @@ C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.csproj.CoreCompileI
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.csproj.CopyComplete
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.exe
 C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.pdb
+C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.SolicitudesInscripcionForm.resources
+C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.SolicitarInscripcionForm.resources
+C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.NotasAlumnoForm.resources
+C:\Users\Usuario\Documents\EducarDesktop\obj\Debug\EducarWeb.NotasProfeForm.resources
+C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\itextsharp.dll
+C:\Users\Usuario\Documents\EducarDesktop\bin\Debug\itextsharp.xml
