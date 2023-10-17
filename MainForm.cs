@@ -16,14 +16,16 @@ namespace EducarWeb
         bool esAdmin;
         MySqlConnection conexion;
         long idUsuario;
+        private bool menuVisible = false; // Inicialmente, el menú está oculto
         public MainForm(string username, bool esAdmin, MySqlConnection conexion, long idUsuario)
         {
             InitializeComponent();
             lbl_bienvenido.Text = "Bienvenido, " + username + ".";
             this.esAdmin = esAdmin;
             this.conexion = conexion; 
-            this.idUsuario = idUsuario; 
-        }
+            this.idUsuario = idUsuario;
+
+    }
 
         private void btn_Materias_Click(object sender, EventArgs e)
         {
@@ -48,16 +50,21 @@ namespace EducarWeb
 
         }
 
+
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            menuDesplegable.Visible = !menuDesplegable.Visible;
-            btn_Materias.Visible = !btn_Materias.Visible;
-            btn_Asistencia.Visible = !btn_Asistencia.Visible;
-            btn_Examenes.Visible = !btn_Examenes.Visible;
-            btn_Pagos.Visible=!btn_Pagos.Visible;
-            btn_GestionarRoles.Visible = !btn_GestionarRoles.Visible;
-            btn_Sobre.Visible = !btn_Sobre.Visible;
+            // Cambiar la visibilidad del menú
+            menuVisible = !menuVisible;
+            menuDesplegable.Visible = menuVisible;
 
+            // Ajustar la visibilidad de los botones basándote en la visibilidad del menú
+            btn_Materias.Visible = menuVisible;
+            btn_Asistencia.Visible = menuVisible;
+            btn_Examenes.Visible = menuVisible;
+            btn_Pagos.Visible = menuVisible;
+            btn_GestionarRoles.Visible = menuVisible;
+            btn_Sobre.Visible = menuVisible;
         }
 
         private void btn_Sobre_Click(object sender, EventArgs e)
