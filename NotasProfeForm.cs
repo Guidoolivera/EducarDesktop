@@ -33,7 +33,7 @@ namespace EducarWeb
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
                 dataGridView1.DataSource = dataTable;
-                CargarMateriasParaProfesor(idUsuario);
+                
             }
         }
         private void CargarMateriasParaProfesor(long idUsuario)
@@ -141,5 +141,79 @@ namespace EducarWeb
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem == null || comboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona una materia y un alumno antes de agregar una nota.");
+                return;
+            }
+
+            if (!int.TryParse(textBox1.Text, out int calificacion))
+            {
+                MessageBox.Show("Ingresa una calificación válida.");
+                return;
+            }
+
+            string materiaSeleccionada = comboBox1.SelectedItem.ToString();
+            string alumnoSeleccionado = comboBox2.SelectedItem.ToString();
+
+            // Obtener el ID de la materia
+            string consultaMateria = "SELECT id FROM materia WHERE nombre = @nombreMateria";
+            using (MySqlCommand cmdMateria = new MySqlCommand(consultaMateria, conexion))
+            {
+                cmdMateria.Parameters.AddWithValue("@nombreMateria", materiaSeleccionada);
+                if (conexion.State == ConnectionState.Closed)
+                    conexion.Open();
+                object resultMateria = cmdMateria.ExecuteScalar();
+                if (resultMateria == null)
+                {
+                    MessageBox.Show("No se encontró el ID de la materia.");
+                    return;
+                }
+                long materiaId = Convert.ToInt64(resultMateria);
+
+                // Obtener el ID del alumno
+                string consultaAlumno = "SELECT id FROM persona WHERE CONCAT(nombre, ' ', apellido) = @nombreAlumno";
+                using (MySqlCommand cmdAlumno = new MySqlCommand(consultaAlumno, conexion))
+                {
+                    cmdAlumno.Parameters.AddWithValue("@nombreAlumno", alumnoSeleccionado);
+                    object resultAlumno = cmdAlumno.ExecuteScalar();
+                    if (resultAlumno == null)
+                    {
+                        MessageBox.Show("No se encontró el ID del alumno.");
+                        return;
+                    }
+                    long alumnoId = Convert.ToInt64(resultAlumno);
+
+                    // Insertar la calificación en la tabla 'nota'
+                    string consultaInsert = "INSERT INTO nota (calificacion, fecha, materia_id, persona_id) " +
+                                            "VALUES (@calificacion, @fecha, @materiaId, @alumnoId)";
+                    using (MySqlCommand cmdInsert = new MySqlCommand(consultaInsert, conexion))
+                    {
+                        cmdInsert.Parameters.AddWithValue("@calificacion", calificacion);
+                        cmdInsert.Parameters.AddWithValue("@fecha", DateTime.Now);
+                        cmdInsert.Parameters.AddWithValue("@materiaId", materiaId);
+                        cmdInsert.Parameters.AddWithValue("@alumnoId", alumnoId);
+
+                        if (conexion.State == ConnectionState.Closed)
+                            conexion.Open();
+
+                        int rowsAffected = cmdInsert.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Calificación agregada con éxito.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo agregar la calificación.");
+                        }
+                    }
+                }
+            }
+            actualizarDataGridView();
+        }
+        
     }
 }
