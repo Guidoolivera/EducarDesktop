@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using MySql.Data.MySqlClient;
 
 namespace EducarWeb
@@ -214,6 +217,51 @@ namespace EducarWeb
             }
             actualizarDataGridView();
         }
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivos PDF|*.pdf";
+            saveFileDialog.Title = "Guardar PDF";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string rutaPDF = saveFileDialog.FileName;
+
+                Document doc = new Document(PageSize.A4.Rotate());
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(rutaPDF, FileMode.Create));
+                doc.Open();
+
+                PdfPTable table = new PdfPTable(dataGridView1.ColumnCount);
+                table.TotalWidth = 700f;
+                float[] widths = new float[dataGridView1.ColumnCount];
+
+                for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                {
+                    widths[i] = 2f;
+                }
+
+                table.SetWidths(widths);
+                table.LockedWidth = true;
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null)
+                        {
+                            PdfPCell pdfCell = new PdfPCell(new Phrase(cell.Value.ToString()));
+                            table.AddCell(pdfCell);
+                        }
+                    }
+                }
+
+                doc.Add(table);
+                doc.Close();
+                writer.Close();
+
+                MessageBox.Show("PDF generado con éxito.");
+            }
+        }
     }
 }
