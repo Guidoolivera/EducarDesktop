@@ -95,7 +95,7 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1032, 324);
+            this.button1.Location = new System.Drawing.Point(1073, 334);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 36);
             this.button1.TabIndex = 2;
@@ -105,9 +105,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(1032, 99);
+            this.textBox1.Location = new System.Drawing.Point(1073, 108);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(148, 20);
             this.textBox1.TabIndex = 3;
             // 
             // checkBox1
@@ -158,7 +158,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(917, 95);
+            this.label1.Location = new System.Drawing.Point(949, 104);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 27);
             this.label1.TabIndex = 8;
@@ -168,7 +168,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(971, 138);
+            this.label2.Location = new System.Drawing.Point(1001, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 27);
             this.label2.TabIndex = 9;
@@ -176,30 +176,30 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(1032, 145);
+            this.textBox2.Location = new System.Drawing.Point(1073, 154);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(148, 20);
             this.textBox2.TabIndex = 10;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(1032, 197);
+            this.textBox3.Location = new System.Drawing.Point(1073, 206);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.Size = new System.Drawing.Size(148, 20);
             this.textBox3.TabIndex = 11;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(1032, 251);
+            this.textBox4.Location = new System.Drawing.Point(1073, 260);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.Size = new System.Drawing.Size(148, 20);
             this.textBox4.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(931, 193);
+            this.label3.Location = new System.Drawing.Point(961, 202);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(98, 27);
             this.label3.TabIndex = 13;
@@ -209,7 +209,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(929, 247);
+            this.label4.Location = new System.Drawing.Point(948, 256);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 27);
             this.label4.TabIndex = 14;

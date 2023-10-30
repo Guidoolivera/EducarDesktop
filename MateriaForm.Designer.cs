@@ -33,6 +33,7 @@
             this.btn_InscribirAlumno = new System.Windows.Forms.Button();
             this.btn_ListarMaterias = new System.Windows.Forms.Button();
             this.btn_GestionarInscripciones = new System.Windows.Forms.Button();
+            this.btn_Cursos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_CrearMateria
@@ -95,12 +96,28 @@
             this.btn_GestionarInscripciones.UseVisualStyleBackColor = false;
             this.btn_GestionarInscripciones.Click += new System.EventHandler(this.btn_GestionarInscripciones_Click);
             // 
+            // btn_Cursos
+            // 
+            this.btn_Cursos.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_Cursos.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btn_Cursos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
+            this.btn_Cursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cursos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cursos.Location = new System.Drawing.Point(28, 251);
+            this.btn_Cursos.Name = "btn_Cursos";
+            this.btn_Cursos.Size = new System.Drawing.Size(176, 36);
+            this.btn_Cursos.TabIndex = 4;
+            this.btn_Cursos.Text = "Cursos";
+            this.btn_Cursos.UseVisualStyleBackColor = false;
+            this.btn_Cursos.Click += new System.EventHandler(this.btn_Cursos_Click);
+            // 
             // MateriaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(242, 260);
+            this.ClientSize = new System.Drawing.Size(238, 299);
+            this.Controls.Add(this.btn_Cursos);
             this.Controls.Add(this.btn_GestionarInscripciones);
             this.Controls.Add(this.btn_ListarMaterias);
             this.Controls.Add(this.btn_InscribirAlumno);
@@ -121,5 +138,6 @@
         private System.Windows.Forms.Button btn_InscribirAlumno;
         private System.Windows.Forms.Button btn_ListarMaterias;
         private System.Windows.Forms.Button btn_GestionarInscripciones;
+        private System.Windows.Forms.Button btn_Cursos;
     }
 }

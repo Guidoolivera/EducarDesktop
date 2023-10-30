@@ -21,42 +21,52 @@ namespace EducarWeb
             InitializeComponent();
             this.idUsuario = idUsuario;
             this.conexion = conexion;
+
+            // Llamar al método de carga de materias disponibles durante la inicialización
             CargarMateriasDisponibles();
         }
 
         private void CargarMateriasDisponibles()
         {
-            string queryMateriasDisponibles =
-                "SELECT m.id, m.nombre " +
-                "FROM materia m " +
-                "LEFT JOIN persona_has_materia phm ON m.id = phm.materia_id " +
-                "WHERE m.cupo_maximo > (SELECT COUNT(*) FROM persona_has_materia WHERE materia_id = m.id) " +
-                "AND (phm.persona_id <> @idUsuario OR phm.persona_id IS NULL) " +
-                "AND m.id NOT IN (SELECT id_materia FROM solicitudes_inscripcion WHERE id_alumno = @idUsuario)";
-
-            using (MySqlCommand cmd = new MySqlCommand(queryMateriasDisponibles, conexion))
+            try
             {
-                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                // Limpia los datos anteriores antes de cargar las nuevas materias disponibles
+                comboBoxMaterias.DataSource = null;
 
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                string queryMateriasDisponibles =
+                    "SELECT m.id, m.nombre " +
+                    "FROM materia m " +
+                    "LEFT JOIN persona_has_materia phm ON m.id = phm.materia_id " +
+                    "WHERE m.cupo_maximo > (SELECT COUNT(*) FROM persona_has_materia WHERE materia_id = m.id) " +
+                    "AND (phm.persona_id <> @idUsuario OR phm.persona_id IS NULL) " +
+                    "AND m.id NOT IN (SELECT id_materia FROM solicitudes_inscripcion WHERE id_alumno = @idUsuario)";
+
+                using (MySqlCommand cmd = new MySqlCommand(queryMateriasDisponibles, conexion))
                 {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
-                    // Enlazar el ComboBox con las materias disponibles
-                    comboBoxMaterias.DataSource = dataTable;
-                    comboBoxMaterias.DisplayMember = "nombre";
-                    comboBoxMaterias.ValueMember = "id";
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        // Enlazar el ComboBox con las materias disponibles
+                        comboBoxMaterias.DataSource = dataTable;
+                        comboBoxMaterias.DisplayMember = "nombre";
+                        comboBoxMaterias.ValueMember = "id";
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las materias disponibles: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
 
         private void btn_SolicitarInscripcion_Click(object sender, EventArgs e)
         {
             if (comboBoxMaterias.SelectedIndex != -1)
             {
-                // Obtén el id de la materia seleccionada desde el ComboBox
                 int idMateria = Convert.ToInt32(comboBoxMaterias.SelectedValue);
 
                 // Realizar la inserción en la tabla "solicitudes_inscripcion" para solicitar la inscripción
@@ -86,7 +96,7 @@ namespace EducarWeb
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex.Message);
+                        MessageBox.Show("Error al enviar la solicitud de inscripción: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

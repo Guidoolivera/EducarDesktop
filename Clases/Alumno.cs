@@ -10,6 +10,8 @@ namespace EducarWeb.Clases
     {
         public int Legajo { get; set; }
         public string Carrera { get; set; }
+        public long IdAlumno { get; }
+        public string NombreAlumno { get; }
 
         public Alumno(string nombre, string apellido, string email, int numeroMatricula, string carrera)
             : base(nombre, apellido, email)
@@ -17,5 +19,6 @@ namespace EducarWeb.Clases
             Legajo = numeroMatricula;
             Carrera = carrera;
         }
+
     }
 }

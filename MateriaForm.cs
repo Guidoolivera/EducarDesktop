@@ -53,5 +53,11 @@ namespace EducarWeb
         {
 
         }
+
+        private void btn_Cursos_Click(object sender, EventArgs e)
+        {
+            GestionCursosForm gcf = new GestionCursosForm(conexion);
+            gcf.ShowDialog();
+        }
     }
 }
