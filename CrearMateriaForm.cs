@@ -20,7 +20,8 @@ namespace EducarWeb
         {
             InitializeComponent();
             this.conexion = conexion;
-            CargarProfesores(); // Llamar al método para cargar los profesores al inicializar el formulario
+            CargarProfesores();
+            CargarCursos(); // Llamar al método para cargar los cursos al inicializar el formulario
         }
 
         private void CargarProfesores()
@@ -34,10 +35,27 @@ namespace EducarWeb
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
 
-                    // Enlazar el ComboBox con los datos de los profesores
                     comboBoxProfesores.DataSource = dataTable;
-                    comboBoxProfesores.DisplayMember = "nombre"; // Cambia "nombre" al campo correcto en tu tabla persona
+                    comboBoxProfesores.DisplayMember = "nombre";
                     comboBoxProfesores.ValueMember = "id";
+                }
+            }
+        }
+
+        private void CargarCursos()
+        {
+            string queryCursos = "SELECT id, nombre FROM curso"; // Modificar según tu estructura de datos
+
+            using (MySqlCommand cmd = new MySqlCommand(queryCursos, conexion))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    comboBoxCursos.DataSource = dataTable;
+                    comboBoxCursos.DisplayMember = "nombre"; // Modificar si el campo es diferente
+                    comboBoxCursos.ValueMember = "id"; // El ID del curso
                 }
             }
         }
@@ -47,26 +65,28 @@ namespace EducarWeb
             string nombre = tb_NombreMateria.Text;
             string descripcion = tb_DescripcionMateria.Text;
             int cupoMaximo;
+            int cursoId;
 
-            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(descripcion) || !int.TryParse(tb_CupoMaximo.Text, out cupoMaximo))
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(descripcion) || !int.TryParse(tb_CupoMaximo.Text, out cupoMaximo) || comboBoxCursos.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, complete todos los campos y asegúrese de ingresar un valor válido en el campo 'Cupo Máximo'.");
                 return;
             }
+
+            cursoId = Convert.ToInt32(comboBoxCursos.SelectedValue);
 
             string fechaInicio = dtp_FechaInicio.Value.ToString("yyyy-MM-dd");
             string fechaFin = dtp_FechaFin.Value.ToString("yyyy-MM-dd");
             string horarios = tb_Horarios.Text;
             long profesorId = Convert.ToInt64(comboBoxProfesores.SelectedValue);
 
-            // Verificar si la conexión está cerrada y abrirla si es necesario
             if (conexion.State != ConnectionState.Open)
             {
                 conexion.Open();
             }
 
-            string queryInsercion = "INSERT INTO materia (nombre, descripcion, cupo_maximo, fecha_inicio, fecha_fin, horarios, profesor_id) " +
-                                    "VALUES (@nombre, @descripcion, @cupoMaximo, @fechaInicio, @fechaFin, @horarios, @profesorId)";
+            string queryInsercion = "INSERT INTO materia (nombre, descripcion, cupo_maximo, fecha_inicio, fecha_fin, horarios, profesor_id, curso_id) " +
+                                    "VALUES (@nombre, @descripcion, @cupoMaximo, @fechaInicio, @fechaFin, @horarios, @profesorId, @cursoId)";
 
             using (MySqlCommand cmd = new MySqlCommand(queryInsercion, conexion))
             {
@@ -77,6 +97,7 @@ namespace EducarWeb
                 cmd.Parameters.AddWithValue("@fechaFin", fechaFin);
                 cmd.Parameters.AddWithValue("@horarios", horarios);
                 cmd.Parameters.AddWithValue("@profesorId", profesorId);
+                cmd.Parameters.AddWithValue("@cursoId", cursoId);
 
                 try
                 {
@@ -108,7 +129,5 @@ namespace EducarWeb
             dtp_FechaFin.Value = DateTime.Today;
             tb_Horarios.Clear();
         }
-
-
     }
 }

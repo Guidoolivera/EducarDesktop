@@ -44,6 +44,8 @@
             this.tb_Horarios = new System.Windows.Forms.TextBox();
             this.comboBoxProfesores = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBoxCursos = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -71,7 +73,7 @@
             this.btn_CrearMateria.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CrearMateria.Location = new System.Drawing.Point(210, 397);
+            this.btn_CrearMateria.Location = new System.Drawing.Point(214, 438);
             this.btn_CrearMateria.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_CrearMateria.Name = "btn_CrearMateria";
             this.btn_CrearMateria.Size = new System.Drawing.Size(100, 48);
@@ -196,12 +198,34 @@
             this.label7.TabIndex = 15;
             this.label7.Text = "Profesor:";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(106, 374);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 27);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Curso:";
+            // 
+            // comboBoxCursos
+            // 
+            this.comboBoxCursos.FormattingEnabled = true;
+            this.comboBoxCursos.Location = new System.Drawing.Point(167, 371);
+            this.comboBoxCursos.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.comboBoxCursos.Name = "comboBoxCursos";
+            this.comboBoxCursos.Size = new System.Drawing.Size(327, 35);
+            this.comboBoxCursos.TabIndex = 17;
+            // 
             // CrearMateriaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(540, 475);
+            this.ClientSize = new System.Drawing.Size(550, 501);
+            this.Controls.Add(this.comboBoxCursos);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBoxProfesores);
             this.Controls.Add(this.label6);
@@ -245,5 +269,7 @@
         private System.Windows.Forms.TextBox tb_Horarios;
         private System.Windows.Forms.ComboBox comboBoxProfesores;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBoxCursos;
     }
 }
