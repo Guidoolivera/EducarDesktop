@@ -33,6 +33,7 @@
             this.dgvMaterias = new System.Windows.Forms.DataGridView();
             this.listBoxAlumnos = new System.Windows.Forms.ListBox();
             this.lblAlumnosInscritos = new System.Windows.Forms.Label();
+            this.btnGenerarPDFs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             this.dgvMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMaterias.Location = new System.Drawing.Point(23, 40);
             this.dgvMaterias.Name = "dgvMaterias";
-            this.dgvMaterias.Size = new System.Drawing.Size(436, 186);
+            this.dgvMaterias.Size = new System.Drawing.Size(436, 220);
             this.dgvMaterias.TabIndex = 0;
             // 
             // listBoxAlumnos
@@ -62,7 +63,7 @@
             this.listBoxAlumnos.ItemHeight = 27;
             this.listBoxAlumnos.Location = new System.Drawing.Point(476, 40);
             this.listBoxAlumnos.Name = "listBoxAlumnos";
-            this.listBoxAlumnos.Size = new System.Drawing.Size(166, 166);
+            this.listBoxAlumnos.Size = new System.Drawing.Size(179, 220);
             this.listBoxAlumnos.TabIndex = 1;
             // 
             // lblAlumnosInscritos
@@ -75,13 +76,29 @@
             this.lblAlumnosInscritos.TabIndex = 2;
             this.lblAlumnosInscritos.Text = "Alumnos inscriptos:";
             // 
+            // btnGenerarPDFs
+            // 
+            this.btnGenerarPDFs.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnGenerarPDFs.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btnGenerarPDFs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
+            this.btnGenerarPDFs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerarPDFs.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarPDFs.Location = new System.Drawing.Point(476, 280);
+            this.btnGenerarPDFs.Name = "btnGenerarPDFs";
+            this.btnGenerarPDFs.Size = new System.Drawing.Size(176, 36);
+            this.btnGenerarPDFs.TabIndex = 5;
+            this.btnGenerarPDFs.Text = "Generar PDF";
+            this.btnGenerarPDFs.UseVisualStyleBackColor = false;
+            this.btnGenerarPDFs.Click += new System.EventHandler(this.btnGenerarPDFs_Click);
+            // 
             // ListarMateriasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(654, 283);
+            this.ClientSize = new System.Drawing.Size(682, 328);
+            this.Controls.Add(this.btnGenerarPDFs);
             this.Controls.Add(this.lblAlumnosInscritos);
             this.Controls.Add(this.listBoxAlumnos);
             this.Controls.Add(this.dgvMaterias);
@@ -100,5 +117,6 @@
         private System.Windows.Forms.DataGridView dgvMaterias;
         private System.Windows.Forms.ListBox listBoxAlumnos;
         private System.Windows.Forms.Label lblAlumnosInscritos;
+        private System.Windows.Forms.Button btnGenerarPDFs;
     }
 }

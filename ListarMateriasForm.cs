@@ -1,9 +1,12 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +17,16 @@ namespace EducarWeb
     public partial class ListarMateriasForm : Form
     {
         private MySqlConnection conexion;
+        private SaveFileDialog saveFileDialog;
 
         public ListarMateriasForm(MySqlConnection conexion)
         {
             InitializeComponent();
             this.conexion = conexion;
             CargarMaterias();
+            saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivos PDF|*.pdf";
+            saveFileDialog.Title = "Guardar PDF";
         }
 
         private void CargarMaterias()
@@ -79,9 +86,9 @@ namespace EducarWeb
 
                 try
                 {
-                    // Consulta para cargar la lista de alumnos inscritos
+                    // Consulta para cargar la lista de alumnos inscritos con nombre y apellido
                     string queryAlumnosInscritos =
-                        "SELECT p.nombre " +
+                        "SELECT CONCAT(p.apellido, ', ', p.nombre) AS nombre_completo " +
                         "FROM persona p " +
                         "INNER JOIN persona_has_materia phm ON p.id = phm.persona_id " +
                         "WHERE phm.materia_id = @idMateria";
@@ -97,7 +104,7 @@ namespace EducarWeb
 
                             // Mostrar la lista de alumnos inscritos en el ListBox
                             listBoxAlumnos.DataSource = dataTable;
-                            listBoxAlumnos.DisplayMember = "nombre";
+                            listBoxAlumnos.DisplayMember = "nombre_completo";
 
                             // Actualizar el título del ListBox
                             lblAlumnosInscritos.Text = $"Alumnos Inscritos en {materiaSeleccionada}:";
@@ -110,5 +117,145 @@ namespace EducarWeb
                 }
             }
         }
+
+        private void btnGenerarPDFs_Click(object sender, EventArgs e)
+        {
+            if (dgvMaterias.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selecciona al menos una materia para generar los PDFs.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (DataGridViewRow selectedRow in dgvMaterias.SelectedRows)
+                    {
+                        long idMateria = Convert.ToInt64(selectedRow.Cells["id"].Value);
+                        string nombreMateria = selectedRow.Cells["materia"].Value.ToString();
+                        string nombreProfesor = selectedRow.Cells["profesor"].Value.ToString();
+                        long cursoId = ObtenerIdCursoParaMateria(idMateria);
+                        string nombreCurso = ObtenerNombreCurso(cursoId);
+
+                        Document doc = new Document(PageSize.A4);
+                        string rutaPDF = saveFileDialog.FileName;
+                        PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(rutaPDF, FileMode.Create));
+
+                        CustomPdfPageEvent eventHelper = new CustomPdfPageEvent(nombreCurso);
+                        writer.PageEvent = eventHelper;
+
+                        doc.Open();
+
+                        doc.Add(new Paragraph("\n"));
+                        doc.Add(new Paragraph("Información de la materia")); // Agrega el nombre del curso
+                        doc.Add(new Paragraph("Nombre de la Materia: " + nombreMateria));
+                        doc.Add(new Paragraph("Nombre del Profesor: " + nombreProfesor));
+                        doc.Add(new Paragraph("\n\n\n"));
+
+                        // Agregar división en el extremo superior derecho
+                        PdfContentByte cb = writer.DirectContent;
+                        BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                        cb.SetColorFill(BaseColor.BLACK);
+                        cb.SetFontAndSize(bf, 12);
+
+                        string queryAlumnosInscritos =
+                            "SELECT p.id, p.apellido, p.nombre " +
+                            "FROM persona p " +
+                            "INNER JOIN persona_has_materia phm ON p.id = phm.persona_id " +
+                            "WHERE phm.materia_id = @idMateria " +
+                            "ORDER BY p.apellido, p.nombre";
+
+                        using (MySqlCommand cmd = new MySqlCommand(queryAlumnosInscritos, conexion))
+                        {
+                            cmd.Parameters.AddWithValue("@idMateria", idMateria);
+
+                            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                            {
+                                DataTable dataTable = new DataTable();
+                                adapter.Fill(dataTable);
+
+                                PdfPTable table = new PdfPTable(3);
+                                table.TotalWidth = 500f;
+                                float[] columnWidths = { 1f, 2f, 2f };
+                                table.SetWidths(columnWidths);
+
+                                table.AddCell(new PdfPCell(new Phrase("ID")));
+                                table.AddCell(new PdfPCell(new Phrase("Apellido")));
+                                table.AddCell(new PdfPCell(new Phrase("Nombre")));
+
+                                foreach (DataRow row in dataTable.Rows)
+                                {
+                                    table.AddCell(new PdfPCell(new Phrase(row["id"].ToString())));
+                                    table.AddCell(new PdfPCell(new Phrase(row["apellido"].ToString())));
+                                    table.AddCell(new PdfPCell(new Phrase(row["nombre"].ToString())));
+                                }
+
+                                doc.Add(table);
+
+                                doc.Add(new Paragraph("\n\n\n"));
+
+                                int totalAlumnos = dataTable.Rows.Count;
+
+                                doc.Add(new Paragraph($"Total de Alumnos: {totalAlumnos}"));
+                            }
+                        }
+
+                        doc.Close();
+                        writer.Close();
+                    }
+
+                    MessageBox.Show("PDFs generados con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar los PDFs: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private long ObtenerIdCursoParaMateria(long idMateria)
+        {
+            long idCurso = -1;
+            string query = "SELECT curso_id FROM materia WHERE id = @idMateria";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+            {
+                cmd.Parameters.AddWithValue("@idMateria", idMateria);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        idCurso = reader.GetInt64("curso_id");
+                    }
+                }
+            }
+
+            return idCurso;
+        }
+
+        private string ObtenerNombreCurso(long cursoId)
+        {
+            string nombreCurso = string.Empty;
+            string query = "SELECT nombre FROM curso WHERE id = @cursoId";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+            {
+                cmd.Parameters.AddWithValue("@cursoId", cursoId);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        nombreCurso = reader.GetString("nombre");
+                    }
+                }
+            }
+
+            return nombreCurso;
+        }
+
     }
+
 }

@@ -118,26 +118,30 @@ namespace EducarWeb
             {
                 string rutaPDF = saveFileDialog.FileName;
 
-                Document doc = new Document(PageSize.A4.Rotate());
+                Document doc = new Document(PageSize.A4);
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(rutaPDF, FileMode.Create));
 
+
+                // Obtener la información del curso seleccionado
+                long cursoId = Convert.ToInt64(dgvCursos.SelectedRows[0].Cells["id"].Value);
+
+                string nombreCurso = ObtenerNombreCurso(cursoId);
+                string descripcionCurso = dgvCursos.SelectedRows[0].Cells["descripcion"].Value.ToString();
+                string aulaCurso = dgvCursos.SelectedRows[0].Cells["aula"].Value.ToString();
+
                 // Crear una instancia de CustomPdfPageEvent para el footer
-                CustomPdfPageEvent eventHelper = new CustomPdfPageEvent();
+                CustomPdfPageEvent eventHelper = new CustomPdfPageEvent(nombreCurso);
                 writer.PageEvent = eventHelper;
 
                 doc.Open();
 
-                // Obtener la información del curso seleccionado
-                long cursoId = Convert.ToInt64(dgvCursos.SelectedRows[0].Cells["id"].Value);
-                string nombreCurso = dgvCursos.SelectedRows[0].Cells["nombre"].Value.ToString();
-                string descripcionCurso = dgvCursos.SelectedRows[0].Cells["descripcion"].Value.ToString();
-                string aulaCurso = dgvCursos.SelectedRows[0].Cells["aula"].Value.ToString();
+
 
                 // Agregar información del curso al PDF
                 doc.Add(new Paragraph("Información del Curso:"));
-                doc.Add(new Paragraph($"Nombre: {nombreCurso}"));
                 doc.Add(new Paragraph($"Descripción: {descripcionCurso}"));
                 doc.Add(new Paragraph($"Aula: {aulaCurso}"));
+                doc.Add(new Paragraph("\n\n\n"));
 
                 // Agregar división en el extremo superior derecho
                 PdfContentByte cb = writer.DirectContent;
@@ -146,12 +150,15 @@ namespace EducarWeb
                 cb.SetFontAndSize(bf, 12);
 
                 // Define la posición de la división
+
+                /*
                 float dividerX = 500;  // Ajusta esto para la posición horizontal
                 float dividerY = 800;  // Ajusta esto para la posición vertical
 
                 cb.BeginText();
                 cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, "División", dividerX, dividerY, 0);
                 cb.EndText();
+                */
 
                 // Agregar una tabla para el listado de alumnos
                 PdfPTable table = new PdfPTable(3); // 3 columnas para id, apellido, nombre
@@ -161,9 +168,9 @@ namespace EducarWeb
                 table.SetWidths(columnWidths);
 
                 // Agregar encabezados de columna
-                table.AddCell(new PdfPCell(new Phrase("ID")));
-                table.AddCell(new PdfPCell(new Phrase("Apellido")));
-                table.AddCell(new PdfPCell(new Phrase("Nombre")));
+                table.AddCell(new PdfPCell(new Phrase("LEGAJO")));
+                table.AddCell(new PdfPCell(new Phrase("APELLIDO")));
+                table.AddCell(new PdfPCell(new Phrase("NOMBRE")));
 
                 // Obtener la lista de alumnos
                 HashSet<string> alumnosInscritos = ObtenerAlumnosInscritos(cursoId);
@@ -182,6 +189,7 @@ namespace EducarWeb
                 doc.Add(table);
 
                 // Calcular el total de alumnos
+                doc.Add(new Paragraph("\n\n\n"));
                 int totalAlumnos = alumnosInscritos.Count;
 
                 // Agregar el total al final del documento
@@ -192,6 +200,26 @@ namespace EducarWeb
 
                 MessageBox.Show("PDF generado con éxito.");
             }
+        }
+
+        private string ObtenerNombreCurso(long cursoId)
+        {
+            string nombreCurso = string.Empty;
+            string query = "SELECT nombre FROM curso WHERE id = @cursoId";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+            {
+                cmd.Parameters.AddWithValue("@cursoId", cursoId);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        nombreCurso = reader.GetString("nombre");
+                    }
+                }
+            }
+
+            return nombreCurso;
         }
 
         private HashSet<string> ObtenerAlumnosInscritos(long cursoId)

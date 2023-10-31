@@ -42,13 +42,15 @@
             this.btnCrearCurso = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tbAulaCurso = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvCursos
             // 
+            this.dgvCursos.BackgroundColor = System.Drawing.Color.White;
             this.dgvCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCursos.Location = new System.Drawing.Point(583, 51);
+            this.dgvCursos.Location = new System.Drawing.Point(578, 53);
             this.dgvCursos.Name = "dgvCursos";
             this.dgvCursos.Size = new System.Drawing.Size(447, 150);
             this.dgvCursos.TabIndex = 0;
@@ -64,18 +66,18 @@
             this.btnImprimirPDF.Name = "btnImprimirPDF";
             this.btnImprimirPDF.Size = new System.Drawing.Size(226, 36);
             this.btnImprimirPDF.TabIndex = 5;
-            this.btnImprimirPDF.Text = "Imprimir listado de cursos";
+            this.btnImprimirPDF.Text = "Imprimir listado de alumnos";
             this.btnImprimirPDF.UseVisualStyleBackColor = false;
             this.btnImprimirPDF.Click += new System.EventHandler(this.btnImprimirPDF_Click);
             // 
             // lbl_Username
             // 
             this.lbl_Username.AutoSize = true;
-            this.lbl_Username.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Username.Location = new System.Drawing.Point(172, 9);
+            this.lbl_Username.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Username.Location = new System.Drawing.Point(232, 9);
             this.lbl_Username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Username.Name = "lbl_Username";
-            this.lbl_Username.Size = new System.Drawing.Size(129, 27);
+            this.lbl_Username.Size = new System.Drawing.Size(156, 32);
             this.lbl_Username.TabIndex = 6;
             this.lbl_Username.Text = "Crear nuevo curso";
             // 
@@ -160,7 +162,7 @@
             this.btnCrearCurso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.btnCrearCurso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCrearCurso.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrearCurso.Location = new System.Drawing.Point(177, 262);
+            this.btnCrearCurso.Location = new System.Drawing.Point(212, 255);
             this.btnCrearCurso.Name = "btnCrearCurso";
             this.btnCrearCurso.Size = new System.Drawing.Size(176, 36);
             this.btnCrearCurso.TabIndex = 15;
@@ -187,11 +189,23 @@
             this.tbAulaCurso.Size = new System.Drawing.Size(400, 20);
             this.tbAulaCurso.TabIndex = 17;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(745, 9);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(173, 32);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Seleccione un curso:";
+            // 
             // GestionCursosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1055, 338);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.tbAulaCurso);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCrearCurso);
@@ -230,5 +244,6 @@
         private System.Windows.Forms.Button btnCrearCurso;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbAulaCurso;
+        private System.Windows.Forms.Label label6;
     }
 }
