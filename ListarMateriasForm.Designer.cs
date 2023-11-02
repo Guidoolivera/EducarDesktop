@@ -39,7 +39,7 @@
             // 
             // dgvMaterias
             // 
-            this.dgvMaterias.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.dgvMaterias.BackgroundColor = System.Drawing.Color.White;
             this.dgvMaterias.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -57,7 +57,7 @@
             // 
             // listBoxAlumnos
             // 
-            this.listBoxAlumnos.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.listBoxAlumnos.BackColor = System.Drawing.Color.White;
             this.listBoxAlumnos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxAlumnos.FormattingEnabled = true;
             this.listBoxAlumnos.ItemHeight = 27;
@@ -96,7 +96,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.LightBlue;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(682, 328);
             this.Controls.Add(this.btnGenerarPDFs);
             this.Controls.Add(this.lblAlumnosInscritos);

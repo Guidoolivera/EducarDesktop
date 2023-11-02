@@ -13,11 +13,15 @@ namespace EducarWeb
     public partial class SolicitudesInscripcionForm : Form
     {
         private readonly MySqlConnection conexion;
+        private readonly long idUsuario;
+        private readonly string rolUsuario;
 
-        public SolicitudesInscripcionForm(MySqlConnection conexion)
+        public SolicitudesInscripcionForm(MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
             this.conexion = conexion;
+            this.idUsuario = idUsuario;
+            this.rolUsuario = rolUsuario;
             CargarSolicitudesPendientes();
         }
 

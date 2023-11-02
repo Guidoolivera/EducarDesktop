@@ -116,7 +116,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(241, 351);
+            this.ClientSize = new System.Drawing.Size(241, 313);
             this.Controls.Add(this.btn_Cursos);
             this.Controls.Add(this.btn_GestionarInscripciones);
             this.Controls.Add(this.btn_ListarMaterias);
@@ -127,7 +127,6 @@
             this.Name = "MateriaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de materias";
-            this.Load += new System.EventHandler(this.MateriaForm_Load);
             this.ResumeLayout(false);
 
         }

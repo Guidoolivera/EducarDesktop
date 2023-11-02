@@ -17,12 +17,16 @@ namespace EducarWeb
     public partial class ListarMateriasForm : Form
     {
         private MySqlConnection conexion;
+        private readonly long idUsuario;
+        private readonly string rolUsuario;
         private SaveFileDialog saveFileDialog;
 
-        public ListarMateriasForm(MySqlConnection conexion)
+        public ListarMateriasForm(MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
             this.conexion = conexion;
+            this.idUsuario = idUsuario;
+            this.rolUsuario = rolUsuario;
             CargarMaterias();
             saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Archivos PDF|*.pdf";
@@ -36,37 +40,51 @@ namespace EducarWeb
                 string queryMaterias =
                     "SELECT m.id, m.nombre AS materia, p.nombre AS profesor, " +
                     "GROUP_CONCAT(pAlumno.nombre SEPARATOR ', ') AS alumnos, " +
+                    "m.horarios, " +
+                    "c.nombre AS nombre_curso, " +
                     "COUNT(phm.materia_id) AS cantidad_inscritos " +
                     "FROM materia m " +
                     "INNER JOIN persona p ON m.profesor_id = p.id " +
                     "LEFT JOIN persona_has_materia phm ON m.id = phm.materia_id " +
                     "LEFT JOIN persona pAlumno ON phm.persona_id = pAlumno.id " +
-                    "WHERE p.rol = 'Profesor' " +
-                    "GROUP BY m.id, m.nombre, p.nombre";
+                    "INNER JOIN curso c ON m.curso_id = c.id ";
+
+                if (rolUsuario == "Profesor")
+                {
+                    queryMaterias += "WHERE p.id = @idUsuario ";
+                }
+                else if (rolUsuario == "Padre")
+                {
+                    // Si el usuario es un Padre, cargar las materias de sus hijos
+                    CargarMateriasParaPadre();
+                    return;
+                }
+
+                queryMaterias += "GROUP BY m.id, m.nombre, p.nombre, m.horarios, c.nombre";
 
                 using (MySqlCommand cmd = new MySqlCommand(queryMaterias, conexion))
                 {
+                    if (rolUsuario == "Profesor")
+                    {
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    }
+
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
 
-                        // Añadir una columna para mostrar la lista de alumnos inscritos
-                        //dgvMaterias.Columns.Add("alumnos", "Alumnos Inscritos");
-
-                        // Enlazar el DataGridView con los datos de las materias
                         dgvMaterias.DataSource = dataTable;
 
-                        // Renombrar las columnas del DataGridView
                         dgvMaterias.Columns["id"].Visible = true;
                         dgvMaterias.Columns["id"].HeaderText = "Legajo";
                         dgvMaterias.Columns["materia"].HeaderText = "Materia";
                         dgvMaterias.Columns["profesor"].HeaderText = "Profesor";
-                        //dgvMaterias.Columns["alumnos"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;3
+                        dgvMaterias.Columns["horarios"].HeaderText = "Horarios";
+                        dgvMaterias.Columns["nombre_curso"].HeaderText = "Curso";
                         dgvMaterias.Columns["alumnos"].Visible = false;
                         dgvMaterias.Columns["cantidad_inscritos"].HeaderText = "Inscritos";
 
-                        // Manejar el evento SelectionChanged para mostrar la lista de alumnos en el ListBox
                         dgvMaterias.SelectionChanged += dgvMaterias_SelectionChanged;
                     }
                 }
@@ -76,6 +94,70 @@ namespace EducarWeb
                 MessageBox.Show("Error al cargar las materias: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // Función para cargar las materias de los hijos de un padre
+        private void CargarMateriasParaPadre()
+        {
+            try
+            {
+                string queryHijos =
+                    "SELECT hijo_id " +
+                    "FROM persona_has_persona " +
+                    "WHERE padre_id = @idUsuario";
+
+                using (MySqlCommand cmdHijos = new MySqlCommand(queryHijos, conexion))
+                {
+                    cmdHijos.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+                    using (MySqlDataReader readerHijos = cmdHijos.ExecuteReader())
+                    {
+                        while (readerHijos.Read())
+                        {
+                            long idHijo = readerHijos.GetInt64("hijo_id");
+                            string queryMateriasHijo =
+                                "SELECT m.id, m.nombre AS materia, p.nombre AS profesor, " +
+                                "m.horarios, " +
+                                "c.nombre AS nombre_curso, " +
+                                "COUNT(phm.materia_id) AS cantidad_inscritos " +
+                                "FROM materia m " +
+                                "INNER JOIN persona p ON m.profesor_id = p.id " +
+                                "INNER JOIN persona_has_materia phm ON m.id = phm.materia_id " +
+                                "INNER JOIN curso c ON m.curso_id = c.id " +
+                                "WHERE phm.persona_id = @idHijo " +
+                                "GROUP BY m.id, m.nombre, p.nombre, m.horarios, c.nombre";
+
+                            using (MySqlCommand cmdMateriasHijo = new MySqlCommand(queryMateriasHijo, conexion))
+                            {
+                                cmdMateriasHijo.Parameters.AddWithValue("@idHijo", idHijo);
+                                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmdMateriasHijo))
+                                {
+                                    DataTable dataTable = new DataTable();
+                                    adapter.Fill(dataTable);
+                                    dgvMaterias.DataSource = dataTable;
+
+                                    dgvMaterias.Columns["id"].Visible = true;
+                                    dgvMaterias.Columns["id"].HeaderText = "Legajo";
+                                    dgvMaterias.Columns["materia"].HeaderText = "Materia";
+                                    dgvMaterias.Columns["profesor"].HeaderText = "Profesor";
+                                    dgvMaterias.Columns["horarios"].HeaderText = "Horarios";
+                                    dgvMaterias.Columns["nombre_curso"].HeaderText = "Curso";
+                                    dgvMaterias.Columns["alumnos"].Visible = false;
+                                    dgvMaterias.Columns["cantidad_inscritos"].HeaderText = "Inscritos";
+
+                                    dgvMaterias.SelectionChanged += dgvMaterias_SelectionChanged;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las materias de los hijos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private void dgvMaterias_SelectionChanged(object sender, EventArgs e)
         {
@@ -135,8 +217,8 @@ namespace EducarWeb
                         long idMateria = Convert.ToInt64(selectedRow.Cells["id"].Value);
                         string nombreMateria = selectedRow.Cells["materia"].Value.ToString();
                         string nombreProfesor = selectedRow.Cells["profesor"].Value.ToString();
-                        long cursoId = ObtenerIdCursoParaMateria(idMateria);
-                        string nombreCurso = ObtenerNombreCurso(cursoId);
+                        string horarios = selectedRow.Cells["horarios"].Value.ToString();  // Agregamos los horarios
+                        string nombreCurso = selectedRow.Cells["nombre_curso"].Value.ToString();  // Agregamos el nombre del curso
 
                         Document doc = new Document(PageSize.A4);
                         string rutaPDF = saveFileDialog.FileName;
@@ -148,12 +230,13 @@ namespace EducarWeb
                         doc.Open();
 
                         doc.Add(new Paragraph("\n"));
-                        doc.Add(new Paragraph("Información de la materia")); // Agrega el nombre del curso
+                        doc.Add(new Paragraph("Información de la materia"));
                         doc.Add(new Paragraph("Nombre de la Materia: " + nombreMateria));
                         doc.Add(new Paragraph("Nombre del Profesor: " + nombreProfesor));
+                        doc.Add(new Paragraph("Horarios: " + horarios));  // Agregamos los horarios
+                        doc.Add(new Paragraph("Curso: " + nombreCurso));  // Agregamos el nombre del curso
                         doc.Add(new Paragraph("\n\n\n"));
 
-                        // Agregar división en el extremo superior derecho
                         PdfContentByte cb = writer.DirectContent;
                         BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                         cb.SetColorFill(BaseColor.BLACK);

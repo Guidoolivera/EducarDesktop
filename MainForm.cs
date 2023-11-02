@@ -13,23 +13,22 @@ namespace EducarWeb
 {
     public partial class MainForm : Form
     {
-        bool esAdmin;
-        MySqlConnection conexion;
-        long idUsuario;
+        readonly MySqlConnection conexion;
+        readonly long idUsuario;
         private bool menuVisible = false; // Inicialmente, el menú está oculto
-        public MainForm(string username, bool esAdmin, MySqlConnection conexion, long idUsuario)
+        readonly string rolUsuario;
+        public MainForm(string username, MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
-            lbl_bienvenido.Text = "¡Bienvenido, " + username + "!";
-            this.esAdmin = esAdmin;
+            lbl_bienvenido.Text = "¡Bienvenido, " + username + "! ROL: " + rolUsuario;
             this.conexion = conexion; 
             this.idUsuario = idUsuario;
-
-    }
+            this.rolUsuario = rolUsuario;
+        }
 
         private void btn_Materias_Click(object sender, EventArgs e)
         {
-            MateriaForm materiaForm = new MateriaForm(conexion, idUsuario); // Pasa la conexión
+            MateriaForm materiaForm = new MateriaForm(conexion, idUsuario, rolUsuario); // Pasa la conexión
             materiaForm.ShowDialog();
         }
 

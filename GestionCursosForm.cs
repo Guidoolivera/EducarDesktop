@@ -14,11 +14,15 @@ namespace EducarWeb
     public partial class GestionCursosForm : Form
     {
         private MySqlConnection conexion;
+        private readonly long idUsuario;
+        private readonly string rolUsuario;
 
-        public GestionCursosForm(MySqlConnection conexion)
+        public GestionCursosForm(MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
             this.conexion = conexion;
+            this.idUsuario = idUsuario;
+            this.rolUsuario = rolUsuario;
             CargarCursos();
         }
 

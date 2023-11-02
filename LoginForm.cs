@@ -40,7 +40,8 @@ namespace EducarWeb
                     conexion.Open();
                 }
 
-                string query = "SELECT COUNT(*), is_staff, id, first_name, last_name, email FROM usuario_usuario WHERE (username = @username OR email = @username) AND password = @password GROUP BY is_staff, id, first_name, last_name, email"; using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                string query = "SELECT COUNT(*), is_staff, id, first_name, last_name, email FROM usuario_usuario WHERE (username = @username OR email = @username) AND password = @password GROUP BY is_staff, id, first_name, last_name, email";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
@@ -64,8 +65,7 @@ namespace EducarWeb
                                 // Cerrar el DataReader antes de llamar a CrearPersona
                                 reader.Close();
 
-                                // Determinar el rol del usuario
-                                string rolUsuario = isAdmin ? "Administrador" : "Default";
+                                string rolUsuario = ObtenerRolDesdeTablaPersona(conexion, idUsuario); // Obtener el rol de la tabla "persona"
 
                                 if (!PersonaExiste(conexion, idUsuario))
                                 {
@@ -79,7 +79,7 @@ namespace EducarWeb
                                     }
                                 }
 
-                                MainForm mainForm = new MainForm(username, isAdmin, conexion, idUsuario);
+                                MainForm mainForm = new MainForm(username, conexion, idUsuario, rolUsuario);
                                 mainForm.ShowDialog();
                                 this.Hide();
                             }
@@ -95,6 +95,30 @@ namespace EducarWeb
                     }
                 }
             }
+        }
+
+        private string ObtenerRolDesdeTablaPersona(MySqlConnection conexion, long idUsuario)
+        {
+            string query = "SELECT rol FROM persona WHERE id = @id";
+            MySqlCommand cmd = new MySqlCommand(query, conexion);
+            cmd.Parameters.AddWithValue("@id", idUsuario);
+
+            try
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader.GetString(0);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error al obtener el rol desde la tabla persona: " + ex.Message);
+            }
+
+            return "Default"; // Valor predeterminado si no se pudo obtener el rol
         }
 
         private bool PersonaExiste(MySqlConnection conexion, long idUsuario)

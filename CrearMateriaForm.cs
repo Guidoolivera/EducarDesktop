@@ -15,11 +15,15 @@ namespace EducarWeb
     public partial class CrearMateriaForm : Form
     {
         private readonly MySqlConnection conexion;
+        long idUsuario;
+        string rolUsuario;
 
-        public CrearMateriaForm(MySqlConnection conexion)
+        public CrearMateriaForm(MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
             this.conexion = conexion;
+            this.idUsuario = idUsuario;
+            this.rolUsuario = rolUsuario;
             CargarProfesores();
             CargarCursos(); // Llamar al método para cargar los cursos al inicializar el formulario
         }
