@@ -13,23 +13,25 @@ namespace EducarWeb
 {
     public partial class MainForm : Form
     {
-        bool esAdmin;
-        MySqlConnection conexion;
-        long idUsuario;
+        readonly MySqlConnection conexion;
+        readonly long idUsuario;
         private bool menuVisible = false; // Inicialmente, el menú está oculto
-        public MainForm(string username, bool esAdmin, MySqlConnection conexion, long idUsuario)
+        readonly string rolUsuario;
+        public MainForm(string username, MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
-            lbl_bienvenido.Text = "¡Bienvenido, " + username + "!";
-            this.esAdmin = esAdmin;
-            this.conexion = conexion; 
+            lbl_bienvenido.Text = "¡Bienvenido, " + username + "! ROL: " + rolUsuario;
+            this.conexion = conexion;
             this.idUsuario = idUsuario;
+            this.rolUsuario = rolUsuario;
 
-    }
+            // Comprueba el rol del usuario y oculta el botón si es "alumno"
+
+        }
 
         private void btn_Materias_Click(object sender, EventArgs e)
         {
-            MateriaForm materiaForm = new MateriaForm(conexion, idUsuario); // Pasa la conexión
+            MateriaForm materiaForm = new MateriaForm(conexion, idUsuario, rolUsuario); // Pasa la conexión
             materiaForm.ShowDialog();
         }
 
@@ -45,9 +47,6 @@ namespace EducarWeb
             pagoForm.ShowDialog();
         }
 
-
-
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             // Cambiar la visibilidad del menú
@@ -58,7 +57,15 @@ namespace EducarWeb
             btn_Materias.Visible = menuVisible;
             btn_Examenes.Visible = menuVisible;
             btn_Pagos.Visible = menuVisible;
-            btn_GestionarRoles.Visible = menuVisible;
+            if (rolUsuario == "Alumno")
+            {
+                btn_GestionarRoles.Visible = false;
+                btn_Sobre.Location = new Point(24, 274);
+            }
+            else
+            {
+                btn_GestionarRoles.Visible = menuVisible;
+            }
             btn_Sobre.Visible = menuVisible;
         }
 

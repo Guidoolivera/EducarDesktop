@@ -37,7 +37,8 @@
             // 
             // comboBoxMaterias
             // 
-            this.comboBoxMaterias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxMaterias.BackColor = System.Drawing.Color.White;
+            this.comboBoxMaterias.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBoxMaterias.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxMaterias.FormattingEnabled = true;
             this.comboBoxMaterias.Location = new System.Drawing.Point(12, 102);
@@ -47,14 +48,14 @@
             // 
             // btn_SolicitarInscripcion
             // 
-            this.btn_SolicitarInscripcion.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_SolicitarInscripcion.BackColor = System.Drawing.Color.White;
             this.btn_SolicitarInscripcion.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_SolicitarInscripcion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
+            this.btn_SolicitarInscripcion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
             this.btn_SolicitarInscripcion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_SolicitarInscripcion.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SolicitarInscripcion.Location = new System.Drawing.Point(116, 179);
+            this.btn_SolicitarInscripcion.Location = new System.Drawing.Point(116, 185);
             this.btn_SolicitarInscripcion.Name = "btn_SolicitarInscripcion";
-            this.btn_SolicitarInscripcion.Size = new System.Drawing.Size(98, 36);
+            this.btn_SolicitarInscripcion.Size = new System.Drawing.Size(134, 36);
             this.btn_SolicitarInscripcion.TabIndex = 1;
             this.btn_SolicitarInscripcion.Text = "Solicitar inscripción";
             this.btn_SolicitarInscripcion.UseVisualStyleBackColor = false;
@@ -84,7 +85,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(366, 264);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_bienvenido);

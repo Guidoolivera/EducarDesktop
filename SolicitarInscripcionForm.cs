@@ -15,13 +15,14 @@ namespace EducarWeb
     {
         private readonly long idUsuario;
         private readonly MySqlConnection conexion;
+        readonly string rolUsuario;
 
-        public SolicitarInscripcionForm(MySqlConnection conexion, long idUsuario)
+        public SolicitarInscripcionForm(MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
             this.idUsuario = idUsuario;
             this.conexion = conexion;
-
+            this.rolUsuario = rolUsuario;
             // Llamar al método de carga de materias disponibles durante la inicialización
             CargarMateriasDisponibles();
         }
