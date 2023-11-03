@@ -43,8 +43,16 @@ namespace EducarWeb
 
         private void btn_Pagos_Click(object sender, EventArgs e)
         {
-            PagoForm pagoForm = new PagoForm(conexion); // Pasa la conexión
-            pagoForm.ShowDialog();
+            
+            if (rolUsuario == "Padre")
+            {
+                PagoForm pagoForm = new PagoForm(conexion, idUsuario); // Pasa la conexión
+                pagoForm.ShowDialog();
+            }
+            if(rolUsuario == "Administrador") { 
+
+                
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

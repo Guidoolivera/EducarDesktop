@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EducarWeb.Clases;
 using MySql.Data.MySqlClient;
 
 namespace EducarWeb
@@ -16,11 +18,13 @@ namespace EducarWeb
     {
         MySqlConnection conexion;
         string query1 = "SELECT * FROM pago";
+        long idUsuario;
         
-        public PagoForm(MySqlConnection conexion)
+        public PagoForm(MySqlConnection conexion, long idUsuario)
         {
             InitializeComponent();
             this.conexion = conexion;
+            this.idUsuario = idUsuario;
             /*
             string query = "SELECT     p.id AS PagoID,    p.fecha AS FechaPago,   p.monto AS MontoPago,    " +
                     "padre.nombre AS NombrePadre,    padre.apellido AS ApellidoPadre,    hijo.nombre AS NombreAlumno,    " +
@@ -33,8 +37,8 @@ namespace EducarWeb
         {
             using(conexion)
             {
-                //
                 ActualizarDataGridView();
+                CargarHijosEnComboBox(idUsuario);
             }
         }
 
@@ -169,17 +173,61 @@ namespace EducarWeb
 
         private void ActualizarDataGridView()
         {
-            string query = "SELECT p.id AS PagoID, p.fecha AS Fecha, p.monto AS Monto, p.nrofactura AS NumeroFactura, " +
-                  "p.tipo AS Tipo, perPadre.nombre AS NombrePadre, perHijo.nombre AS NombreHijo " +
-                  "FROM pago p " +
-                  "INNER JOIN pago_has_persona php ON p.id = php.pago_id " +
-                  "INNER JOIN persona perPadre ON php.padre_id = perPadre.id " +
-                  "INNER JOIN persona perHijo ON php.hijo_id = perHijo.id";
+            string query = "SELECT cuota.mes, cuota.fecha_vencimiento, cuota.monto, cuota.estado " +
+              "FROM cuota " +
+              "INNER JOIN persona_has_persona ON cuota.persona_id = persona_has_persona.hijo_id " +
+              "WHERE persona_has_persona.padre_id = @idUsuario;";
 
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, conexion);
+            adapter.SelectCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
             dataGridView1.DataSource = dataTable;
+
+            string query2 = "SELECT pago.fecha, pago.monto, pago.nrofactura, pago.tipo " +
+                    "FROM pago " +
+                    "INNER JOIN cuota ON pago.cuota_id = cuota.id " +
+                    "INNER JOIN persona_has_persona ON cuota.persona_id = persona_has_persona.hijo_id " +
+                    "WHERE persona_has_persona.padre_id = @idUsuario";
+
+            MySqlDataAdapter adapter2 = new MySqlDataAdapter(query2, conexion);
+            adapter2.SelectCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
+            DataTable dataTable2 = new DataTable();
+            adapter2.Fill(dataTable2);
+            dataGridView2.DataSource = dataTable2;
         }
+
+
+        private void CargarHijosEnComboBox(long idPadre)
+        {
+            List<string> listaNombresApellidos = new List<string>();
+
+            using (conexion)
+            {
+                
+
+                string query = "SELECT CONCAT(p.nombre, ' ', p.apellido) AS NombreCompleto " +
+                               "FROM persona_has_persona php " +
+                               "INNER JOIN persona p ON php.hijo_id = p.id " +
+                               "WHERE php.padre_id = @idPadre";
+
+                using (MySqlCommand command = new MySqlCommand(query, conexion))
+                {
+                    command.Parameters.AddWithValue("@idPadre", idPadre);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string nombreCompleto = reader.GetString(0);
+                            listaNombresApellidos.Add(nombreCompleto);
+                        }
+                    }
+                }
+            }
+
+            comboBox2.DataSource = listaNombresApellidos;
+        }
+
     }
 }
