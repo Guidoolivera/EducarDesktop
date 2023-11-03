@@ -51,6 +51,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(483, 657);
             this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_RowHeaderMouseClick);
             // 
             // label1
             // 
@@ -69,6 +70,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Confirmar e Imprimir Factura";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PagoFromAdmin
             // 

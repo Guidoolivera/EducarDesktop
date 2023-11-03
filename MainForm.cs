@@ -49,9 +49,10 @@ namespace EducarWeb
                 PagoForm pagoForm = new PagoForm(conexion, idUsuario); // Pasa la conexión
                 pagoForm.ShowDialog();
             }
-            if(rolUsuario == "Administrador") { 
+            if(rolUsuario == "Administrador") {
 
-                
+                PagoFromAdmin pagoFormAdmin = new PagoFromAdmin(conexion); // Pasa la conexión
+                pagoFormAdmin.ShowDialog();
             }
         }
 
