@@ -21,9 +21,12 @@ namespace EducarWeb
         {
             InitializeComponent();
             lbl_bienvenido.Text = "¡Bienvenido, " + username + "! ROL: " + rolUsuario;
-            this.conexion = conexion; 
+            this.conexion = conexion;
             this.idUsuario = idUsuario;
             this.rolUsuario = rolUsuario;
+
+            // Comprueba el rol del usuario y oculta el botón si es "alumno"
+
         }
 
         private void btn_Materias_Click(object sender, EventArgs e)
@@ -44,9 +47,6 @@ namespace EducarWeb
             pagoForm.ShowDialog();
         }
 
-
-
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             // Cambiar la visibilidad del menú
@@ -57,7 +57,15 @@ namespace EducarWeb
             btn_Materias.Visible = menuVisible;
             btn_Examenes.Visible = menuVisible;
             btn_Pagos.Visible = menuVisible;
-            btn_GestionarRoles.Visible = menuVisible;
+            if (rolUsuario == "Alumno")
+            {
+                btn_GestionarRoles.Visible = false;
+                btn_Sobre.Location = new Point(24, 274);
+            }
+            else
+            {
+                btn_GestionarRoles.Visible = menuVisible;
+            }
             btn_Sobre.Visible = menuVisible;
         }
 

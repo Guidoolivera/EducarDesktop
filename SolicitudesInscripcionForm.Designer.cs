@@ -39,10 +39,11 @@
             // 
             // btn_AceptarSolicitud
             // 
-            this.btn_AceptarSolicitud.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_AceptarSolicitud.BackColor = System.Drawing.Color.White;
             this.btn_AceptarSolicitud.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btn_AceptarSolicitud.FlatAppearance.BorderSize = 2;
             this.btn_AceptarSolicitud.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_AceptarSolicitud.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_AceptarSolicitud.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_AceptarSolicitud.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_AceptarSolicitud.Location = new System.Drawing.Point(86, 220);
             this.btn_AceptarSolicitud.Name = "btn_AceptarSolicitud";
@@ -54,7 +55,7 @@
             // 
             // dgvSolicitudes
             // 
-            this.dgvSolicitudes.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.dgvSolicitudes.BackgroundColor = System.Drawing.Color.White;
             this.dgvSolicitudes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -80,10 +81,10 @@
             // 
             // btn_RechazarSolicitud
             // 
-            this.btn_RechazarSolicitud.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_RechazarSolicitud.BackColor = System.Drawing.Color.White;
             this.btn_RechazarSolicitud.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_RechazarSolicitud.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_RechazarSolicitud.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_RechazarSolicitud.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_RechazarSolicitud.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RechazarSolicitud.Location = new System.Drawing.Point(234, 220);
             this.btn_RechazarSolicitud.Name = "btn_RechazarSolicitud";
@@ -97,7 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(417, 268);
             this.Controls.Add(this.btn_RechazarSolicitud);
             this.Controls.Add(this.dgvSolicitudes);

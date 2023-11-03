@@ -1,6 +1,6 @@
 ﻿namespace EducarWeb
 {
-    partial class GestionCursosForm
+    partial class Cursos
     {
         /// <summary>
         /// Required designer variable.
@@ -52,17 +52,17 @@
             this.dgvCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCursos.Location = new System.Drawing.Point(578, 53);
             this.dgvCursos.Name = "dgvCursos";
-            this.dgvCursos.Size = new System.Drawing.Size(447, 150);
+            this.dgvCursos.Size = new System.Drawing.Size(447, 183);
             this.dgvCursos.TabIndex = 0;
             // 
             // btnImprimirPDF
             // 
-            this.btnImprimirPDF.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnImprimirPDF.BackColor = System.Drawing.Color.White;
             this.btnImprimirPDF.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnImprimirPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btnImprimirPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimirPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
+            this.btnImprimirPDF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnImprimirPDF.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimirPDF.Location = new System.Drawing.Point(715, 243);
+            this.btnImprimirPDF.Location = new System.Drawing.Point(578, 272);
             this.btnImprimirPDF.Name = "btnImprimirPDF";
             this.btnImprimirPDF.Size = new System.Drawing.Size(226, 36);
             this.btnImprimirPDF.TabIndex = 5;
@@ -74,7 +74,7 @@
             // 
             this.lbl_Username.AutoSize = true;
             this.lbl_Username.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Username.Location = new System.Drawing.Point(232, 9);
+            this.lbl_Username.Location = new System.Drawing.Point(116, 9);
             this.lbl_Username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Username.Name = "lbl_Username";
             this.lbl_Username.Size = new System.Drawing.Size(156, 32);
@@ -96,7 +96,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 89);
+            this.label2.Location = new System.Drawing.Point(7, 90);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 27);
@@ -107,7 +107,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(7, 129);
+            this.label3.Location = new System.Drawing.Point(5, 131);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 27);
@@ -118,7 +118,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(7, 174);
+            this.label4.Location = new System.Drawing.Point(7, 172);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 27);
@@ -127,7 +127,7 @@
             // 
             // tbNombreCurso
             // 
-            this.tbNombreCurso.Location = new System.Drawing.Point(124, 53);
+            this.tbNombreCurso.Location = new System.Drawing.Point(122, 52);
             this.tbNombreCurso.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tbNombreCurso.Name = "tbNombreCurso";
             this.tbNombreCurso.Size = new System.Drawing.Size(400, 20);
@@ -135,21 +135,21 @@
             // 
             // dtpFechaInicio
             // 
-            this.dtpFechaInicio.Location = new System.Drawing.Point(124, 136);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(122, 134);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(400, 20);
             this.dtpFechaInicio.TabIndex = 12;
             // 
             // dtpFechaFin
             // 
-            this.dtpFechaFin.Location = new System.Drawing.Point(124, 175);
+            this.dtpFechaFin.Location = new System.Drawing.Point(122, 175);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.Size = new System.Drawing.Size(400, 20);
             this.dtpFechaFin.TabIndex = 13;
             // 
             // tbDescripcionCurso
             // 
-            this.tbDescripcionCurso.Location = new System.Drawing.Point(124, 96);
+            this.tbDescripcionCurso.Location = new System.Drawing.Point(122, 93);
             this.tbDescripcionCurso.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tbDescripcionCurso.Name = "tbDescripcionCurso";
             this.tbDescripcionCurso.Size = new System.Drawing.Size(400, 20);
@@ -157,12 +157,12 @@
             // 
             // btnCrearCurso
             // 
-            this.btnCrearCurso.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnCrearCurso.BackColor = System.Drawing.Color.White;
             this.btnCrearCurso.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnCrearCurso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btnCrearCurso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCrearCurso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
+            this.btnCrearCurso.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCrearCurso.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrearCurso.Location = new System.Drawing.Point(212, 255);
+            this.btnCrearCurso.Location = new System.Drawing.Point(122, 272);
             this.btnCrearCurso.Name = "btnCrearCurso";
             this.btnCrearCurso.Size = new System.Drawing.Size(176, 36);
             this.btnCrearCurso.TabIndex = 15;
@@ -174,7 +174,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(7, 222);
+            this.label5.Location = new System.Drawing.Point(7, 213);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 27);
@@ -183,7 +183,7 @@
             // 
             // tbAulaCurso
             // 
-            this.tbAulaCurso.Location = new System.Drawing.Point(124, 226);
+            this.tbAulaCurso.Location = new System.Drawing.Point(122, 216);
             this.tbAulaCurso.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tbAulaCurso.Name = "tbAulaCurso";
             this.tbAulaCurso.Size = new System.Drawing.Size(400, 20);
@@ -193,17 +193,18 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(745, 9);
+            this.label6.Location = new System.Drawing.Point(572, 9);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(173, 32);
             this.label6.TabIndex = 18;
             this.label6.Text = "Seleccione un curso:";
             // 
-            // GestionCursosForm
+            // Cursos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1055, 338);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbAulaCurso);
@@ -220,7 +221,7 @@
             this.Controls.Add(this.lbl_Username);
             this.Controls.Add(this.btnImprimirPDF);
             this.Controls.Add(this.dgvCursos);
-            this.Name = "GestionCursosForm";
+            this.Name = "Cursos";
             this.Text = "GestionCursosForm";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).EndInit();
             this.ResumeLayout(false);

@@ -38,12 +38,12 @@
             // 
             // btn_CrearMateria
             // 
-            this.btn_CrearMateria.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_CrearMateria.BackColor = System.Drawing.Color.White;
             this.btn_CrearMateria.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
+            this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_CrearMateria.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CrearMateria.Location = new System.Drawing.Point(28, 23);
+            this.btn_CrearMateria.Location = new System.Drawing.Point(28, 239);
             this.btn_CrearMateria.Name = "btn_CrearMateria";
             this.btn_CrearMateria.Size = new System.Drawing.Size(176, 36);
             this.btn_CrearMateria.TabIndex = 0;
@@ -53,12 +53,12 @@
             // 
             // btn_InscribirAlumno
             // 
-            this.btn_InscribirAlumno.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_InscribirAlumno.BackColor = System.Drawing.Color.White;
             this.btn_InscribirAlumno.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_InscribirAlumno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_InscribirAlumno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_InscribirAlumno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
+            this.btn_InscribirAlumno.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_InscribirAlumno.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_InscribirAlumno.Location = new System.Drawing.Point(28, 191);
+            this.btn_InscribirAlumno.Location = new System.Drawing.Point(28, 86);
             this.btn_InscribirAlumno.Name = "btn_InscribirAlumno";
             this.btn_InscribirAlumno.Size = new System.Drawing.Size(176, 36);
             this.btn_InscribirAlumno.TabIndex = 1;
@@ -68,12 +68,12 @@
             // 
             // btn_ListarMaterias
             // 
-            this.btn_ListarMaterias.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_ListarMaterias.BackColor = System.Drawing.Color.White;
             this.btn_ListarMaterias.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_ListarMaterias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_ListarMaterias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ListarMaterias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
+            this.btn_ListarMaterias.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_ListarMaterias.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ListarMaterias.Location = new System.Drawing.Point(28, 79);
+            this.btn_ListarMaterias.Location = new System.Drawing.Point(28, 35);
             this.btn_ListarMaterias.Name = "btn_ListarMaterias";
             this.btn_ListarMaterias.Size = new System.Drawing.Size(176, 36);
             this.btn_ListarMaterias.TabIndex = 2;
@@ -83,12 +83,12 @@
             // 
             // btn_GestionarInscripciones
             // 
-            this.btn_GestionarInscripciones.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_GestionarInscripciones.BackColor = System.Drawing.Color.White;
             this.btn_GestionarInscripciones.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_GestionarInscripciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_GestionarInscripciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_GestionarInscripciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
+            this.btn_GestionarInscripciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_GestionarInscripciones.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_GestionarInscripciones.Location = new System.Drawing.Point(28, 135);
+            this.btn_GestionarInscripciones.Location = new System.Drawing.Point(28, 188);
             this.btn_GestionarInscripciones.Name = "btn_GestionarInscripciones";
             this.btn_GestionarInscripciones.Size = new System.Drawing.Size(176, 36);
             this.btn_GestionarInscripciones.TabIndex = 3;
@@ -98,12 +98,12 @@
             // 
             // btn_Cursos
             // 
-            this.btn_Cursos.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_Cursos.BackColor = System.Drawing.Color.White;
             this.btn_Cursos.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_Cursos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_Cursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cursos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
+            this.btn_Cursos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Cursos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Cursos.Location = new System.Drawing.Point(28, 251);
+            this.btn_Cursos.Location = new System.Drawing.Point(28, 137);
             this.btn_Cursos.Name = "btn_Cursos";
             this.btn_Cursos.Size = new System.Drawing.Size(176, 36);
             this.btn_Cursos.TabIndex = 4;
@@ -115,8 +115,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(241, 313);
+            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.ClientSize = new System.Drawing.Size(239, 297);
             this.Controls.Add(this.btn_Cursos);
             this.Controls.Add(this.btn_GestionarInscripciones);
             this.Controls.Add(this.btn_ListarMaterias);

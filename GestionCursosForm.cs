@@ -8,16 +8,17 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using Image = iTextSharp.text.Image;
 
 namespace EducarWeb
 {
-    public partial class GestionCursosForm : Form
+    public partial class Cursos : Form
     {
         private MySqlConnection conexion;
         private readonly long idUsuario;
         private readonly string rolUsuario;
 
-        public GestionCursosForm(MySqlConnection conexion, long idUsuario, string rolUsuario)
+        public Cursos(MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
             this.conexion = conexion;
@@ -137,15 +138,22 @@ namespace EducarWeb
                 CustomPdfPageEvent eventHelper = new CustomPdfPageEvent(nombreCurso);
                 writer.PageEvent = eventHelper;
 
+
+                // Abre el documento para escribir
                 doc.Open();
 
+                // Agregar el logo de la institución
+                Image img = Image.GetInstance("C:\\Users\\Guido\\Documents\\GitHub\\EducarDesktop\\img\\logo.jpg.png"); // Cambia la ruta al logo
+                img.ScaleAbsolute(80f, 80f); // Ajusta el tamaño según tus necesidades
+                img.SetAbsolutePosition(40, PageSize.A4.Height - 110); // Posición en la página
+                doc.Add(img);
 
 
-                // Agregar información del curso al PDF
-                doc.Add(new Paragraph("Información del Curso:"));
+                doc.Add(new Paragraph("\n\n\n\n"));
+                doc.Add(new Paragraph("INFORMACION DEL CURSO"));
                 doc.Add(new Paragraph($"Descripción: {descripcionCurso}"));
                 doc.Add(new Paragraph($"Aula: {aulaCurso}"));
-                doc.Add(new Paragraph("\n\n\n"));
+                doc.Add(new Paragraph("\n\n"));
 
                 // Agregar división en el extremo superior derecho
                 PdfContentByte cb = writer.DirectContent;
@@ -193,7 +201,7 @@ namespace EducarWeb
                 doc.Add(table);
 
                 // Calcular el total de alumnos
-                doc.Add(new Paragraph("\n\n\n"));
+                doc.Add(new Paragraph("\n\n"));
                 int totalAlumnos = alumnosInscritos.Count;
 
                 // Agregar el total al final del documento

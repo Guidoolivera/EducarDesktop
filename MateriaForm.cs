@@ -27,6 +27,18 @@ namespace EducarWeb
 
             // Llamar a un método para configurar la visibilidad de los botones según el rol
             ConfigurarVisibilidadBotones();
+
+            // Verifica el rol del usuario y realiza las acciones correspondientes
+            if (rolUsuario == "Alumno")
+            {
+                // Si el usuario es un alumno, oculta los controles y ajusta el tamaño del formulario
+                btn_CrearMateria.Hide();
+                btn_GestionarInscripciones.Hide();
+                btn_Cursos.Hide();
+
+                // Opcional: Ajusta el tamaño del formulario
+                this.Size = new Size(250, 175); // Ajusta el tamaño según tus necesidades
+            }
         }
 
         private void ConfigurarVisibilidadBotones()
@@ -77,7 +89,7 @@ namespace EducarWeb
 
         private void btn_Cursos_Click(object sender, EventArgs e)
         {
-            GestionCursosForm gcf = new GestionCursosForm(conexion, idUsuario, rolUsuario);
+            Cursos gcf = new Cursos(conexion, idUsuario, rolUsuario);
             gcf.ShowDialog();
         }
     }

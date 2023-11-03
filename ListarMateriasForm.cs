@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Image = iTextSharp.text.Image;
 
 namespace EducarWeb
 {
@@ -20,7 +21,7 @@ namespace EducarWeb
         private readonly long idUsuario;
         private readonly string rolUsuario;
         private SaveFileDialog saveFileDialog;
-
+        //readonly string logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "logo.png");
         public ListarMateriasForm(MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
@@ -31,7 +32,20 @@ namespace EducarWeb
             saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Archivos PDF|*.pdf";
             saveFileDialog.Title = "Guardar PDF";
+
+            // Verifica el rol del usuario y realiza las acciones correspondientes
+            if (rolUsuario == "Alumno")
+            {
+                // Si el usuario es un alumno, oculta los controles y ajusta el tamaño del formulario
+                listBoxAlumnos.Hide();
+                lblAlumnosInscritos.Hide();
+                btnGenerarPDFs.Hide();
+
+                // Opcional: Ajusta el tamaño del formulario
+                this.Size = new Size(550, 310); // Ajusta el tamaño según tus necesidades
+            }
         }
+
 
         private void CargarMaterias()
         {
@@ -77,7 +91,7 @@ namespace EducarWeb
                         dgvMaterias.DataSource = dataTable;
 
                         dgvMaterias.Columns["id"].Visible = true;
-                        dgvMaterias.Columns["id"].HeaderText = "Legajo";
+                        dgvMaterias.Columns["id"].HeaderText = "ID";
                         dgvMaterias.Columns["materia"].HeaderText = "Materia";
                         dgvMaterias.Columns["profesor"].HeaderText = "Profesor";
                         dgvMaterias.Columns["horarios"].HeaderText = "Horarios";
@@ -136,7 +150,7 @@ namespace EducarWeb
                                     dgvMaterias.DataSource = dataTable;
 
                                     dgvMaterias.Columns["id"].Visible = true;
-                                    dgvMaterias.Columns["id"].HeaderText = "Legajo";
+                                    dgvMaterias.Columns["id"].HeaderText = "ID";
                                     dgvMaterias.Columns["materia"].HeaderText = "Materia";
                                     dgvMaterias.Columns["profesor"].HeaderText = "Profesor";
                                     dgvMaterias.Columns["horarios"].HeaderText = "Horarios";
@@ -217,25 +231,31 @@ namespace EducarWeb
                         long idMateria = Convert.ToInt64(selectedRow.Cells["id"].Value);
                         string nombreMateria = selectedRow.Cells["materia"].Value.ToString();
                         string nombreProfesor = selectedRow.Cells["profesor"].Value.ToString();
-                        string horarios = selectedRow.Cells["horarios"].Value.ToString();  // Agregamos los horarios
-                        string nombreCurso = selectedRow.Cells["nombre_curso"].Value.ToString();  // Agregamos el nombre del curso
+                        string horarios = selectedRow.Cells["horarios"].Value.ToString();
+                        string nombreCurso = selectedRow.Cells["nombre_curso"].Value.ToString();
 
                         Document doc = new Document(PageSize.A4);
                         string rutaPDF = saveFileDialog.FileName;
                         PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(rutaPDF, FileMode.Create));
 
+                        // Abre el documento para escribir
+                        doc.Open();
+
+                        // Agregar el logo de la institución
+                        Image img = Image.GetInstance("C:\\Users\\Guido\\Documents\\GitHub\\EducarDesktop\\img\\logo.jpg.png"); // Cambia la ruta al logo
+                        img.ScaleAbsolute(80f, 80f); // Ajusta el tamaño según tus necesidades
+                        img.SetAbsolutePosition(40, PageSize.A4.Height - 110); // Posición en la página
+                        doc.Add(img);
+
                         CustomPdfPageEvent eventHelper = new CustomPdfPageEvent(nombreCurso);
                         writer.PageEvent = eventHelper;
 
-                        doc.Open();
-
-                        doc.Add(new Paragraph("\n"));
-                        doc.Add(new Paragraph("Información de la materia"));
+                        doc.Add(new Paragraph("\n\n\n\n"));
+                        doc.Add(new Paragraph("INFORMACION DE LA MATERIA"));
                         doc.Add(new Paragraph("Nombre de la Materia: " + nombreMateria));
                         doc.Add(new Paragraph("Nombre del Profesor: " + nombreProfesor));
-                        doc.Add(new Paragraph("Horarios: " + horarios));  // Agregamos los horarios
-                        doc.Add(new Paragraph("Curso: " + nombreCurso));  // Agregamos el nombre del curso
-                        doc.Add(new Paragraph("\n\n\n"));
+                        doc.Add(new Paragraph("Horarios: " + horarios));
+                        doc.Add(new Paragraph("\n\n"));
 
                         PdfContentByte cb = writer.DirectContent;
                         BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
@@ -276,7 +296,7 @@ namespace EducarWeb
 
                                 doc.Add(table);
 
-                                doc.Add(new Paragraph("\n\n\n"));
+                                doc.Add(new Paragraph("\n\n"));
 
                                 int totalAlumnos = dataTable.Rows.Count;
 
@@ -297,6 +317,7 @@ namespace EducarWeb
             }
         }
 
+        /*
         private long ObtenerIdCursoParaMateria(long idMateria)
         {
             long idCurso = -1;
@@ -338,6 +359,7 @@ namespace EducarWeb
 
             return nombreCurso;
         }
+        */
 
     }
 

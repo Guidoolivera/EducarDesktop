@@ -50,9 +50,9 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvMaterias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaterias.Location = new System.Drawing.Point(23, 40);
+            this.dgvMaterias.Location = new System.Drawing.Point(12, 34);
             this.dgvMaterias.Name = "dgvMaterias";
-            this.dgvMaterias.Size = new System.Drawing.Size(436, 220);
+            this.dgvMaterias.Size = new System.Drawing.Size(506, 220);
             this.dgvMaterias.TabIndex = 0;
             // 
             // listBoxAlumnos
@@ -61,7 +61,7 @@
             this.listBoxAlumnos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxAlumnos.FormattingEnabled = true;
             this.listBoxAlumnos.ItemHeight = 27;
-            this.listBoxAlumnos.Location = new System.Drawing.Point(476, 40);
+            this.listBoxAlumnos.Location = new System.Drawing.Point(580, 34);
             this.listBoxAlumnos.Name = "listBoxAlumnos";
             this.listBoxAlumnos.Size = new System.Drawing.Size(179, 220);
             this.listBoxAlumnos.TabIndex = 1;
@@ -70,7 +70,7 @@
             // 
             this.lblAlumnosInscritos.AutoSize = true;
             this.lblAlumnosInscritos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlumnosInscritos.Location = new System.Drawing.Point(473, 9);
+            this.lblAlumnosInscritos.Location = new System.Drawing.Point(578, 4);
             this.lblAlumnosInscritos.Name = "lblAlumnosInscritos";
             this.lblAlumnosInscritos.Size = new System.Drawing.Size(141, 27);
             this.lblAlumnosInscritos.TabIndex = 2;
@@ -78,12 +78,12 @@
             // 
             // btnGenerarPDFs
             // 
-            this.btnGenerarPDFs.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnGenerarPDFs.BackColor = System.Drawing.Color.White;
             this.btnGenerarPDFs.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btnGenerarPDFs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.btnGenerarPDFs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarPDFs.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarPDFs.Location = new System.Drawing.Point(476, 280);
+            this.btnGenerarPDFs.Location = new System.Drawing.Point(583, 276);
             this.btnGenerarPDFs.Name = "btnGenerarPDFs";
             this.btnGenerarPDFs.Size = new System.Drawing.Size(176, 36);
             this.btnGenerarPDFs.TabIndex = 5;
@@ -96,8 +96,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(682, 328);
+            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.ClientSize = new System.Drawing.Size(784, 330);
             this.Controls.Add(this.btnGenerarPDFs);
             this.Controls.Add(this.lblAlumnosInscritos);
             this.Controls.Add(this.listBoxAlumnos);

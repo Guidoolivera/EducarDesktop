@@ -61,6 +61,7 @@
             // 
             // tb_NombreMateria
             // 
+            this.tb_NombreMateria.BackColor = System.Drawing.Color.White;
             this.tb_NombreMateria.Location = new System.Drawing.Point(167, 42);
             this.tb_NombreMateria.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tb_NombreMateria.Name = "tb_NombreMateria";
@@ -69,16 +70,16 @@
             // 
             // btn_CrearMateria
             // 
-            this.btn_CrearMateria.BackColor = System.Drawing.Color.SkyBlue;
+            this.btn_CrearMateria.BackColor = System.Drawing.Color.White;
             this.btn_CrearMateria.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CrearMateria.Location = new System.Drawing.Point(214, 438);
+            this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
+            this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_CrearMateria.Location = new System.Drawing.Point(208, 438);
             this.btn_CrearMateria.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_CrearMateria.Name = "btn_CrearMateria";
-            this.btn_CrearMateria.Size = new System.Drawing.Size(100, 48);
+            this.btn_CrearMateria.Size = new System.Drawing.Size(129, 36);
             this.btn_CrearMateria.TabIndex = 2;
-            this.btn_CrearMateria.Text = "Crear";
+            this.btn_CrearMateria.Text = "Crear Materia";
             this.btn_CrearMateria.UseVisualStyleBackColor = false;
             this.btn_CrearMateria.Click += new System.EventHandler(this.btn_CrearMateria_Click);
             // 
@@ -95,6 +96,7 @@
             // 
             // tb_CupoMaximo
             // 
+            this.tb_CupoMaximo.BackColor = System.Drawing.Color.White;
             this.tb_CupoMaximo.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_CupoMaximo.Location = new System.Drawing.Point(167, 89);
             this.tb_CupoMaximo.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -104,6 +106,7 @@
             // 
             // tb_DescripcionMateria
             // 
+            this.tb_DescripcionMateria.BackColor = System.Drawing.Color.White;
             this.tb_DescripcionMateria.Location = new System.Drawing.Point(167, 136);
             this.tb_DescripcionMateria.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tb_DescripcionMateria.Name = "tb_DescripcionMateria";
@@ -134,6 +137,7 @@
             // 
             // dtp_FechaFin
             // 
+            this.dtp_FechaFin.CalendarMonthBackground = System.Drawing.Color.White;
             this.dtp_FechaFin.Location = new System.Drawing.Point(167, 230);
             this.dtp_FechaFin.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.dtp_FechaFin.Name = "dtp_FechaFin";
@@ -142,6 +146,7 @@
             // 
             // dtp_FechaInicio
             // 
+            this.dtp_FechaInicio.CalendarMonthBackground = System.Drawing.Color.White;
             this.dtp_FechaInicio.Location = new System.Drawing.Point(167, 183);
             this.dtp_FechaInicio.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.dtp_FechaInicio.Name = "dtp_FechaInicio";
@@ -172,6 +177,7 @@
             // 
             // tb_Horarios
             // 
+            this.tb_Horarios.BackColor = System.Drawing.Color.White;
             this.tb_Horarios.Location = new System.Drawing.Point(167, 277);
             this.tb_Horarios.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tb_Horarios.Name = "tb_Horarios";
@@ -180,6 +186,7 @@
             // 
             // comboBoxProfesores
             // 
+            this.comboBoxProfesores.BackColor = System.Drawing.Color.White;
             this.comboBoxProfesores.FormattingEnabled = true;
             this.comboBoxProfesores.Location = new System.Drawing.Point(167, 324);
             this.comboBoxProfesores.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -211,6 +218,8 @@
             // 
             // comboBoxCursos
             // 
+            this.comboBoxCursos.BackColor = System.Drawing.Color.White;
+            this.comboBoxCursos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBoxCursos.FormattingEnabled = true;
             this.comboBoxCursos.Location = new System.Drawing.Point(167, 371);
             this.comboBoxCursos.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -222,8 +231,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(550, 501);
+            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.ClientSize = new System.Drawing.Size(526, 489);
             this.Controls.Add(this.comboBoxCursos);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -246,7 +255,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "CrearMateriaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Crear materia";
+            this.Text = "Crear Materia";
             this.ResumeLayout(false);
             this.PerformLayout();
 
