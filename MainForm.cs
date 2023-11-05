@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using EducarWeb.Clases;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace EducarWeb
         public MainForm(string username, MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
+            CuotaUpdater.Update(conexion);
             lbl_bienvenido.Text = "¡Bienvenido, " + username + "! ROL: " + rolUsuario;
             this.conexion = conexion;
             this.idUsuario = idUsuario;
