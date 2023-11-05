@@ -181,6 +181,12 @@
     <Compile Include="NotasAlumnoForm.Designer.cs">
       <DependentUpon>NotasAlumnoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NotasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotasForm.Designer.cs">
+      <DependentUpon>NotasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NotasProfeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotasAlumnoForm.resx">
       <DependentUpon>NotasAlumnoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotasForm.resx">
+      <DependentUpon>NotasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NotasProfeForm.resx">
       <DependentUpon>NotasProfeForm.cs</DependentUpon>

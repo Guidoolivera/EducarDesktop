@@ -89,6 +89,7 @@ namespace EducarWeb
 
         private void btn_Examenes_Click(object sender, EventArgs e)
         {
+            /*
             if (esprofe(idUsuario, conexion))
             {
                 //abrir la ventana para igresar notas. ventana de profes
@@ -101,6 +102,9 @@ namespace EducarWeb
                 NotasAlumnoForm notasAlumno = new NotasAlumnoForm(idUsuario, conexion);
                 notasAlumno.ShowDialog();
             }
+            */
+            NotasForm nf = new NotasForm(conexion, idUsuario, rolUsuario);
+            nf.ShowDialog();
         }
 
         public bool esprofe(long idUsuario, MySqlConnection conexion)
