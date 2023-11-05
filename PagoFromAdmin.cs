@@ -71,7 +71,7 @@ namespace EducarWeb
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"ID: {pagoId}, Monto: {pagoMonto}, Cuota_ID: {pagoCuotaId}");
+            //MessageBox.Show($"ID: {pagoId}, Monto: {pagoMonto}, Cuota_ID: {pagoCuotaId}");
             ObtenerMontoCuotaPorId(pagoCuotaId);
 
             if (controlarEstadoPago() == "Pendiente")
@@ -85,13 +85,14 @@ namespace EducarWeb
 
                 ActualizarDataGrid();
 
-                FacturaA factura = new FacturaA();
-                factura.GenerarFactura(7000, nombre);
+                
             }
             else
             {
                 MessageBox.Show("Este pago ya ha sido confirmado previamente.");
-            } 
+            }
+            FacturaA factura = new FacturaA();
+            factura.GenerarFactura(7000, nombre);
         }
 
         private void modificarEstadoCuota()
@@ -266,6 +267,106 @@ namespace EducarWeb
                     }
                 }
             }
+        }
+    
+        private void verPagosPendientes()
+        {
+            string query1 = "SELECT * FROM pago WHERE estado = 'Pendiente'";
+            using (conexion)
+            {
+
+                using (MySqlCommand command = new MySqlCommand(query1, conexion))
+                {
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        // Asigna los datos al DataGridView
+                        dataGridView2.DataSource = dataTable;
+                    }
+                }
+            }
+        }
+
+        private void verCuotasPendientes()
+        {
+            string query1 = "SELECT * FROM cuota WHERE estado = 'Pendiente'";
+            using (conexion)
+            {
+
+                using (MySqlCommand command = new MySqlCommand(query1, conexion))
+                {
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        // Asigna los datos al DataGridView
+                        dataGridView1.DataSource = dataTable;
+                    }
+                }
+            }
+        }
+
+        private void verPagos()
+        {
+            string query1 = "SELECT * FROM pago";
+            using (conexion)
+            {
+
+                using (MySqlCommand command = new MySqlCommand(query1, conexion))
+                {
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        // Asigna los datos al DataGridView
+                        dataGridView2.DataSource = dataTable;
+                    }
+                }
+            }
+        }
+
+        private void verCuotas()
+        {
+            string query1 = "SELECT * FROM cuota";
+            using (conexion)
+            {
+
+                using (MySqlCommand command = new MySqlCommand(query1, conexion))
+                {
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        // Asigna los datos al DataGridView
+                        dataGridView1.DataSource = dataTable;
+                    }
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            verPagosPendientes();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            verPagos();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            verCuotasPendientes();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            verCuotas();
         }
     }
 }
