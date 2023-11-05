@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EducarWeb.Clases;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1;
 
 namespace EducarWeb
 {
@@ -20,9 +21,11 @@ namespace EducarWeb
         private double pagoMonto;
         private int pagoCuotaId;
         private double cuotaMonto;
-
+        private double pagoEstado;
         private double montoFinal;
         private string estadoFinal;
+
+        private string nombre;
 
         public PagoFromAdmin(MySqlConnection conexion)
         {
@@ -70,11 +73,25 @@ namespace EducarWeb
         {
             MessageBox.Show($"ID: {pagoId}, Monto: {pagoMonto}, Cuota_ID: {pagoCuotaId}");
             ObtenerMontoCuotaPorId(pagoCuotaId);
-            modificarEstadoCuota();
-            modificarMontoCuota();
 
-            FacturaA factura = new FacturaA();
-            factura.GenerarFactura();
+            if (controlarEstadoPago() == "Pendiente")
+            {
+                modificarEstadoCuota();
+
+                modificarMontoCuota();
+                nombre = ObtenerNombrePadre();
+
+                modificarEstadoPago();
+
+                ActualizarDataGrid();
+
+                FacturaA factura = new FacturaA();
+                factura.GenerarFactura(7000, nombre);
+            }
+            else
+            {
+                MessageBox.Show("Este pago ya ha sido confirmado previamente.");
+            } 
         }
 
         private void modificarEstadoCuota()
@@ -84,6 +101,7 @@ namespace EducarWeb
             {
                 estadoFinal = "Saldada";
                 MessageBox.Show("La cuota esta saldada");
+                
             }
             else
             {
@@ -179,6 +197,73 @@ namespace EducarWeb
                 if (dataGridView2.Rows[e.RowIndex].Cells["cuota_id"].Value != null)
                 {
                     pagoCuotaId = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["cuota_id"].Value);
+                }
+            }
+        }
+        private string ObtenerNombrePadre()
+        {
+            using (conexion)
+            {
+                conexion.Open();
+
+                string query = "SELECT p.nombre AS nombre_padre, p.apellido AS apellido_padre " +
+                    "FROM cuota c " +
+                    "JOIN persona_has_persona php ON c.persona_id = php.hijo_id " +
+                    "JOIN persona p ON php.padre_id = p.id " +
+                    "WHERE c.id = @pagoCuotaId;";
+
+                using (MySqlCommand commando = new MySqlCommand(query, conexion))
+                {
+                    commando.Parameters.AddWithValue("@pagoCuotaId", pagoCuotaId);
+
+                    using(MySqlDataReader reader = commando.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string nombrePadre = reader["nombre_padre"].ToString(); // Usar el alias
+                            string apellidoPadre = reader["apellido_padre"].ToString(); // Usar el alias
+                            return nombrePadre +" "+ apellidoPadre;
+                        }
+                    }
+                }
+            }
+            return string.Empty;
+        }
+        
+        private void modificarEstadoPago()
+        {
+            string query = "UPDATE pago SET estado = 'Confirmado' WHERE id = @pagoId";
+            using (conexion)
+            {
+                conexion.Open();
+
+                using(MySqlCommand command = new MySqlCommand( query, conexion))
+                {
+                    command.Parameters.AddWithValue("@pagoId", pagoId);
+                    command.ExecuteNonQuery();
+                }
+
+            }
+        }
+
+        private string controlarEstadoPago()
+        {
+            string query = "SELECT estado FROM pago WHERE id = @pagoId";
+            using (conexion)
+            {
+                conexion.Open();
+                using (MySqlCommand command = new MySqlCommand(query, conexion))
+                {
+                    command.Parameters.AddWithValue("@pagoId", pagoId);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // Asegúrate de llamar a Read() para avanzar al primer resultado.
+                        {
+                            string estado = reader.GetString(0);
+                            return estado;
+                        }
+                        return string.Empty;
+                    }
                 }
             }
         }

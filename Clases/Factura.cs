@@ -12,8 +12,11 @@ namespace EducarWeb.Clases
 {
     internal class FacturaA
     {
-        public void GenerarFactura()
+        public void GenerarFactura(double monto, string nombre)
         {
+            monto = 7000;
+
+
             Document doc = new Document();
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Archivos PDF|*.pdf";
@@ -165,13 +168,13 @@ namespace EducarWeb.Clases
                 //Nombre y Apellido / Razon Social
                 cb.SetFontAndSize(bf3, 10);
                 cb.BeginText();
-                cb.ShowTextAligned(Element.ALIGN_LEFT, "Nombre y Apellido / Razon Social:", 180, 645, 0);
+                cb.ShowTextAligned(Element.ALIGN_LEFT, "Nombre y Apellido / Razon Social: "+nombre, 180, 645, 0);
                 cb.EndText();
 
                 //Domicilio: 
                 cb.SetFontAndSize(bf3, 10);
                 cb.BeginText();
-                cb.ShowTextAligned(Element.ALIGN_LEFT, "Domicilio:", 300, 625, 0);
+                cb.ShowTextAligned(Element.ALIGN_LEFT, "Domicilio: French 755", 300, 625, 0);
                 cb.EndText();
 
                 //Nro. Remito
@@ -186,29 +189,35 @@ namespace EducarWeb.Clases
                 //Subtotal
                 cb.SetFontAndSize(bf3, 10);
                 cb.BeginText();
-                cb.ShowTextAligned(Element.ALIGN_RIGHT, "Subtotal: $       00000", 540, 180, 0);
+                cb.ShowTextAligned(Element.ALIGN_RIGHT, "Subtotal: $       "+monto, 540, 180, 0);
                 cb.EndText();
                 //IVA
                 cb.SetFontAndSize(bf3, 10);
                 cb.BeginText();
-                cb.ShowTextAligned(Element.ALIGN_RIGHT, "IVA 21%: $       00000", 540, 160, 0);
+                cb.ShowTextAligned(Element.ALIGN_RIGHT, "IVA 21%: $               ", 540, 160, 0);
                 cb.EndText();
                 //Importe Otros Tributos
                 cb.SetFontAndSize(bf3, 10);
                 cb.BeginText();
-                cb.ShowTextAligned(Element.ALIGN_RIGHT, "Importe Otros Tributos: $       00000", 540, 140, 0);
+                cb.ShowTextAligned(Element.ALIGN_RIGHT, "Importe Otros Tributos: $               ", 540, 140, 0);
                 cb.EndText();
+
+
                 //Importe Total
                 cb.SetFontAndSize(bf3, 10);
                 cb.BeginText();
-                cb.ShowTextAligned(Element.ALIGN_RIGHT, "Importe Total: $       00000", 540, 120, 0);
+                cb.ShowTextAligned(Element.ALIGN_RIGHT, "Importe Total: $       "+monto, 540, 120, 0);
                 cb.EndText();
+
+                
+
 
                 //CAE N 
                 cb.SetFontAndSize(bf3, 10);
                 cb.BeginText();
                 cb.ShowTextAligned(Element.ALIGN_RIGHT, "CAE N XXXXXXXXXX", 540, 80, 0);
                 cb.EndText();
+
                 //Fecha de Vto. CAE
                 cb.SetFontAndSize(bf3, 10);
                 cb.BeginText();
