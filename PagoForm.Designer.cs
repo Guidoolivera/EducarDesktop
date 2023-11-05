@@ -77,7 +77,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(12, 57);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(413, 670);
+            this.dataGridView1.Size = new System.Drawing.Size(413, 378);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
@@ -188,7 +188,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(431, 57);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(427, 670);
+            this.dataGridView2.Size = new System.Drawing.Size(427, 378);
             this.dataGridView2.TabIndex = 15;
             // 
             // label5
@@ -271,7 +271,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(1284, 461);
+            this.ClientSize = new System.Drawing.Size(1284, 443);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.comboBox2);
