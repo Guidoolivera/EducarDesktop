@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EducarWeb.Clases;
 using MySql.Data.MySqlClient;
 
 namespace EducarWeb
@@ -71,6 +72,9 @@ namespace EducarWeb
             ObtenerMontoCuotaPorId(pagoCuotaId);
             modificarEstadoCuota();
             modificarMontoCuota();
+
+            FacturaA factura = new FacturaA();
+            factura.GenerarFactura();
         }
 
         private void modificarEstadoCuota()

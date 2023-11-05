@@ -138,6 +138,7 @@
     <Compile Include="Clases\Autoridad.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\CustomPdfPageEvent.cs" />
+    <Compile Include="Clases\Factura.cs" />
     <Compile Include="Clases\Materia.cs" />
     <Compile Include="Clases\Nota.cs" />
     <Compile Include="Clases\Padre.cs" />
