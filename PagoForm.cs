@@ -120,7 +120,7 @@ namespace EducarWeb
 
             using (conexion)
             {
-                
+                conexion.Open();
 
                 string query = "SELECT CONCAT(p.nombre, ' ', p.apellido) AS NombreCompleto " +
                                "FROM persona_has_persona php " +
