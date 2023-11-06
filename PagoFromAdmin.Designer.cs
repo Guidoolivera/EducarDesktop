@@ -51,6 +51,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 25);
             this.dataGridView1.Name = "dataGridView1";
@@ -59,6 +60,7 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(12, 384);
             this.dataGridView2.Name = "dataGridView2";
@@ -77,12 +79,14 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(974, 589);
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.button1.Location = new System.Drawing.Point(974, 600);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 39);
             this.button1.TabIndex = 3;
             this.button1.Text = "Confirmar e Imprimir Factura";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
@@ -105,72 +109,86 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.button2.Location = new System.Drawing.Point(974, 438);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(119, 23);
             this.button2.TabIndex = 6;
             this.button2.Text = "Ver pagos pendientes";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.button3.Location = new System.Drawing.Point(974, 467);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(119, 23);
             this.button3.TabIndex = 7;
             this.button3.Text = "Ver todos los pagos";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.button4.Location = new System.Drawing.Point(974, 106);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(119, 23);
             this.button4.TabIndex = 8;
             this.button4.Text = "Ver cuotas impagas";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.button5.Location = new System.Drawing.Point(974, 135);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(119, 23);
             this.button5.TabIndex = 9;
             this.button5.Text = "Ver todas las cuotas";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
+            this.button6.BackColor = System.Drawing.Color.White;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.button6.Location = new System.Drawing.Point(974, 164);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 10;
             this.button6.Text = "Imprimir";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
+            this.button7.BackColor = System.Drawing.Color.White;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.button7.Location = new System.Drawing.Point(974, 496);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 11;
             this.button7.Text = "Imprimir";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
+            this.button8.BackColor = System.Drawing.Color.White;
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.button8.Location = new System.Drawing.Point(686, 356);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(200, 23);
             this.button8.TabIndex = 12;
             this.button8.Text = "Exportar Ingresos";
-            this.button8.UseVisualStyleBackColor = true;
+            this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // dateTimePicker1
@@ -190,7 +208,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(561, 309);
+            this.label4.Location = new System.Drawing.Point(582, 309);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 13);
             this.label4.TabIndex = 15;
@@ -199,7 +217,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(561, 336);
+            this.label5.Location = new System.Drawing.Point(582, 336);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 16;
@@ -209,6 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1118, 681);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -228,6 +247,7 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Name = "PagoFromAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PagoFromAdmin";
             this.Load += new System.EventHandler(this.PagoFromAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

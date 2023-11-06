@@ -30,7 +30,7 @@
         {
             this.dgvCursos = new System.Windows.Forms.DataGridView();
             this.btnImprimirPDF = new System.Windows.Forms.Button();
-            this.lbl_Username = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,17 +50,17 @@
             // 
             this.dgvCursos.BackgroundColor = System.Drawing.Color.White;
             this.dgvCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCursos.Location = new System.Drawing.Point(578, 53);
+            this.dgvCursos.Location = new System.Drawing.Point(578, 57);
             this.dgvCursos.Name = "dgvCursos";
-            this.dgvCursos.Size = new System.Drawing.Size(447, 183);
+            this.dgvCursos.Size = new System.Drawing.Size(400, 183);
             this.dgvCursos.TabIndex = 0;
             // 
             // btnImprimirPDF
             // 
             this.btnImprimirPDF.BackColor = System.Drawing.Color.White;
             this.btnImprimirPDF.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnImprimirPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btnImprimirPDF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnImprimirPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btnImprimirPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImprimirPDF.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimirPDF.Location = new System.Drawing.Point(578, 272);
             this.btnImprimirPDF.Name = "btnImprimirPDF";
@@ -70,16 +70,16 @@
             this.btnImprimirPDF.UseVisualStyleBackColor = false;
             this.btnImprimirPDF.Click += new System.EventHandler(this.btnImprimirPDF_Click);
             // 
-            // lbl_Username
+            // lbl1
             // 
-            this.lbl_Username.AutoSize = true;
-            this.lbl_Username.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Username.Location = new System.Drawing.Point(116, 9);
-            this.lbl_Username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_Username.Name = "lbl_Username";
-            this.lbl_Username.Size = new System.Drawing.Size(156, 32);
-            this.lbl_Username.TabIndex = 6;
-            this.lbl_Username.Text = "Crear nuevo curso";
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(116, 9);
+            this.lbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(156, 32);
+            this.lbl1.TabIndex = 6;
+            this.lbl1.Text = "Crear nuevo curso";
             // 
             // label1
             // 
@@ -127,7 +127,7 @@
             // 
             // tbNombreCurso
             // 
-            this.tbNombreCurso.Location = new System.Drawing.Point(122, 52);
+            this.tbNombreCurso.Location = new System.Drawing.Point(122, 53);
             this.tbNombreCurso.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tbNombreCurso.Name = "tbNombreCurso";
             this.tbNombreCurso.Size = new System.Drawing.Size(400, 20);
@@ -149,7 +149,7 @@
             // 
             // tbDescripcionCurso
             // 
-            this.tbDescripcionCurso.Location = new System.Drawing.Point(122, 93);
+            this.tbDescripcionCurso.Location = new System.Drawing.Point(122, 94);
             this.tbDescripcionCurso.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tbDescripcionCurso.Name = "tbDescripcionCurso";
             this.tbDescripcionCurso.Size = new System.Drawing.Size(400, 20);
@@ -159,8 +159,8 @@
             // 
             this.btnCrearCurso.BackColor = System.Drawing.Color.White;
             this.btnCrearCurso.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnCrearCurso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btnCrearCurso.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCrearCurso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btnCrearCurso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCrearCurso.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrearCurso.Location = new System.Drawing.Point(122, 272);
             this.btnCrearCurso.Name = "btnCrearCurso";
@@ -205,7 +205,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1055, 338);
+            this.ClientSize = new System.Drawing.Size(1001, 338);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbAulaCurso);
             this.Controls.Add(this.label5);
@@ -218,7 +218,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lbl_Username);
+            this.Controls.Add(this.lbl1);
             this.Controls.Add(this.btnImprimirPDF);
             this.Controls.Add(this.dgvCursos);
             this.Name = "Cursos";
@@ -233,7 +233,7 @@
 
         private System.Windows.Forms.DataGridView dgvCursos;
         private System.Windows.Forms.Button btnImprimirPDF;
-        private System.Windows.Forms.Label lbl_Username;
+        private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

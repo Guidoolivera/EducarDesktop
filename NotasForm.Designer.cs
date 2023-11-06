@@ -52,6 +52,8 @@
             // btnGuardarNotas
             // 
             this.btnGuardarNotas.BackColor = System.Drawing.Color.White;
+            this.btnGuardarNotas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btnGuardarNotas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarNotas.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardarNotas.Location = new System.Drawing.Point(266, 130);
             this.btnGuardarNotas.Name = "btnGuardarNotas";

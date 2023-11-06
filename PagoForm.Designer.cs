@@ -57,7 +57,7 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -86,12 +86,12 @@
             // 
             this.button1.BackColor = System.Drawing.Color.SkyBlue;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(1012, 349);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 36);
+            this.button1.Size = new System.Drawing.Size(117, 36);
             this.button1.TabIndex = 2;
             this.button1.Text = "Cargar";
             this.button1.UseVisualStyleBackColor = false;
@@ -101,7 +101,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(1073, 242);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 20);
+            this.textBox1.Size = new System.Drawing.Size(199, 20);
             this.textBox1.TabIndex = 3;
             // 
             // checkBox1
@@ -172,7 +172,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(1073, 288);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 20);
+            this.textBox2.Size = new System.Drawing.Size(199, 20);
             this.textBox2.TabIndex = 10;
             // 
             // label4
@@ -187,6 +187,7 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(431, 57);
             this.dataGridView2.Name = "dataGridView2";
@@ -240,7 +241,7 @@
             "Diciembre"});
             this.comboBox1.Location = new System.Drawing.Point(1073, 152);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(199, 21);
             this.comboBox1.TabIndex = 19;
             // 
             // comboBox2
@@ -248,7 +249,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(1073, 106);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.Size = new System.Drawing.Size(199, 21);
             this.comboBox2.TabIndex = 20;
             // 
             // dateTimePicker1
@@ -272,12 +273,12 @@
             // 
             this.button2.BackColor = System.Drawing.Color.SkyBlue;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(1012, 391);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 36);
+            this.button2.Size = new System.Drawing.Size(117, 36);
             this.button2.TabIndex = 23;
             this.button2.Text = "Imrpimir";
             this.button2.UseVisualStyleBackColor = false;
@@ -288,7 +289,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.LightBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1284, 443);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label8);
@@ -312,6 +313,7 @@
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PagoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pagos";
             this.Load += new System.EventHandler(this.PagoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
