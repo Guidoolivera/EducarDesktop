@@ -25,6 +25,29 @@ namespace EducarWeb
             this.idUsuario = idUsuario;
             this.rolUsuario = rolUsuario;
             CargarCursos();
+            if (rolUsuario == "Profesor")
+            {
+                ocultarControles();
+            }
+        }
+        private void ocultarControles()
+        {
+            lbl1.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            dtpFechaFin.Visible = false;
+            dtpFechaInicio.Visible = false;
+            btnCrearCurso.Visible = false;
+            tbAulaCurso.Visible = false;
+            tbNombreCurso.Visible = false;
+            tbDescripcionCurso.Visible = false;
+            dgvCursos.Location = new Point(35, 53);
+            label6.Location = new Point(25, 9);
+            btnImprimirPDF.Location = new Point(122, 272);
+            this.Size = new Size(510, 377);
         }
 
         private void CargarCursos()

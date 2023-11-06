@@ -51,8 +51,13 @@ namespace EducarWeb
             {
                 // Ocultar los botones para directivos y profesores
                 btn_CrearMateria.Visible = false;
-                btn_GestionarInscripciones.Visible = false;
+                if (rolUsuario == "Profesor")
+                {
+                    btn_GestionarInscripciones.Visible = false;
+                }
                 btn_InscribirAlumno.Visible = false;
+                btn_Cursos.Location = new Point(28, 86);
+                this.Size = new Size(255, 176);
             }
             else if (rolUsuario == "Alumno")
             {

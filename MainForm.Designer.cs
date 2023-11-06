@@ -132,7 +132,7 @@
             this.btn_Materias.Name = "btn_Materias";
             this.btn_Materias.Size = new System.Drawing.Size(98, 36);
             this.btn_Materias.TabIndex = 0;
-            this.btn_Materias.Text = "Materias";
+            this.btn_Materias.Text = "Gestión";
             this.btn_Materias.UseVisualStyleBackColor = false;
             this.btn_Materias.Visible = false;
             this.btn_Materias.Click += new System.EventHandler(this.btn_Materias_Click);

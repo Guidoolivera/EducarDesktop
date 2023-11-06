@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace EducarWeb
 {
     public partial class SolicitudesInscripcionForm : Form
@@ -33,26 +34,100 @@ namespace EducarWeb
                 "INNER JOIN persona p ON s.id_alumno = p.id " +
                 "INNER JOIN materia m ON s.id_materia = m.id";
 
-            using (MySqlCommand cmd = new MySqlCommand(querySolicitudesPendientes, conexion))
+            try
             {
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                using (MySqlCommand cmd = new MySqlCommand(querySolicitudesPendientes, conexion))
                 {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
 
-                    // Enlazar el DataGridView con los datos de las solicitudes pendientes
-                    dgvSolicitudes.DataSource = dataTable;
+                        // Enlazar el DataGridView con los datos de las solicitudes pendientes
+                        dgvSolicitudes.DataSource = dataTable;
 
-                    // Renombrar las columnas del DataGridView
-                    dgvSolicitudes.Columns["fecha_solicitud"].HeaderText = "Fecha de Solicitud";
-                    dgvSolicitudes.Columns["nombre_alumno"].HeaderText = "Alumno";
-                    dgvSolicitudes.Columns["nombre_materia"].HeaderText = "Materia";
+                        // Renombrar las columnas del DataGridView
+                        dgvSolicitudes.Columns["fecha_solicitud"].HeaderText = "Fecha de Solicitud";
+                        dgvSolicitudes.Columns["nombre_alumno"].HeaderText = "Alumno";
+                        dgvSolicitudes.Columns["nombre_materia"].HeaderText = "Materia";
 
-                    // Ocultar las columnas "id", "id_alumno" e "id_materia"
-                    dgvSolicitudes.Columns["id"].Visible = false;
-                    dgvSolicitudes.Columns["id_alumno"].Visible = false;
-                    dgvSolicitudes.Columns["id_materia"].Visible = false;
+                        // Ocultar las columnas "id", "id_alumno" e "id_materia"
+                        dgvSolicitudes.Columns["id"].Visible = false;
+                        dgvSolicitudes.Columns["id_alumno"].Visible = false;
+                        dgvSolicitudes.Columns["id_materia"].Visible = false;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las solicitudes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AceptarSolicitud(int solicitudId, int idAlumno, int idMateria)
+        {
+            try
+            {
+                // Realizar la inserción en la tabla "persona_has_materia"
+                string queryInsercion = "INSERT INTO persona_has_materia (persona_id, materia_id, fecha_inscripcion) " +
+                                        "VALUES (@idAlumno, @idMateria, NOW())";
+
+                using (MySqlCommand cmd = new MySqlCommand(queryInsercion, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@idAlumno", idAlumno);
+                    cmd.Parameters.AddWithValue("@idMateria", idMateria);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        // Eliminar la solicitud aceptada de la tabla "solicitudes_inscripcion"
+                        string queryEliminarSolicitud = "DELETE FROM solicitudes_inscripcion WHERE id = @solicitudId";
+
+                        using (MySqlCommand cmdEliminar = new MySqlCommand(queryEliminarSolicitud, conexion))
+                        {
+                            cmdEliminar.Parameters.AddWithValue("@solicitudId", solicitudId);
+                            cmdEliminar.ExecuteNonQuery();
+                        }
+
+                        // Recargar las solicitudes pendientes en el DataGridView
+                        CargarSolicitudesPendientes();
+
+                        MessageBox.Show("Solicitud aceptada y procesada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al procesar la solicitud.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al aceptar la solicitud: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RechazarSolicitud(int solicitudId)
+        {
+            try
+            {
+                // Eliminar la solicitud rechazada de la tabla "solicitudes_inscripcion"
+                string queryEliminarSolicitud = "DELETE FROM solicitudes_inscripcion WHERE id = @solicitudId";
+
+                using (MySqlCommand cmdEliminar = new MySqlCommand(queryEliminarSolicitud, conexion))
+                {
+                    cmdEliminar.Parameters.AddWithValue("@solicitudId", solicitudId);
+                    cmdEliminar.ExecuteNonQuery();
+
+                    // Recargar las solicitudes pendientes en el DataGridView
+                    CargarSolicitudesPendientes();
+
+                    MessageBox.Show("Solicitud rechazada y eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al rechazar la solicitud: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -66,45 +141,7 @@ namespace EducarWeb
                     int idAlumno = Convert.ToInt32(dgvSolicitudes.SelectedRows[0].Cells["id_alumno"].Value);
                     int idMateria = Convert.ToInt32(dgvSolicitudes.SelectedRows[0].Cells["id_materia"].Value);
 
-                    try
-                    {
-                        // Realizar la inserción en la tabla "persona_has_materia"
-                        string queryInsercion = "INSERT INTO persona_has_materia (persona_id, materia_id, fecha_inscripcion) " +
-                                                "VALUES (@idAlumno, @idMateria, NOW())";
-
-                        using (MySqlCommand cmd = new MySqlCommand(queryInsercion, conexion))
-                        {
-                            cmd.Parameters.AddWithValue("@idAlumno", idAlumno);
-                            cmd.Parameters.AddWithValue("@idMateria", idMateria);
-
-                            int filasAfectadas = cmd.ExecuteNonQuery();
-
-                            if (filasAfectadas > 0)
-                            {
-                                // Eliminar la solicitud aceptada de la tabla "solicitudes_inscripcion"
-                                string queryEliminarSolicitud = "DELETE FROM solicitudes_inscripcion WHERE id = @solicitudId";
-
-                                using (MySqlCommand cmdEliminar = new MySqlCommand(queryEliminarSolicitud, conexion))
-                                {
-                                    cmdEliminar.Parameters.AddWithValue("@solicitudId", solicitudId);
-                                    cmdEliminar.ExecuteNonQuery();
-                                }
-
-                                // Recargar las solicitudes pendientes en el DataGridView
-                                CargarSolicitudesPendientes();
-
-                                MessageBox.Show("Solicitud aceptada y procesada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Error al procesar la solicitud.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    AceptarSolicitud(solicitudId, idAlumno, idMateria);
                 }
             }
             else
@@ -120,27 +157,7 @@ namespace EducarWeb
                 if (MessageBox.Show("¿Está seguro de rechazar esta solicitud?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     int solicitudId = Convert.ToInt32(dgvSolicitudes.SelectedRows[0].Cells["id"].Value);
-
-                    try
-                    {
-                        // Eliminar la solicitud rechazada de la tabla "solicitudes_inscripcion"
-                        string queryEliminarSolicitud = "DELETE FROM solicitudes_inscripcion WHERE id = @solicitudId";
-
-                        using (MySqlCommand cmdEliminar = new MySqlCommand(queryEliminarSolicitud, conexion))
-                        {
-                            cmdEliminar.Parameters.AddWithValue("@solicitudId", solicitudId);
-                            cmdEliminar.ExecuteNonQuery();
-
-                            // Recargar las solicitudes pendientes en el DataGridView
-                            CargarSolicitudesPendientes();
-
-                            MessageBox.Show("Solicitud rechazada y eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    RechazarSolicitud(solicitudId);
                 }
             }
             else
