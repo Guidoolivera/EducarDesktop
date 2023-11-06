@@ -31,6 +31,7 @@ namespace EducarWeb
         string tipo;
         long cuotaId;
         long cuotaPersonaId;
+        string mesBuscado;
 
         public PagoForm(MySqlConnection conexion, long idUsuario)
         {
@@ -49,32 +50,59 @@ namespace EducarWeb
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            // Captura los valores de los controles en el formulario
+            if (comprobarValores())
+            {
+                CargarPago();
+                ActualizarDataGridView();
+            }
+        }
+        private bool comprobarValores()
+        {
+            bool flag = true;
+            
             DateTime fechaPago = dateTimePicker1.Value;
             fechaFormateada = fechaPago.ToString("yyyy-MM-dd HH:mm:ss");
 
-            this.monto = Convert.ToDouble(textBox2.Text);
-            this.nroFactura = Convert.ToInt32(textBox1.Text);
+            try
+            {
+                this.monto = Convert.ToDouble(textBox2.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Por favor ingrese el monto");
+                flag = false;
+            }
+            try
+            {
+                this.nroFactura = Convert.ToInt32(textBox1.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Por Favor ingrese el numero de factura");
+                flag = false;
+            }
+
             this.tipo = ObtenerTipoPago();
-            this.cuotaId = ObtenerCuotaId();
-            this.cuotaPersonaId = ObtenerAlumnoId(cuotaId); 
-                                                                 
-            CargarPago();
-            ActualizarDataGridView();
-            ////string tipo = "";
+            if (string.IsNullOrEmpty(this.tipo))
+            {
+                MessageBox.Show("Por Favor ingrese el tipo de pago");
+                flag = false;
+            }
 
-            //if (double.TryParse(textBox2.Text, out monto))
-            //{
-            //    // El valor en el cuadro de texto se ha convertido a un número con éxito.
-            //    // Puedes usar la variable 'monto' en tu código.
-            //}
-            //else
-            //{
-            //    // Manejo de error si el contenido del cuadro de texto no es un número válido.
-            //    MessageBox.Show("El monto ingresado no es válido.");
-            //}
+            this.mesBuscado = comboBox1.Text;
+            if (string.IsNullOrEmpty(this.mesBuscado))
+            {
+                MessageBox.Show("Por Favor ingrese el mes");
+                flag = false;
+            }
+            else
+            {
+                this.cuotaId = ObtenerCuotaId(mesBuscado);
+            }
 
+            this.cuotaPersonaId = ObtenerAlumnoId(cuotaId);
 
+            return flag;
         }
         private string ObtenerTipoPago()
         {
@@ -168,9 +196,9 @@ namespace EducarWeb
                 }
             }
         }
-        private long ObtenerCuotaId()
+        private long ObtenerCuotaId(string mesBuscado)
         {
-            string mesBuscado = comboBox1.Text;
+            
             using (conexion)
             {
                 conexion.Open();

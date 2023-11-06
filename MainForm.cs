@@ -89,22 +89,21 @@ namespace EducarWeb
 
         private void btn_Examenes_Click(object sender, EventArgs e)
         {
-            /*
-            if (esprofe(idUsuario, conexion))
+            if (rolUsuario == "Profesor")
             {
-                //abrir la ventana para igresar notas. ventana de profes
-                NotasProfeForm notasProfe = new NotasProfeForm(idUsuario, conexion);
-                notasProfe.ShowDialog();
+                NotasForm nf = new NotasForm(conexion, idUsuario, rolUsuario);
+                nf.ShowDialog();
             }
-            else
+            if(rolUsuario == "Padre")
             {
-                //ventana de vista de las notas del alumno
-                NotasAlumnoForm notasAlumno = new NotasAlumnoForm(idUsuario, conexion);
-                notasAlumno.ShowDialog();
+                ExamenesPadre examenesPadre = new ExamenesPadre(conexion,idUsuario);
+                examenesPadre.ShowDialog();
             }
-            */
-            NotasForm nf = new NotasForm(conexion, idUsuario, rolUsuario);
-            nf.ShowDialog();
+            if (rolUsuario == "Alumno")
+            {
+
+            }
+            
         }
 
         public bool esprofe(long idUsuario, MySqlConnection conexion)

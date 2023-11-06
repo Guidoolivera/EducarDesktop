@@ -152,6 +152,12 @@
     <Compile Include="CrearMateriaForm.Designer.cs">
       <DependentUpon>CrearMateriaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExamenesPadre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExamenesPadre.Designer.cs">
+      <DependentUpon>ExamenesPadre.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSobre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +246,9 @@
     </Compile>
     <EmbeddedResource Include="CrearMateriaForm.resx">
       <DependentUpon>CrearMateriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExamenesPadre.resx">
+      <DependentUpon>ExamenesPadre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSobre.resx">
       <DependentUpon>FormSobre.cs</DependentUpon>
