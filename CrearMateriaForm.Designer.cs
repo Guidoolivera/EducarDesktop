@@ -72,8 +72,8 @@
             // 
             this.btn_CrearMateria.BackColor = System.Drawing.Color.White;
             this.btn_CrearMateria.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CrearMateria.Location = new System.Drawing.Point(208, 438);
             this.btn_CrearMateria.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_CrearMateria.Name = "btn_CrearMateria";

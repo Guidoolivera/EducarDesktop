@@ -42,8 +42,8 @@
             this.btn_AceptarSolicitud.BackColor = System.Drawing.Color.White;
             this.btn_AceptarSolicitud.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_AceptarSolicitud.FlatAppearance.BorderSize = 2;
-            this.btn_AceptarSolicitud.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_AceptarSolicitud.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_AceptarSolicitud.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_AceptarSolicitud.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_AceptarSolicitud.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_AceptarSolicitud.Location = new System.Drawing.Point(86, 220);
             this.btn_AceptarSolicitud.Name = "btn_AceptarSolicitud";
@@ -83,8 +83,8 @@
             // 
             this.btn_RechazarSolicitud.BackColor = System.Drawing.Color.White;
             this.btn_RechazarSolicitud.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_RechazarSolicitud.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.btn_RechazarSolicitud.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_RechazarSolicitud.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_RechazarSolicitud.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_RechazarSolicitud.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RechazarSolicitud.Location = new System.Drawing.Point(234, 220);
             this.btn_RechazarSolicitud.Name = "btn_RechazarSolicitud";

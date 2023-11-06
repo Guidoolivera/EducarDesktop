@@ -76,6 +76,18 @@ namespace EducarWeb
             else
             {
                 btn_GestionarRoles.Visible = menuVisible;
+                if (rolUsuario == "Administrador")
+                {
+                    btn_Examenes.Visible = false;
+                    btn_Pagos.Location = new Point(24, 136);
+                    btn_GestionarRoles.Location = new Point(24, 205);
+                    btn_Sobre.Location = new Point(24,274);
+                }
+                if (rolUsuario == "Profesor")
+                {
+                    btn_GestionarRoles.Visible = false;
+                    btn_Sobre.Location = new Point(24, 274);
+                }
             }
             btn_Sobre.Visible = menuVisible;
         }

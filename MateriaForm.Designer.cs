@@ -41,8 +41,8 @@
             this.btn_CrearMateria.BackColor = System.Drawing.Color.White;
             this.btn_CrearMateria.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_CrearMateria.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
-            this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_CrearMateria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_CrearMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CrearMateria.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CrearMateria.Location = new System.Drawing.Point(28, 239);
             this.btn_CrearMateria.Name = "btn_CrearMateria";
@@ -57,8 +57,8 @@
             this.btn_InscribirAlumno.BackColor = System.Drawing.Color.White;
             this.btn_InscribirAlumno.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_InscribirAlumno.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
-            this.btn_InscribirAlumno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_InscribirAlumno.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_InscribirAlumno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_InscribirAlumno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_InscribirAlumno.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_InscribirAlumno.Location = new System.Drawing.Point(28, 86);
             this.btn_InscribirAlumno.Name = "btn_InscribirAlumno";
@@ -73,8 +73,8 @@
             this.btn_ListarMaterias.BackColor = System.Drawing.Color.White;
             this.btn_ListarMaterias.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_ListarMaterias.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
-            this.btn_ListarMaterias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_ListarMaterias.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_ListarMaterias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_ListarMaterias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_ListarMaterias.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ListarMaterias.Location = new System.Drawing.Point(28, 35);
             this.btn_ListarMaterias.Name = "btn_ListarMaterias";
@@ -89,8 +89,8 @@
             this.btn_GestionarInscripciones.BackColor = System.Drawing.Color.White;
             this.btn_GestionarInscripciones.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_GestionarInscripciones.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
-            this.btn_GestionarInscripciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_GestionarInscripciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_GestionarInscripciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_GestionarInscripciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_GestionarInscripciones.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_GestionarInscripciones.Location = new System.Drawing.Point(28, 188);
             this.btn_GestionarInscripciones.Name = "btn_GestionarInscripciones";
@@ -105,8 +105,8 @@
             this.btn_Cursos.BackColor = System.Drawing.Color.White;
             this.btn_Cursos.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_Cursos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightBlue;
-            this.btn_Cursos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_Cursos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Cursos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_Cursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Cursos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Cursos.Location = new System.Drawing.Point(28, 137);
             this.btn_Cursos.Name = "btn_Cursos";

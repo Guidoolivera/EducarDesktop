@@ -50,8 +50,8 @@
             // 
             this.btn_SolicitarInscripcion.BackColor = System.Drawing.Color.White;
             this.btn_SolicitarInscripcion.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_SolicitarInscripcion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_SolicitarInscripcion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_SolicitarInscripcion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_SolicitarInscripcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SolicitarInscripcion.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_SolicitarInscripcion.Location = new System.Drawing.Point(116, 185);
             this.btn_SolicitarInscripcion.Name = "btn_SolicitarInscripcion";

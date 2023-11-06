@@ -82,7 +82,7 @@
             this.btn_Ingresar.BackColor = System.Drawing.Color.White;
             this.btn_Ingresar.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btn_Ingresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
-            this.btn_Ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Ingresar.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Ingresar.Location = new System.Drawing.Point(163, 197);
             this.btn_Ingresar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);

@@ -61,8 +61,8 @@
             // 
             this.btn_Sobre.BackColor = System.Drawing.Color.White;
             this.btn_Sobre.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_Sobre.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_Sobre.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Sobre.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_Sobre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Sobre.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Sobre.Location = new System.Drawing.Point(24, 343);
             this.btn_Sobre.Name = "btn_Sobre";
@@ -77,8 +77,8 @@
             // 
             this.btn_GestionarRoles.BackColor = System.Drawing.Color.White;
             this.btn_GestionarRoles.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_GestionarRoles.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_GestionarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_GestionarRoles.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_GestionarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_GestionarRoles.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_GestionarRoles.Location = new System.Drawing.Point(24, 274);
             this.btn_GestionarRoles.Name = "btn_GestionarRoles";
@@ -93,8 +93,8 @@
             // 
             this.btn_Pagos.BackColor = System.Drawing.Color.White;
             this.btn_Pagos.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_Pagos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_Pagos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Pagos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_Pagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Pagos.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Pagos.Location = new System.Drawing.Point(24, 205);
             this.btn_Pagos.Name = "btn_Pagos";
@@ -109,8 +109,8 @@
             // 
             this.btn_Examenes.BackColor = System.Drawing.Color.White;
             this.btn_Examenes.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_Examenes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_Examenes.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Examenes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_Examenes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Examenes.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Examenes.Location = new System.Drawing.Point(24, 136);
             this.btn_Examenes.Name = "btn_Examenes";
@@ -125,8 +125,8 @@
             // 
             this.btn_Materias.BackColor = System.Drawing.Color.White;
             this.btn_Materias.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_Materias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btn_Materias.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Materias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btn_Materias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Materias.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Materias.Location = new System.Drawing.Point(24, 67);
             this.btn_Materias.Name = "btn_Materias";

@@ -59,8 +59,8 @@
             // 
             this.btnImprimirPDF.BackColor = System.Drawing.Color.White;
             this.btnImprimirPDF.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnImprimirPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btnImprimirPDF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnImprimirPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btnImprimirPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImprimirPDF.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimirPDF.Location = new System.Drawing.Point(578, 272);
             this.btnImprimirPDF.Name = "btnImprimirPDF";
@@ -159,8 +159,8 @@
             // 
             this.btnCrearCurso.BackColor = System.Drawing.Color.White;
             this.btnCrearCurso.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnCrearCurso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GhostWhite;
-            this.btnCrearCurso.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCrearCurso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+            this.btnCrearCurso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCrearCurso.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrearCurso.Location = new System.Drawing.Point(122, 272);
             this.btnCrearCurso.Name = "btnCrearCurso";

@@ -80,7 +80,7 @@
             // 
             this.btnGenerarPDFs.BackColor = System.Drawing.Color.White;
             this.btnGenerarPDFs.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnGenerarPDFs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
+            this.btnGenerarPDFs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.btnGenerarPDFs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarPDFs.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerarPDFs.Location = new System.Drawing.Point(583, 276);
