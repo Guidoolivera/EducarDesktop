@@ -96,13 +96,13 @@ namespace EducarWeb
             }
             if(rolUsuario == "Padre")
             {
-                ExamenesPadre examenesPadre = new ExamenesPadre(conexion,idUsuario);
+                ExamenesPadre examenesPadre = new ExamenesPadre(conexion,idUsuario,rolUsuario);
                 examenesPadre.ShowDialog();
             }
             if (rolUsuario == "Alumno")
             {
-                NotasAlumnoForm notas = new NotasAlumnoForm(idUsuario, conexion);
-                notas.ShowDialog();
+                ExamenesPadre examenesPadre = new ExamenesPadre(conexion, idUsuario, rolUsuario);
+                examenesPadre.ShowDialog();
             }
             
         }
