@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EducarWeb.Clases;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1;
+using Font = iTextSharp.text.Font;
 
 namespace EducarWeb
 {
@@ -377,6 +381,103 @@ namespace EducarWeb
         private void button7_Click(object sender, EventArgs e)
         {
             datagridviewPrinter.PrintPagoAdmin(dataGridView2);
+        }
+
+        private void PagoFromAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            // Obtener las fechas de inicio y fin del DateTimePicker
+            DateTime fechaInicio = dateTimePicker1.Value;
+            DateTime fechaFin = dateTimePicker2.Value;
+
+            // Crear un objeto Document de iTextSharp
+            Document doc = new Document();
+
+            // Mostrar el cuadro de diálogo "Guardar como" para seleccionar la ubicación y el nombre del archivo
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivos PDF|*.pdf";
+            saveFileDialog.Title = "Guardar archivo PDF";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Paragraph space = new Paragraph(" ");
+
+                string pdfFileName = saveFileDialog.FileName;
+
+                // Crear un objeto PdfWriter para escribir en el archivo PDF
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(pdfFileName, FileMode.Create));
+
+                doc.Open();
+
+                doc.Add(space);
+                doc.Add(space);
+                doc.Add(space);
+                doc.Add(space);
+
+                // Agregar logo (ajusta las coordenadas según tus necesidades)
+                iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance("img/logo.png");
+                logo.ScaleAbsolute(100f, 80f);
+                logo.SetAbsolutePosition(50, 730); // Cambia el valor de 150 según tus necesidades
+                doc.Add(logo);
+
+                // Agregar "Planilla de Cuotas" y la fecha actual
+                Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA, 18f);
+                Paragraph title = new Paragraph("Planilla de Ingresos", titleFont);
+                title.Alignment = Element.ALIGN_CENTER;
+                doc.Add(title);
+
+                // Agregar la fecha actual
+                Font dateFont = FontFactory.GetFont(FontFactory.HELVETICA, 12f);
+                Paragraph date = new Paragraph("Fecha: " + DateTime.Now.ToString("dd/MM/yyyy"), dateFont);
+                date.Alignment = Element.ALIGN_LEFT;
+                doc.Add(date);
+                doc.Add(space);
+                doc.Add(space);
+                // Crear una tabla para almacenar los datos del DataGridView
+                float[] columnWidths = new float[dataGridView2.Columns.Count];
+                for (int i = 0; i < dataGridView2.Columns.Count; i++)
+                {
+                    columnWidths[i] = 1f; // Establecer el ancho de cada columna a 1
+                }
+                PdfPTable table = new PdfPTable(columnWidths);
+                table.WidthPercentage = 90; // Establecer el ancho de la tabla al 90% del ancho de la página
+
+                // Añadir las cabeceras de las columnas al PDF
+                for (int i = 0; i < dataGridView2.Columns.Count; i++)
+                {
+                    table.AddCell(new Phrase(dataGridView2.Columns[i].HeaderText));
+                }
+
+                // Recorrer las filas del DataGridView y agregarlas al PDF si cumplen con los criterios
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    DateTime fecha = Convert.ToDateTime(row.Cells["Fecha"].Value);
+                    object estadoCellValue = row.Cells["Estado"].Value;
+
+                    if (estadoCellValue != null)
+                    {
+                        string estado = estadoCellValue.ToString();
+
+                        if (fecha >= fechaInicio && fecha <= fechaFin && estado == "Confirmado")
+                        {
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                table.AddCell(new Phrase(cell.Value.ToString()));
+                            }
+                        }
+                    }
+                }
+
+                doc.Add(table);
+                doc.Close();
+
+                MessageBox.Show("El archivo PDF se ha generado con éxito.");
+            }
+
+
         }
     }
 }
