@@ -72,6 +72,9 @@ namespace EducarWeb
             {
                 btn_GestionarRoles.Visible = false;
                 btn_Sobre.Location = new Point(24, 274);
+                //24 205
+                btn_Pagos.Visible = false;
+                btn_Sobre.Location = new Point(24, 205);
             }
             else
             {

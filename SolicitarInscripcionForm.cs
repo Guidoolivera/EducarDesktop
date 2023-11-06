@@ -29,18 +29,20 @@ namespace EducarWeb
 
         private void CargarMateriasDisponibles()
         {
-
             using (conexion)
             {
-
                 try
                 {
                     conexion.Open();
+
                     // Limpia los datos anteriores antes de cargar las nuevas materias disponibles
                     comboBoxMaterias.DataSource = null;
+                    comboBoxMaterias.Items.Clear();
+                    comboBoxMaterias.DisplayMember = "";
+                    comboBoxMaterias.ValueMember = "";
 
                     string queryMateriasDisponibles =
-                        "SELECT m.id, m.nombre " +
+                        "SELECT DISTINCT m.id, m.nombre " +
                         "FROM materia m " +
                         "LEFT JOIN persona_has_materia phm ON m.id = phm.materia_id " +
                         "WHERE m.cupo_maximo > (SELECT COUNT(*) FROM persona_has_materia WHERE materia_id = m.id) " +
@@ -68,7 +70,6 @@ namespace EducarWeb
                     MessageBox.Show("Error al cargar las materias disponibles: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            
         }
 
         private void btn_SolicitarInscripcion_Click(object sender, EventArgs e)
