@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using EducarWeb.Clases;
 
 namespace EducarWeb
 {
@@ -20,13 +21,16 @@ namespace EducarWeb
     {
         MySqlConnection conexion;
         long idUsuario;
+        string nombre;
         string query = "SELECT n.calificacion, n.fecha, m.nombre AS nombre_materia, CONCAT(p.nombre, ' ', p.apellido) " +
             "AS nombre_alumno\r\nFROM nota n\r\nJOIN materia m ON n.materia_id = m.id\r\nJOIN persona p ON n.persona_id = p.id;\r\n";
         public NotasAlumnoForm(long idUsuario, MySqlConnection conexion)
         {
             InitializeComponent();
+            
             this.idUsuario = idUsuario;
             this.conexion = conexion;
+            obtenerNombre();
             using (conexion)
             {
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, conexion);
@@ -35,51 +39,37 @@ namespace EducarWeb
                 dataGridView1.DataSource = dataTable;
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void obtenerNombre()
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Archivos PDF|*.pdf";
-            saveFileDialog.Title = "Guardar PDF";
+            string consultaSql = "SELECT nombre, apellido FROM persona WHERE id = @id"; // Reemplaza con tu consulta SQL
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            using (conexion)
             {
-                string rutaPDF = saveFileDialog.FileName;
+                conexion.Open();
 
-                Document doc = new Document(PageSize.A4.Rotate());
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(rutaPDF, FileMode.Create));
-                doc.Open();
+                MySqlCommand command = new MySqlCommand(consultaSql, conexion);
+                command.Parameters.AddWithValue("@id", idUsuario); // Reemplaza 1 con el ID de la persona que deseas obtener
 
-                PdfPTable table = new PdfPTable(dataGridView1.ColumnCount);
-                table.TotalWidth = 700f;
-                float[] widths = new float[dataGridView1.ColumnCount];
-
-                for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    widths[i] = 2f;
-                }
-
-                table.SetWidths(widths);
-                table.LockedWidth = true;
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    foreach (DataGridViewCell cell in row.Cells)
+                    if (reader.Read())
                     {
-                        if (cell.Value != null)
-                        {
-                            PdfPCell pdfCell = new PdfPCell(new Phrase(cell.Value.ToString()));
-                            table.AddCell(pdfCell);
-                        }
+                        string nombre = reader["nombre"].ToString();
+                        string apellido = reader["apellido"].ToString();
+
+                        nombre = $"{nombre} {apellido}";
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontraron resultados para el ID especificado.");
                     }
                 }
-
-                doc.Add(table);
-                doc.Close();
-                writer.Close();
-
-                MessageBox.Show("PDF generado con éxito.");
             }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            datagridviewPrinter.PrintBoletin(dataGridView1,nombre);
         }
     }
 }

@@ -65,6 +65,9 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.2.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.21.9.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.21.9\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -84,8 +87,8 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>packages\MySql.Data.8.1.0\lib\net48\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=8.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.8.2.0\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -134,7 +137,10 @@
     <Compile Include="Clases\Alumno.cs" />
     <Compile Include="Clases\Autoridad.cs" />
     <Compile Include="Clases\Conexion.cs" />
+    <Compile Include="Clases\CuotaUpdater.cs" />
     <Compile Include="Clases\CustomPdfPageEvent.cs" />
+    <Compile Include="Clases\datagridviewPrinter.cs" />
+    <Compile Include="Clases\Factura.cs" />
     <Compile Include="Clases\Materia.cs" />
     <Compile Include="Clases\Nota.cs" />
     <Compile Include="Clases\Padre.cs" />
@@ -145,6 +151,12 @@
     </Compile>
     <Compile Include="CrearMateriaForm.Designer.cs">
       <DependentUpon>CrearMateriaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExamenesPadre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExamenesPadre.Designer.cs">
+      <DependentUpon>ExamenesPadre.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSobre.cs">
       <SubType>Form</SubType>
@@ -188,6 +200,12 @@
     <Compile Include="NotasProfeForm.Designer.cs">
       <DependentUpon>NotasProfeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PagoFromAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PagoFromAdmin.Designer.cs">
+      <DependentUpon>PagoFromAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="SolicitudesInscripcionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +247,9 @@
     <EmbeddedResource Include="CrearMateriaForm.resx">
       <DependentUpon>CrearMateriaForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExamenesPadre.resx">
+      <DependentUpon>ExamenesPadre.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSobre.resx">
       <DependentUpon>FormSobre.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotasProfeForm.resx">
       <DependentUpon>NotasProfeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagoFromAdmin.resx">
+      <DependentUpon>PagoFromAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SolicitudesInscripcionForm.resx">
       <DependentUpon>SolicitudesInscripcionForm.cs</DependentUpon>
@@ -305,7 +329,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img\logo.jpg.png">
+    <Content Include="img\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using EducarWeb.Clases;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace EducarWeb
         public MainForm(string username, MySqlConnection conexion, long idUsuario, string rolUsuario)
         {
             InitializeComponent();
+            CuotaUpdater.Update(conexion);
             lbl_bienvenido.Text = "¡Bienvenido, " + username + "! ROL: " + rolUsuario;
             this.conexion = conexion;
             this.idUsuario = idUsuario;
@@ -43,8 +45,17 @@ namespace EducarWeb
 
         private void btn_Pagos_Click(object sender, EventArgs e)
         {
-            PagoForm pagoForm = new PagoForm(conexion); // Pasa la conexión
-            pagoForm.ShowDialog();
+            
+            if (rolUsuario == "Padre")
+            {
+                PagoForm pagoForm = new PagoForm(conexion, idUsuario); // Pasa la conexión
+                pagoForm.ShowDialog();
+            }
+            if(rolUsuario == "Administrador") {
+
+                PagoFromAdmin pagoFormAdmin = new PagoFromAdmin(conexion); // Pasa la conexión
+                pagoFormAdmin.ShowDialog();
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -78,22 +89,22 @@ namespace EducarWeb
 
         private void btn_Examenes_Click(object sender, EventArgs e)
         {
-            /*
-            if (esprofe(idUsuario, conexion))
+            if (rolUsuario == "Profesor")
             {
-                //abrir la ventana para igresar notas. ventana de profes
-                NotasProfeForm notasProfe = new NotasProfeForm(idUsuario, conexion);
-                notasProfe.ShowDialog();
+                NotasForm nf = new NotasForm(conexion, idUsuario, rolUsuario);
+                nf.ShowDialog();
             }
-            else
+            if(rolUsuario == "Padre")
             {
-                //ventana de vista de las notas del alumno
-                NotasAlumnoForm notasAlumno = new NotasAlumnoForm(idUsuario, conexion);
-                notasAlumno.ShowDialog();
+                ExamenesPadre examenesPadre = new ExamenesPadre(conexion,idUsuario,rolUsuario);
+                examenesPadre.ShowDialog();
             }
-            */
-            NotasForm nf = new NotasForm(conexion, idUsuario, rolUsuario);
-            nf.ShowDialog();
+            if (rolUsuario == "Alumno")
+            {
+                ExamenesPadre examenesPadre = new ExamenesPadre(conexion, idUsuario, rolUsuario);
+                examenesPadre.ShowDialog();
+            }
+            
         }
 
         public bool esprofe(long idUsuario, MySqlConnection conexion)
