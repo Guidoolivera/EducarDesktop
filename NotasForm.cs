@@ -30,6 +30,10 @@ namespace EducarWeb
 
         private void CargarCursos()
         {
+            if (conexion.State != ConnectionState.Open)
+            {
+                conexion.Open();
+            }
             try
             {
                 string queryCursos = "SELECT id AS id_curso, nombre FROM curso";
@@ -54,6 +58,10 @@ namespace EducarWeb
 
         private void CargarMaterias(long idCurso)
         {
+            if (conexion.State != ConnectionState.Open)
+            {
+                conexion.Open();
+            }
             try
             {
                 string queryMaterias =
@@ -83,6 +91,10 @@ namespace EducarWeb
 
         private void CargarAlumnos(long idMateria)
         {
+            if (conexion.State != ConnectionState.Open)
+            {
+                conexion.Open();
+            }
             try
             {
                 string queryAlumnos = "";
@@ -163,6 +175,10 @@ namespace EducarWeb
 
         private void GuardarNotas(long idAlumno, long idMateria, int trimestre, int nota)
         {
+            if (conexion.State != ConnectionState.Open)
+            {
+                conexion.Open();
+            }
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand())

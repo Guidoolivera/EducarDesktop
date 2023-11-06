@@ -29,82 +29,97 @@ namespace EducarWeb
 
         private void CargarMateriasDisponibles()
         {
-            try
+
+            using (conexion)
             {
-                // Limpia los datos anteriores antes de cargar las nuevas materias disponibles
-                comboBoxMaterias.DataSource = null;
 
-                string queryMateriasDisponibles =
-                    "SELECT m.id, m.nombre " +
-                    "FROM materia m " +
-                    "LEFT JOIN persona_has_materia phm ON m.id = phm.materia_id " +
-                    "WHERE m.cupo_maximo > (SELECT COUNT(*) FROM persona_has_materia WHERE materia_id = m.id) " +
-                    "AND (phm.persona_id <> @idUsuario OR phm.persona_id IS NULL) " +
-                    "AND m.id NOT IN (SELECT id_materia FROM solicitudes_inscripcion WHERE id_alumno = @idUsuario)";
-
-                using (MySqlCommand cmd = new MySqlCommand(queryMateriasDisponibles, conexion))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    conexion.Open();
+                    // Limpia los datos anteriores antes de cargar las nuevas materias disponibles
+                    comboBoxMaterias.DataSource = null;
 
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    string queryMateriasDisponibles =
+                        "SELECT m.id, m.nombre " +
+                        "FROM materia m " +
+                        "LEFT JOIN persona_has_materia phm ON m.id = phm.materia_id " +
+                        "WHERE m.cupo_maximo > (SELECT COUNT(*) FROM persona_has_materia WHERE materia_id = m.id) " +
+                        "AND (phm.persona_id <> @idUsuario OR phm.persona_id IS NULL) " +
+                        "AND m.id NOT IN (SELECT id_materia FROM solicitudes_inscripcion WHERE id_alumno = @idUsuario)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(queryMateriasDisponibles, conexion))
                     {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
-                        // Enlazar el ComboBox con las materias disponibles
-                        comboBoxMaterias.DataSource = dataTable;
-                        comboBoxMaterias.DisplayMember = "nombre";
-                        comboBoxMaterias.ValueMember = "id";
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+
+                            // Enlazar el ComboBox con las materias disponibles
+                            comboBoxMaterias.DataSource = dataTable;
+                            comboBoxMaterias.DisplayMember = "nombre";
+                            comboBoxMaterias.ValueMember = "id";
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las materias disponibles: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar las materias disponibles: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void btn_SolicitarInscripcion_Click(object sender, EventArgs e)
         {
-            if (comboBoxMaterias.SelectedIndex != -1)
+
+            using (conexion)
             {
-                int idMateria = Convert.ToInt32(comboBoxMaterias.SelectedValue);
+                conexion.Open();
 
-                // Realizar la inserción en la tabla "solicitudes_inscripcion" para solicitar la inscripción
-                string queryInsercion = "INSERT INTO solicitudes_inscripcion (id_alumno, id_materia, fecha_solicitud) " +
-                                        "VALUES (@idUsuario, @idMateria, NOW())";
-
-                using (MySqlCommand cmd = new MySqlCommand(queryInsercion, conexion))
+                if (comboBoxMaterias.SelectedIndex != -1)
                 {
-                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
-                    cmd.Parameters.AddWithValue("@idMateria", idMateria);
+                    int idMateria = Convert.ToInt32(comboBoxMaterias.SelectedValue);
 
-                    try
+                    // Realizar la inserción en la tabla "solicitudes_inscripcion" para solicitar la inscripción
+                    string queryInsercion = "INSERT INTO solicitudes_inscripcion (id_alumno, id_materia, fecha_solicitud) " +
+                                            "VALUES (@idUsuario, @idMateria, NOW())";
+
+                    using (MySqlCommand cmd = new MySqlCommand(queryInsercion, conexion))
                     {
-                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        cmd.Parameters.AddWithValue("@idMateria", idMateria);
 
-                        if (filasAfectadas > 0)
+                        try
                         {
-                            MessageBox.Show("Solicitud de inscripción enviada correctamente.");
+                            int filasAfectadas = cmd.ExecuteNonQuery();
 
-                            // Actualizar las materias disponibles después de la solicitud
-                            CargarMateriasDisponibles();
+                            if (filasAfectadas > 0)
+                            {
+                                MessageBox.Show("Solicitud de inscripción enviada correctamente.");
+
+                                // Actualizar las materias disponibles después de la solicitud
+                                //CargarMateriasDisponibles();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error al enviar la solicitud de inscripción.");
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Error al enviar la solicitud de inscripción.");
+                            MessageBox.Show("Error al enviar la solicitud de inscripción: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al enviar la solicitud de inscripción: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Selecciona una materia antes de solicitar la inscripción.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Selecciona una materia antes de solicitar la inscripción.");
-            }
+
+            
         }
     }
 }

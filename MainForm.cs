@@ -101,7 +101,8 @@ namespace EducarWeb
             }
             if (rolUsuario == "Alumno")
             {
-
+                NotasAlumnoForm notas = new NotasAlumnoForm(idUsuario, conexion);
+                notas.ShowDialog();
             }
             
         }
