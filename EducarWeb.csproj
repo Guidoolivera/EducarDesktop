@@ -139,6 +139,7 @@
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\CuotaUpdater.cs" />
     <Compile Include="Clases\CustomPdfPageEvent.cs" />
+    <Compile Include="Clases\datagridviewPrinter.cs" />
     <Compile Include="Clases\Factura.cs" />
     <Compile Include="Clases\Materia.cs" />
     <Compile Include="Clases\Nota.cs" />
@@ -319,7 +320,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img\logo.jpg.png">
+    <Content Include="img\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

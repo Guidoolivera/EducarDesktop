@@ -50,6 +50,7 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -77,6 +78,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(12, 57);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(413, 378);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -188,6 +190,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(431, 57);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(427, 378);
             this.dataGridView2.TabIndex = 15;
             // 
@@ -265,6 +268,21 @@
             this.label8.TabIndex = 22;
             this.label8.Text = "Fecha:";
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.SkyBlue;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(1012, 391);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(98, 36);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Imrpimir";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // PagoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +290,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1284, 443);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.comboBox2);
@@ -323,5 +342,6 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button2;
     }
 }

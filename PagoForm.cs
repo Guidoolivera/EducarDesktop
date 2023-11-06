@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EducarWeb.Clases;
 using iTextSharp.text;
+using iTextSharp.text.pdf;
 using MySql.Data.MySqlClient;
 
 namespace EducarWeb
@@ -102,7 +104,7 @@ namespace EducarWeb
             adapter.Fill(dataTable);
             dataGridView1.DataSource = dataTable;
 
-            string query2 = "SELECT pago.fecha, pago.monto, pago.nrofactura, pago.tipo " +
+            string query2 = "SELECT pago.fecha, pago.monto, pago.nrofactura, pago.tipo, pago.estado " +
                     "FROM pago " +
                     "INNER JOIN cuota ON pago.cuota_id = cuota.id " +
                     "INNER JOIN persona_has_persona ON cuota.persona_id = persona_has_persona.hijo_id " +
@@ -223,5 +225,13 @@ namespace EducarWeb
             }
             return 0;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            datagridviewPrinter.PrintCuota(dataGridView1,"joselito");
+            
+        }
+
+        
     }
 }
