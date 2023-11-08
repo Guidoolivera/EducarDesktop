@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -63,6 +64,8 @@ namespace EducarWeb
             DateTime fechaPago = dateTimePicker1.Value;
             fechaFormateada = fechaPago.ToString("yyyy-MM-dd HH:mm:ss");
 
+            this.cuotaPersonaId = ObtenerAlumnoId();
+
             try
             {
                 this.monto = Convert.ToDouble(textBox2.Text);
@@ -97,10 +100,10 @@ namespace EducarWeb
             }
             else
             {
-                this.cuotaId = ObtenerCuotaId(mesBuscado);
+                this.cuotaId = ObtenerCuotaId(mesBuscado,cuotaPersonaId);
             }
 
-            this.cuotaPersonaId = ObtenerAlumnoId(cuotaId);
+            
 
             return flag;
         }
@@ -196,28 +199,31 @@ namespace EducarWeb
                 }
             }
         }
-        private long ObtenerCuotaId(string mesBuscado)
+        private long ObtenerCuotaId(string mesBuscado, long cuotaPersonaId)
         {
             
             using (conexion)
             {
                 conexion.Open();
-                string query = "SELECT id FROM cuota WHERE mes = @mes";
+                string query = "SELECT id FROM cuota WHERE mes = @mes AND persona_id = @cuotaPersonaId";
                 using (MySqlCommand command = new MySqlCommand(query, conexion))
                 {
                     command.Parameters.AddWithValue("@mes", mesBuscado);
+                    command.Parameters.AddWithValue("@cuotaPersonaId", cuotaPersonaId);
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            return reader.GetInt64("id");
+                            long idprueba2 = reader.GetInt64("id");
+                            MessageBox.Show(idprueba2.ToString());
+                            return idprueba2;
                         }
                     }
                 }
             }
             return 0;
         }
-        private long ObtenerAlumnoId(long cuotaId)
+        private long ObtenerAlumnoId()
         {
             // Obtén el valor del comboBox2 que contiene el nombre y apellido del hijo
             string nombreApellidoHijo = comboBox2.SelectedItem.ToString();
@@ -246,7 +252,10 @@ namespace EducarWeb
                     {
                         if (reader.Read())
                         {
-                            return reader.GetInt64("id_hijo");
+                            long idprueba = reader.GetInt64("id_hijo");
+                            MessageBox.Show(idprueba.ToString());
+                            return idprueba;
+
                         }
                     }
                 }
