@@ -242,7 +242,7 @@ namespace EducarWeb
                         doc.Open();
 
                         // Agregar el logo de la institución
-                        Image img = Image.GetInstance("C:\\Users\\Guido\\Documents\\GitHub\\EducarDesktop\\img\\logo.jpg.png"); // Cambia la ruta al logo
+                        Image img = Image.GetInstance("img\\logo.png"); // Cambia la ruta al logo
                         img.ScaleAbsolute(80f, 80f); // Ajusta el tamaño según tus necesidades
                         img.SetAbsolutePosition(40, PageSize.A4.Height - 110); // Posición en la página
                         doc.Add(img);

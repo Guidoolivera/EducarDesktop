@@ -109,6 +109,18 @@ namespace EducarWeb
         }
         private string ObtenerTipoPago()
         {
+            if (checkBox1.Checked && checkBox2.Checked)
+                return string.Empty;
+            if (checkBox1.Checked && checkBox3.Checked)
+                return string.Empty;
+            if (checkBox1.Checked && checkBox4.Checked)
+                return string.Empty;
+            if (checkBox2.Checked && checkBox3.Checked)
+                return string.Empty;
+            if (checkBox2.Checked && checkBox4.Checked)
+                return string.Empty;
+            if (checkBox3.Checked && checkBox4.Checked)
+                return string.Empty;
             if (checkBox1.Checked)
                 return "Debito";
             if (checkBox2.Checked)
@@ -215,7 +227,7 @@ namespace EducarWeb
                         if (reader.Read())
                         {
                             long idprueba2 = reader.GetInt64("id");
-                            MessageBox.Show(idprueba2.ToString());
+                            //MessageBox.Show(idprueba2.ToString());
                             return idprueba2;
                         }
                     }
@@ -253,7 +265,7 @@ namespace EducarWeb
                         if (reader.Read())
                         {
                             long idprueba = reader.GetInt64("id_hijo");
-                            MessageBox.Show(idprueba.ToString());
+                            //MessageBox.Show(idprueba.ToString());
                             return idprueba;
 
                         }
@@ -265,10 +277,48 @@ namespace EducarWeb
 
         private void button2_Click(object sender, EventArgs e)
         {
-            datagridviewPrinter.PrintCuota(dataGridView1,"joselito");
+            datagridviewPrinter.PrintCuota(dataGridView1);
             
         }
+        private string ObtenerPadreNombre()
+        {
+            string nombreApellido = string.Empty;
 
-        
+            using (conexion)
+            {
+                if(conexion.State != ConnectionState.Open)
+                {
+                    conexion.Open();
+                }
+                try
+                {
+                    conexion.Open();
+
+                    string query = "SELECT nombre, apellido FROM tu_tabla WHERE userid = @UserId";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", idUsuario);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string nombre = reader["nombre"].ToString();
+                                string apellido = reader["apellido"].ToString();
+                                nombreApellido = $"{nombre} {apellido}";
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                }
+            }
+
+            return nombreApellido;
+        }
     }
+        
+    
 }
