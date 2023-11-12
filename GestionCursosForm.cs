@@ -166,7 +166,7 @@ namespace EducarWeb
                 doc.Open();
 
                 // Agregar el logo de la institución
-                Image img = Image.GetInstance("C:\\Users\\Guido\\Documents\\GitHub\\EducarDesktop\\img\\logo.jpg.png"); // Cambia la ruta al logo
+                Image img = Image.GetInstance("img\\logo.png"); // Cambia la ruta al logo
                 img.ScaleAbsolute(80f, 80f); // Ajusta el tamaño según tus necesidades
                 img.SetAbsolutePosition(40, PageSize.A4.Height - 110); // Posición en la página
                 doc.Add(img);
@@ -242,19 +242,26 @@ namespace EducarWeb
             string nombreCurso = string.Empty;
             string query = "SELECT nombre FROM curso WHERE id = @cursoId";
 
-            using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+            using (conexion)
             {
-                cmd.Parameters.AddWithValue("@cursoId", cursoId);
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                conexion.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
-                    if (reader.Read())
+                    cmd.Parameters.AddWithValue("@cursoId", cursoId);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        nombreCurso = reader.GetString("nombre");
+                        if (reader.Read())
+                        {
+                            nombreCurso = reader.GetString("nombre");
+                        }
                     }
                 }
+
+                return nombreCurso;
             }
 
-            return nombreCurso;
+            
         }
 
         private HashSet<string> ObtenerAlumnosInscritos(long cursoId)

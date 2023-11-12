@@ -109,6 +109,18 @@ namespace EducarWeb
         }
         private string ObtenerTipoPago()
         {
+            if (checkBox1.Checked && checkBox2.Checked)
+                return string.Empty;
+            if (checkBox1.Checked && checkBox3.Checked)
+                return string.Empty;
+            if (checkBox1.Checked && checkBox4.Checked)
+                return string.Empty;
+            if (checkBox2.Checked && checkBox3.Checked)
+                return string.Empty;
+            if (checkBox2.Checked && checkBox4.Checked)
+                return string.Empty;
+            if (checkBox3.Checked && checkBox4.Checked)
+                return string.Empty;
             if (checkBox1.Checked)
                 return "Debito";
             if (checkBox2.Checked)
@@ -215,7 +227,7 @@ namespace EducarWeb
                         if (reader.Read())
                         {
                             long idprueba2 = reader.GetInt64("id");
-                            MessageBox.Show(idprueba2.ToString());
+                            //MessageBox.Show(idprueba2.ToString());
                             return idprueba2;
                         }
                     }
@@ -253,7 +265,7 @@ namespace EducarWeb
                         if (reader.Read())
                         {
                             long idprueba = reader.GetInt64("id_hijo");
-                            MessageBox.Show(idprueba.ToString());
+                            //MessageBox.Show(idprueba.ToString());
                             return idprueba;
 
                         }
